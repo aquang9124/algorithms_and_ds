@@ -43,29 +43,33 @@ function bst() {
 		return this;
 	}
 
-	this.contains = function(value)
+	this.contains = function(value, current)
 	{
-		var current = this.root;
+		if (current === undefined) {
+			current = this.root;
+		}
+
 		if (this.root === null) {
 			return false;
 		}
 		else if (this.root == value) {
 			return true;
 		}
-
-		while (current) 
-		{
-			if (current.val == value) {
-				return true;
-			}
-			else if (current.val < value) {
-				current = current.right;
-			}
-			else if (current.val > value) {
-				current = current.left;
-			}
+		if (current.left === null && current.right === null) {
+			return false;
 		}
-		return false;
+
+		if (current.val == value) {
+			return true;
+		}
+		else if (current.val < value) {
+			current = current.right;
+		}
+		else if (current.val > value) {
+			current = current.left;
+		}
+		
+		return this.contains(value, current);
 	}
 
 	this.isEmpty = function() {
@@ -81,4 +85,5 @@ bst1.add(8).add(2).add(11).add(13).add(5);
 console.log(bst1);
 console.log(bst1.contains(23));
 console.log(bst1.contains(11));
+console.log(bst1.contains(2));
 console.log(bst1.isEmpty());
