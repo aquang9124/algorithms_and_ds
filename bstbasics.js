@@ -41,7 +41,7 @@ function bst() {
 			}
 		}
 		return this;
-	}
+	};
 
 	this.contains = function(value, current)
 	{
@@ -70,14 +70,37 @@ function bst() {
 		}
 		
 		return this.contains(value, current);
-	}
+	};
 
 	this.isEmpty = function() {
 		if (this.root === null) {
 			return true;
 		}
 		return false;
-	}
+	};
+
+	this.min = function() {
+		var current = this.root;
+
+		if (this.root === null) {
+			return false;
+		}
+
+		while (current.left) {
+			current = current.left;
+		}
+		return current.val;
+	};
+
+	this.max = function(current) {
+		if (!current) { current = this.root; }
+		if (this.root === null) { return false; }
+		if (current.right === null) { return current.val; }
+
+		current = current.right;
+		return this.max(current);
+	};
+
 }
 
 var bst1 = new bst();
@@ -87,3 +110,5 @@ console.log(bst1.contains(23));
 console.log(bst1.contains(11));
 console.log(bst1.contains(2));
 console.log(bst1.isEmpty());
+console.log(bst1.min());
+console.log(bst1.max());
