@@ -16,6 +16,20 @@ btNode.prototype.length = function() {
 	return 1 + left + right;
 };
 
+btNode.prototype.valid = function() {
+	var left = true, right = true;
+	if (this.left !== null) {
+		if (this.left.val > this.val) { return false; }
+		left = left && this.left.valid();
+	}
+	if (this.right !== null) {
+		if (this.right.val < this.val) { return false; }
+		right = left && this.right.valid();
+	}
+
+	return left && right;
+}
+
 function bst() {
 	this.root = null;
 
@@ -118,6 +132,10 @@ function bst() {
 		return this.root.length();
 	};
 
+	this.isValid = function() {
+		if (this.root === null) { return true; }
+		return this.root.valid();
+	};
 }
 
 var bst1 = new bst();
@@ -130,3 +148,4 @@ console.log(bst1.isEmpty());
 console.log(bst1.min());
 console.log(bst1.max());
 console.log(bst1.size());
+console.log(bst1.isValid());
