@@ -44,7 +44,7 @@ btNode.prototype.valid = function() {
 	}
 
 	return left && right;
-}
+};
 
 function bst() {
 	this.root = null;
@@ -62,6 +62,7 @@ function bst() {
 		var current = this.root;
 		while (goNext) 
 		{
+			if (current.val === value) { return false; }
 			if (current.val < value) {
 				if (current.right !== null) {
 					current = current.right;
@@ -154,11 +155,14 @@ function bst() {
 	};
 }
 
+bst.prototype.removeAll = function() {
+	return this.root = null;
+};
+
 var bst1 = new bst();
-bst1.add(8).add(2).add(11).add(13).add(5);
+bst1.add(8).add(2).add(11).add(13);
 console.log(bst1.contains(23));
-console.log(bst1.contains(11));
-console.log(bst1.contains(2));
+console.log(bst1.contains(8));
 console.log(bst1.size());
 console.log(bst1.isValid());
 console.log(bst1.root.getMin());
