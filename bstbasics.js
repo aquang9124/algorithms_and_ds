@@ -4,6 +4,14 @@ function btNode(value) {
 	this.right = null;
 }
 
+btNode.prototype.getMin = function() {
+	var current = this;
+	while (current.left) {
+		current = current.left
+	}
+	return current.val;
+};
+
 btNode.prototype.length = function() {
 	var left = 0, right = 0;
 	if (this.left !== null) {
@@ -12,7 +20,7 @@ btNode.prototype.length = function() {
 	if (this.right !== null) {
 		right = this.right.length();
 	}
-	console.log(left);
+
 	return 1 + left + right;
 };
 
@@ -140,12 +148,11 @@ function bst() {
 
 var bst1 = new bst();
 bst1.add(8).add(2).add(11).add(13).add(5);
-console.log(bst1);
 console.log(bst1.contains(23));
 console.log(bst1.contains(11));
 console.log(bst1.contains(2));
-console.log(bst1.isEmpty());
 console.log(bst1.min());
 console.log(bst1.max());
 console.log(bst1.size());
 console.log(bst1.isValid());
+console.log(bst1.root.getMin());
