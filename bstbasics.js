@@ -7,7 +7,15 @@ function btNode(value) {
 btNode.prototype.getMin = function() {
 	var current = this;
 	while (current.left) {
-		current = current.left
+		current = current.left;
+	}
+	return current.val;
+};
+
+btNode.prototype.getMax = function() {
+	var current = this;
+	while (current.right) {
+		current = current.right;
 	}
 	return current.val;
 };
@@ -151,8 +159,7 @@ bst1.add(8).add(2).add(11).add(13).add(5);
 console.log(bst1.contains(23));
 console.log(bst1.contains(11));
 console.log(bst1.contains(2));
-console.log(bst1.min());
-console.log(bst1.max());
 console.log(bst1.size());
 console.log(bst1.isValid());
 console.log(bst1.root.getMin());
+console.log(bst1.root.getMax());
