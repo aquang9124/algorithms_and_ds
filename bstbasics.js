@@ -178,6 +178,18 @@ bst.prototype.getHeight = function() {
 	return (this.root) ? this.root.height() : 0;
 }
 
+bst.prototype.isBalanced = function() {
+	if (this.root)
+	{
+		var left = this.root.left ? this.root.left.height() : 0;
+		var right = this.root.right ? this.root.right.height() : 0;
+
+		return left === right ? true : false;
+	}
+
+	return true;
+}
+
 var bst1 = new bst();
 bst1.add(8).add(2).add(11).add(13);
 console.log(bst1.contains(23));
@@ -187,3 +199,4 @@ console.log(bst1.isValid());
 console.log(bst1.root.getMin());
 console.log(bst1.root.getMax());
 console.log(bst1.getHeight());
+console.log(bst1.isBalanced());
