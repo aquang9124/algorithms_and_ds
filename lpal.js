@@ -8,16 +8,16 @@ function reverseStr(str) {
   return reverse;
 }
 
-var bearStr = 'bears in bear racecar land';
+var bearStr = 'bears in bear Racecar land';
 
 function lPalindrome(str) {
   var splitStr = str.split(" ");
   var palindromes = [];
   var largest;
-  
+
   for (var i = 0; i < splitStr.length; i++) {
-    var revStr = reverseStr(splitStr[i]);
-    if (splitStr[i] === revStr)
+    var revStr = reverseStr(splitStr[i]).toLowerCase();
+    if (splitStr[i].toLowerCase() === revStr)
     {
       palindromes.push(splitStr[i]);
     }
@@ -37,3 +37,5 @@ function lPalindrome(str) {
   
   return largest;
 }
+
+console.log(lPalindrome(bearStr));
