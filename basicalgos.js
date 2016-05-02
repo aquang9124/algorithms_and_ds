@@ -97,3 +97,35 @@ function squareArr(arr) {
 
 	return true;
 }
+
+// Function to eliminate negative numbers from an array and replace them with 0s
+function byeNegs(arr) {
+	for (x in arr) {
+		if (arr[x] < 0) {
+			arr[x] = 0;
+		}
+	}
+
+	return true;
+}
+
+// Function to find the min, max, and average of an array
+function findMinMaxAvg(arr) {
+	var max = arr[0],
+		min = arr[0],
+		avg = arr[0];
+
+	for (var i = 1; i < arr.length; i++) {
+		if (max < arr[i]) {
+			max = arr[i];
+		}
+
+		if (min > arr[i]) {
+			min = arr[i];
+		}
+
+		avg += arr[i];
+	}
+	avg = avg / arr.length;
+	return [max, min, avg];
+}
