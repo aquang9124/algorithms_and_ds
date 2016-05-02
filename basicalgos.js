@@ -13,3 +13,16 @@ function printOdds() {
 		}
 	}
 }
+
+// Function to print the sum of all odds from 1 to 5000
+function printOddSum() {
+	var sum = 0;
+
+	for (var i = 1; i < 5001; i++) {
+		if (i % 2 === 1) {
+			sum += i;
+		}
+	}
+
+	console.log(sum);
+}
