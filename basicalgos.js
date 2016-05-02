@@ -129,3 +129,43 @@ function findMinMaxAvg(arr) {
 	avg = avg / arr.length;
 	return [max, min, avg];
 }
+
+// Function to shift the values in an array over by one
+var sArr = [1, 5, 10, 7, -2];
+function shiftArr(arr) {
+	for (var i = 0; i < arr.length - 1; i++) {
+		arr[i] = arr[i + 1];
+	}
+
+	arr[arr.length - 1] = 0;
+
+	return arr;
+}
+
+// Takes an array of numbers and replaces any negatives with the string 'Dojo'
+var negArr = [-1, 3, -2, 5, 7];
+function num2Str(arr) {
+	var dojo = 'Dojo';
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] < 0) {
+			arr[i] = dojo;
+		}
+	}
+
+	return arr;
+}
+
+// Creates a random array filled with 10 random values
+function randomArr() {
+	var arr = [],
+		i = 0;
+
+	while (i < 10) {
+		var randInt = Math.floor(Math.random()*10);
+		arr.push(randInt);
+		i++;
+	}
+
+	return arr;
+}
