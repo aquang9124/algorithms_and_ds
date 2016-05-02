@@ -60,3 +60,40 @@ function findAvg(arr) {
 
 	return average / arr.length;
 }
+
+// Function to create an array of odd numbers
+function createOddArr() {
+	var arr = [];
+
+	for (var i = 1; i < 256; i++) {
+		if (i % 2 === 1) {
+			arr.push(i);
+		}
+	}
+
+	return arr;
+}
+
+// Function that takes an array and returns the number of values greater than y
+var xX = [1, 3, 4, 5, 8];
+var theY = 4;
+function greaterThanY(arr, y) {
+	var num = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] > y) {
+			num += 1;
+		}
+	}
+
+	return num;
+}
+
+// Function to square each value in an array
+function squareArr(arr) {
+	for (var i = 0; i < arr.length; i++) {
+		arr[i] = arr[i] * arr[i];
+	}
+
+	return true;
+}
