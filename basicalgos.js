@@ -169,3 +169,35 @@ function randomArr() {
 
 	return arr;
 }
+
+// A function that swaps the first and last value in the array
+function swapFNL(arr) {
+	var temp = arr[0];
+	arr[0] = arr[arr.length-1];
+	arr[arr.length-1] = temp;
+
+	return arr;
+}
+
+// Reverse the values in an array
+// This first function is a helper function to swap stuff
+function swapStuff(arr, idx1, idx2) {
+	var temp = arr[idx1];
+	arr[idx1] = arr[idx2];
+	arr[idx2] = temp;
+
+	return true;
+}
+
+// This function actually reverses the array, using the helper function
+function reverseArr(arr) {
+	var lastIdx = arr.length - 1;
+	for (var i = 0; i < arr.length; i++) {
+		if (i === lastIdx) {
+			break;
+		}
+		swapStuff(arr, i, lastIdx--);
+	}
+
+	return arr;
+}
