@@ -1,21 +1,20 @@
 function fibonacci() {
 	var arr = [0, 1],
-		sum = 0,
-		idx = 0,
-		cNum = 0;
+		sum = 0;
+			
+	while (arr[0] + arr[1] < 4000000) {
+		var cNum = arr[0] + arr[1];
 		
-	while (cNum < 4000000) {
-		cNum = arr[idx] + arr[idx + 1]
 		if (cNum % 2 === 0)
 		{
 			sum += cNum;
 		}
 
 		arr.push(cNum);
-		idx++;
+		arr.shift();
 	}
 
-	return arr;
+	return sum;
 }
 
 console.log(fibonacci());
