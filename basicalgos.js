@@ -26,3 +26,11 @@ function printOddSum() {
 
 	console.log(sum);
 }
+
+// Function iterate over and print all members of an array
+var x = [1,3,5,7,9,13];
+function iterArr(arr) {
+	for (i in arr) {
+		console.log(arr[i]);
+	}
+}
