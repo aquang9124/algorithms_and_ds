@@ -201,3 +201,38 @@ function reverseArr(arr) {
 
 	return arr;
 }
+
+// This function takes an array and inserts a new number x in index y
+var xyarr = [1, 3, 5, 7, 10];
+function insertXInY(arr, x, y) {
+	var newArr = [];
+	if (arr[y] === undefined) {
+		arr[y] = x;
+	}
+	else {
+		for (var i = 0; i < y; i++) {
+			newArr.push(arr[i]);
+		}
+
+		newArr[y] = x;
+
+		for (var i = y; i < arr.length; i++) {
+			newArr.push(arr[i]);
+		}
+
+		arr = newArr;
+	}
+
+	return arr;
+}
+
+// Here's a much improved version of that same algorithm
+function insertXToY(arr, x, y) {
+	for (var i = arr.length; i > y; i--) {
+		arr[i] = arr[i - 1];
+	}
+
+	arr[y] = x;
+
+	return arr;
+}
