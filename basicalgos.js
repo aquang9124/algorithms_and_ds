@@ -48,3 +48,15 @@ function findMax(arr) {
 
 	return max;
 }
+
+// Function to find the average in an array
+var z = [1,3,5,7,20];
+function findAvg(arr) {
+	var average = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		average += arr[i];
+	}
+
+	return average / arr.length;
+}
