@@ -34,3 +34,17 @@ function iterArr(arr) {
 		console.log(arr[i]);
 	}
 }
+
+// Function to find the max in an array
+var y = [-3, 3, 5, 7, 11];
+function findMax(arr) {
+	var max = arr[0];
+
+	for (var i = 1; i < arr.length; i++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+
+	return max;
+}
