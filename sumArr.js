@@ -13,19 +13,17 @@ function sumArrays(arr1, arr2) {
 		return arr1;
 	}
 
-	while (idx < arr1.length && idx < arr2.length) {
-		result.push(arr1[idx] + arr2[idx]);
+	while (idx < arr1.length || idx < arr2.length) {
+		if (idx < arr1.length && idx < arr2.length) {
+			result.push(arr1[idx] + arr2[idx]);
+		}
+		else if (idx >= arr1.length) {
+			result.push(arr2[idx]);
+		}
+		else {
+			result.push(arr1[idx]);
+		}
 		idx++;
-	}
-
-	if (idx === arr1.length) {
-		for (var i = idx; i < arr2.length; i++) {
-			result.push(arr2[i]);
-		}
-	} else {
-		for (var j = idx; j < arr1.length; j++) {
-			result.push(arr1[j]);
-		}
 	}
 
 	return result;
