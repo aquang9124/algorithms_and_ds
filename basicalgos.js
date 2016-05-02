@@ -236,3 +236,23 @@ function insertXToY(arr, x, y) {
 
 	return arr;
 }
+
+// Function to remove negatives from an array, in place
+var fullOfNegs = [-1, -1, 2, -3, 4, -5, 6];
+function removeNegs(arr) {
+	var idx = 0;
+	while (idx < arr.length) {
+		if (arr[idx] < 0) {
+			for (var i = idx; i < arr.length - 1; i++) {
+				swapStuff(arr, i, i+1);
+			}
+			arr.pop();
+			idx--;
+		}
+		
+		idx++;
+		
+	}
+
+	return arr;
+}
