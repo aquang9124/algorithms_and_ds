@@ -288,3 +288,61 @@ function rSum(num) {
 		return rSum(num - 1) + num;
 	}
 }
+
+// This is an iterative factorial function
+function iFact(n) {
+	var sum = 1,
+		i = 1;
+
+	if (n <= 1) {
+		return 1;
+	}
+
+	while (i <= n) {
+		sum *= i;
+		i++;
+	}
+
+	return sum;
+}
+
+// This is the recursive factorial function
+function rFact(n) {
+	if (n === 1) {
+		return 1;
+	}
+
+	return rFact(n - 1) * n;
+}
+
+// Iterative fibonacci function
+function iFibo(n) {
+	var baseArr = [0, 1],
+		count = 1,
+		sum = 0;
+
+	if (n === 0) {
+		return baseArr[0];
+	}
+	
+	while (count < n) {
+		sum = baseArr[0] + baseArr[1];
+		baseArr.push(sum);
+		baseArr.shift();
+		count++;
+	}
+
+	return sum;
+}
+
+// Recursive fibonacci function
+function rFibo(n) {
+	if (n === 0) {
+		return 0;
+	}
+	if (n === 1) {
+		return 1;
+	}
+
+	return rFibo(n - 2) + rFibo(n - 1);
+}
