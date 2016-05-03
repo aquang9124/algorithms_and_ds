@@ -54,3 +54,24 @@ function iBS(value, arr) {
 
 	return false;
 }
+
+/* Bit Manipulations
+
+24 + 8
+
+0000 0000 0001 1000
+0000 0000 0000 1000
+-------------------
+0000 0000 0010 0000
+
+Answer is 32
+
+
+
+
+
+
+
+
+
+*/
