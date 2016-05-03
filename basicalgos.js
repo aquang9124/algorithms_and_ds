@@ -256,3 +256,35 @@ function removeNegs(arr) {
 
 	return arr;
 }
+
+// Linear search function that will take in a number and an array
+var linearArr = [1, 7, 9, 4, 2];
+function linearSearch(arr, num) {
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] == num) {
+			return i;
+		}
+	}
+
+	return false;
+}
+
+// Function that takes in a number and returns the sum of all numbers up to and including that number
+function iSum(num) {
+	var sum = 0;
+	for (var i = 1; i <= num; i++) {
+		sum += i;
+	}
+
+	return sum;
+}
+
+// This is iSum, but done recursively
+function rSum(num) {
+	if (num === 1) {
+		return 1;
+	}
+	else {
+		return rSum(num - 1) + num;
+	}
+}
