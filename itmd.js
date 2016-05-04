@@ -90,7 +90,7 @@ function swapEle(arr, idx1, idx2) {
 }
 
 // Actual bubbleSort function
-var bubArr = [5, 4, 9, 1, 3, 2, 6];
+var testArr = [5, 4, 9, 1, 3, 2, 6];
 function bubbleSort(arr) {
 	var idx = 1,
 		swap = true;
@@ -109,4 +109,31 @@ function bubbleSort(arr) {
 	}
 
 	return arr;
+}
+
+// Selection Sort Implementation
+function selectionSort(arr) {
+	var idx = 0,
+		min;
+
+	for (var i = 0; i < arr.length - 1; i++) {
+		min = i;
+
+		for (var j = i + 1; j < arr.length; j++) {
+			if (arr[j] < arr[min]) {
+				min = j;
+			}
+		}
+
+		if (min !== i) {
+			swapEle(arr, min, i);
+		}
+	}
+	
+	return arr;
+}
+
+// Insertion Sort implementation
+function insertionSort(arr) {
+	
 }
