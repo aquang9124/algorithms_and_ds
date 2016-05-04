@@ -177,12 +177,22 @@ function mergeSort(arr1, arr2) {
 				smaller = arr2.shift();
 				arr3.push(smaller);
 			}
+
+			if (arr1[0] === arr2[0]) {
+				smaller = arr1.shift();
+				arr3.push(smaller);
+				smaller = arr2.shift();
+				arr3.push(smaller);
+			}
+			
 		}
 
 		if (arr1.length === 0) {
 			smaller = arr2.shift();
 			arr3.push(smaller);
-		} else {
+		} 
+
+		if (arr2.length === 0) {
 			smaller = arr1.shift();
 			arr3.push(smaller);
 		}
@@ -190,8 +200,3 @@ function mergeSort(arr1, arr2) {
 
 	return arr3;
 }
-var arr4 = insertionSort(arr2);
-var arr5 = insertionSort(testArr);
-console.log(arr4);
-console.log(arr5);
-console.log(mergeSort(arr4, arr5));
