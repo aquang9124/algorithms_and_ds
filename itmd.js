@@ -77,3 +77,36 @@ Answer is 16
 
 
 */
+
+// Bubble sort implementation
+
+// Helper Function
+function swapEle(arr, idx1, idx2) {
+	var temp = arr[idx1];
+	arr[idx1] = arr[idx2];
+	arr[idx2] = temp;
+
+	return true;
+}
+
+// Actual bubbleSort function
+var bubArr = [5, 4, 9, 1, 3, 2, 6];
+function bubbleSort(arr) {
+	var idx = 1,
+		swap = true;
+
+	while (swap) {
+		swap = false;
+
+		for (var i = 0; i < arr.length - idx; i++) {
+			if (arr[i] > arr[i + 1]) {
+				swapEle(arr, i, i+1);
+				swap = true;
+			}
+		}
+
+		idx++;
+	}
+
+	return arr;
+}
