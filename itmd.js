@@ -134,6 +134,32 @@ function selectionSort(arr) {
 }
 
 // Insertion Sort implementation
+var Arr2 = [5, 4, 9, 1, 3, 2, 6];
 function insertionSort(arr) {
-	
+	var current,
+		j = 0;
+
+	// i starts at 1 and goes to the length of the array
+	for (var i = 1; i < arr.length; i++) {
+		// we keep track of the first unsorted element on every iteration
+		// j is equal to the index of the current element
+		current = arr[i];
+		j = i;
+
+		// While current is less than the element at the index before it
+		// and j is greater than 0, we keep looping.
+		while(j > 0 && arr[j - 1] > current) {
+			// We set arr[j] to be equal to arr[j - 1], effectively moving
+			// everything over 1 until we reach an element that is not
+			// greater than current or j has hit 0.
+			arr[j] = arr[j - 1];
+			j--;
+		}
+		// We then assign the index we land on to equal the current.
+		arr[j] = current;
+	}
+
+	return arr;
 }
+
+console.log(insertionSort(testArr));
