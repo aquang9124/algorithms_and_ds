@@ -134,7 +134,7 @@ function selectionSort(arr) {
 }
 
 // Insertion Sort implementation
-var Arr2 = [5, 4, 9, 1, 3, 2, 6];
+var arr2 = [55, 2, 8, 1, 5, 3, 9];
 function insertionSort(arr) {
 	var current,
 		j = 0;
@@ -162,4 +162,36 @@ function insertionSort(arr) {
 	return arr;
 }
 
-console.log(insertionSort(testArr));
+// Merge Sort Implementation for 2 pre-sorted arrays
+function mergeSort(arr1, arr2) {
+	var arr3 = [],
+		smaller;
+
+	while (arr1.length > 0 || arr2.length > 0) {
+		if (arr1.length > 0 && arr2.length > 0) {
+			if (arr1[0] < arr2[0]) {
+				smaller = arr1.shift();
+				arr3.push(smaller);
+			}
+			if (arr1[0] > arr2[0]) {
+				smaller = arr2.shift();
+				arr3.push(smaller);
+			}
+		}
+
+		if (arr1.length === 0) {
+			smaller = arr2.shift();
+			arr3.push(smaller);
+		} else {
+			smaller = arr1.shift();
+			arr3.push(smaller);
+		}
+	}
+
+	return arr3;
+}
+var arr4 = insertionSort(arr2);
+var arr5 = insertionSort(testArr);
+console.log(arr4);
+console.log(arr5);
+console.log(mergeSort(arr4, arr5));
