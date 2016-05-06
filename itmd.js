@@ -134,7 +134,7 @@ function selectionSort(arr) {
 }
 
 // Insertion Sort implementation
-var arr2 = [55, 2, 8, 1, 5, 3, 9];
+var arr2 = [55, 2, 8, 1, 5, 3, 9, 3];
 function insertionSort(arr) {
 	var current,
 		j = 0;
@@ -200,3 +200,37 @@ function mergeSort(arr1, arr2) {
 
 	return arr3;
 }
+
+// Merge sort for two unsorted arrays
+function mergeUnsorted(arr1, arr2) {
+	var arrays = [],
+		arr3 = [],
+		smaller;
+
+	while (arr1.length > 0) {
+		num = arr1.shift()
+		arr1Sub = [num];
+		arrays.push(arr1Sub);
+	}
+
+	while (arr2.length > 0) {
+		num = arr2.shift();
+		arr2Sub = [num];
+		arrays.push(arr2Sub);
+	}
+
+	for (var i = 0; i < arrays.length; i++) {
+		if (i === arrays.length - 1) {
+			arrays[i-1].push(arrays[i].shift());
+			arrays.splice(i, 1);
+			break;
+		}
+
+		arrays[i].push(arrays[i + 1].shift());
+		arrays.splice(i+1, 1);
+	}
+
+	console.log(arrays);
+}
+
+mergeUnsorted(testArr, arr2);
