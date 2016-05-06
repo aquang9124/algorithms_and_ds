@@ -164,73 +164,41 @@ function insertionSort(arr) {
 
 // Merge Sort Implementation for 2 pre-sorted arrays
 function mergeSort(arr1, arr2) {
-	var arr3 = [],
-		smaller;
+	var arr3 = [];
 
-	while (arr1.length > 0 || arr2.length > 0) {
-		if (arr1.length > 0 && arr2.length > 0) {
-			if (arr1[0] < arr2[0]) {
-				smaller = arr1.shift();
-				arr3.push(smaller);
-			}
-			if (arr1[0] > arr2[0]) {
-				smaller = arr2.shift();
-				arr3.push(smaller);
-			}
-
-			if (arr1[0] === arr2[0]) {
-				smaller = arr1.shift();
-				arr3.push(smaller);
-				smaller = arr2.shift();
-				arr3.push(smaller);
-			}
-			
+	while (arr1.length && arr2.length) {
+		if (arr1[0] <= arr2[0]) {
+			arr3.push(arr1.shift());
+		} else {
+			arr3.push(arr2.shift());
 		}
+	}
 
-		if (arr1.length === 0) {
-			smaller = arr2.shift();
-			arr3.push(smaller);
-		} 
-
-		if (arr2.length === 0) {
-			smaller = arr1.shift();
-			arr3.push(smaller);
-		}
+	while (arr1.length) {
+		arr3.push(arr1.shift());
+	}
+	
+	while (arr2.length) {
+		arr3.push(arr2.shift());
 	}
 
 	return arr3;
 }
 
-// Merge sort for two unsorted arrays
-function mergeUnsorted(arr1, arr2) {
-	var arrays = [],
-		arr3 = [],
-		smaller;
-
-	while (arr1.length > 0) {
-		num = arr1.shift()
-		arr1Sub = [num];
-		arrays.push(arr1Sub);
+// Merge sort for an unsorted array
+function mergeUnsorted(arr) {
+	if (arr.length < 2) {
+		return arr;
 	}
 
-	while (arr2.length > 0) {
-		num = arr2.shift();
-		arr2Sub = [num];
-		arrays.push(arr2Sub);
-	}
+	var middle = Math.ceil(arr.length/2),
+		left = arr.splice(0, middle), 
+		right = arr;
 
-	for (var i = 0; i < arrays.length; i++) {
-		if (i === arrays.length - 1) {
-			arrays[i-1].push(arrays[i].shift());
-			arrays.splice(i, 1);
-			break;
-		}
+	return mergeSort(mergeUnsorted(left), mergeUnsorted(right));
 
-		arrays[i].push(arrays[i + 1].shift());
-		arrays.splice(i+1, 1);
-	}
-
-	console.log(arrays);
+	
+	
 }
 
-mergeUnsorted(testArr, arr2);
+console.log(mergeUnsorted(testArr));
