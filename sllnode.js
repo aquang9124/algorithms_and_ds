@@ -1,6 +1,6 @@
 var Node = ( function() {
-	function Node() {
-		this.data;
+	function Node(value) {
+		this.data = value;
 		this.next;
 	}
 	
