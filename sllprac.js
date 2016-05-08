@@ -2,7 +2,7 @@ var Node = require('./sllnode');
 
 var SLL = ( function() {
 	function SLL() {
-		this.head;
+		this.head = null;
 	}
 
 	SLL.prototype.find = function(value) {
@@ -13,36 +13,78 @@ var SLL = ( function() {
 
 		var current = this.head.next;
 
-		while (current.next) {
-			if (current.next.data === value) {
+		while (current) {
+			if (current.data === value) {
 				return current;
 			}
 
 			current = current.next;
 		}
 
-		return current;
+		return false;
 	};
 
-	SLL.prototype.insert = function(value) {
-		if (this.head === undefined) {
+	SLL.prototype.findPrev = function(element) {
+		if (this.head.data === element) {
+			return false;
+		}
+
+		var current = this.head;
+		while (current.next) {
+			if (current.next.data === element) {
+				return current;
+			}
+
+			current = current.next;
+		}
+
+		return false;
+	};
+
+	SLL.prototype.insert = function(value, element) {
+		element = element || 0;
+		if (this.head === null) {
 			this.head = new Node(value);
 		}
 		else {
 			var current = this.head;
 			
-			while (current.next !== undefined) {
-				current = current.next;
-			} 
+			if (this.find(element)) {
+				current = this.find(element);
+				var newNode = new Node(value);
+				newNode.next = current.next;
+				current.next = newNode;
 
-			current.next = new Node(value);
+			} else {
+				
+				while (current.next) {
+					current = current.next;
+				} 
+
+				current.next = new Node(value);
+			}
+			
 		}
 
 		return true;
 	};
 
+	SLL.prototype.remove = function(element) {
+		if (this.head.data === element) {
+			this.head = null;
+		}
+
+		var current = this.findPrev(element);
+
+		if (current) {
+			current.next = current.next.next;
+		}
+
+		return false;
+	};
+
 	SLL.prototype.display = function() {
-		if (this.head === undefined) {
+		if (this.head === null) {
 			return false;
 		}
 
