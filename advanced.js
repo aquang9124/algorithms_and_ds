@@ -9,8 +9,6 @@ function makeObj(arr1, arr2) {
 	return obj;
 }
 
-console.log(makeObj([1, 2, 3, 4, 5], [0, 1, 2, 3, 4]));
-
 // Here's a different implementation that creates 'rows' and 'columns'
 var columns = ['Street', 'City', 'State'],
 	rows = [['123 North Mac St', 'Aspire', 'CA'], ['456 South Acer St', 'Freeruns', 'WA'], ['342 Apple Drive', 'Soda', 'NY']];
@@ -30,4 +28,24 @@ function formObj(arr1, arr2) {
 	return objArr;
 }
 
-console.log(formObj(columns, rows));
+// Function to check if number or NaN, this is the jQuery implementation of isNumeric
+function isNumeric(obj) {
+	return !Array.isArray(obj) && (obj - parseFloat(obj) + 1) >= 0;
+}
+
+// Given a string, find all the numbers in the string and return their sum
+function stringToN(str) {
+	var split = str.split(""),
+		sum = 0;
+
+	for (var i = 0; i < split.length; i++) {
+		if (isNumeric(split[i])) {
+			var num = parseInt(split[i]);
+			sum += num;
+		}
+	}
+
+	return sum;
+}
+
+console.log(stringToN('22#3'));
