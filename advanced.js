@@ -59,3 +59,33 @@ function sum2One(num) {
 
 	return sum;
 }
+
+// An attempt at implementing Javascript's Split function
+// This implementation takes two inputs, the separator and
+// the string to be split.
+function splitPro(separator, str) {
+	var arr = [],
+		container = "";
+
+	if (separator === "") {
+		for (var i = 0; i < str.length; i++) {
+			arr.push(str[i]);
+		}
+
+		return arr;
+	}
+
+	for (var j = 0; j < str.length; j++) {
+		if (str[j] === separator) {
+			arr.push(container);
+			container = "";
+			continue;
+		}
+
+		container += str[j];
+	}
+	
+	arr.push(container);
+	return arr;
+
+}
