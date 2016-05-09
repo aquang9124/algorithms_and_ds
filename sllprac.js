@@ -6,22 +6,14 @@ var SLL = ( function() {
 	}
 
 	SLL.prototype.find = function(value) {
-		
-		if (this.head.data === value) {
-			return this.head;
-		}
 
-		var current = this.head.next;
+		var current = this.head;
 
-		while (current) {
-			if (current.data === value) {
-				return current;
-			}
-
+		while (current !== null && current.value !== value) {
 			current = current.next;
 		}
 
-		return false;
+		return current;
 	};
 
 	SLL.prototype.findPrev = function(element) {
@@ -95,6 +87,18 @@ var SLL = ( function() {
 		}
 
 		return true;
+	}
+
+	SLL.prototype.nodeCount = function() {
+		var current = this.head,
+			count = 0;
+
+		while (current) {
+			current = current.next;
+			count++;
+		}
+
+		return count;
 	}
 	
 	return SLL;	
