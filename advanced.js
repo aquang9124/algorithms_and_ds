@@ -48,4 +48,14 @@ function stringToN(str) {
 	return sum;
 }
 
-console.log(stringToN('22#3'));
+// Function to calculate the sum of a number's digits until it becomes a one digit number
+function sum2One(num) {
+	var sum = 0;
+
+	while (num > 0) {
+		sum += num % 10;
+		num = Math.floor(num/10);
+	}
+
+	return sum;
+}
