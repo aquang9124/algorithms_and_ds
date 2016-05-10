@@ -1,3 +1,4 @@
+var Node = require('./sllnode');
 var singlyLinkedList = require('./sllprac');
 
 var sll = new singlyLinkedList();
@@ -18,16 +19,17 @@ function mergeSortLinkedList(sll) {
 		leftCurr = left.head,
 		rightCurr = right.head;
 
-	while (sll.nodeCount > 1) {
+	while (current !== null) {
 		if (pivot.data < current.data) {
 			if (left.head === null) {
-				left.head = current;
+				left.head = new Node(current.data);
 			} else {
-				leftCurr.next = current;
+				console.log(leftCurr);
+				leftCurr.next = new Node(current.data);
 				leftCurr = leftCurr.next;
 			}
 		}
-		current.next = current.next.next;
+		
 		current = current.next;
 	}
 
