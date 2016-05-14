@@ -55,7 +55,7 @@ String.prototype.subStr2 = function (start, length) {
 }
 
 // BracesValid function. Checks to make sure every opening brace is properly closed, returns false if otherwise.
-var str = "({[]{})}";
+var braceStr = "({[{}]{abc})}";
 
 function bracesValid(str) {
 	var openIdx = [],
@@ -84,4 +84,9 @@ function bracesValid(str) {
 		}
 		return true;
 	}
+}
+
+// Simple function to add two strings together in form of abba
+function combineABBA(a, b) {
+	return a + b + b + a;
 }
