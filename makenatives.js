@@ -53,3 +53,35 @@ String.prototype.subStr2 = function (start, length) {
 
 	return extract;
 }
+
+// BracesValid function. Checks to make sure every opening brace is properly closed, returns false if otherwise.
+var str = "({[]{})}";
+
+function bracesValid(str) {
+	var openIdx = [],
+		closeIdx = [];
+
+	for (var i = 0; i < str.length; i++) {
+		if (str[i] == "{") {
+			openIdx.push(i);
+		}
+
+		if (str[i] == "}") {
+			closeIdx.push(i);
+		}
+	}
+
+	if (closeIdx.length !== openIdx.length) 
+	{
+		return false;
+	} 
+	else 
+	{
+		for (var j = 0; j < openIdx.length; j++) {
+			if (closeIdx[j] < openIdx[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
