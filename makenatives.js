@@ -36,3 +36,20 @@ function search2(str, target) {
 	
 	return false;
 }
+
+// Attempt at implementing the String.prototype.substr() method from JS
+String.prototype.subStr2 = function (start, length) {
+	var extract = "";
+
+	if (length === 0) {
+		return extract;
+	}
+
+	length = length || this.length - 1;
+
+	for (var i = start; i <= length; i++) {
+		extract += this[i];
+	}
+
+	return extract;
+}
