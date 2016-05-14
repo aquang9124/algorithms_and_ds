@@ -21,7 +21,6 @@ function genChange(coins) {
 
         else if (Math.floor(coins / 10) > 0) {
             var numDimes = coins - (coins % 10);
-            console.log(numDimes);
             bucket.dime = bucket.dime + numDimes / 10;
             coins = coins % 10;
         }
