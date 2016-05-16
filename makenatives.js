@@ -152,3 +152,35 @@ function frontNines(arr) {
 
 	return false;
 }
+
+// Given a string return the index of the first unique character.
+// Ex. Given 'google', return 4.
+function uniqueIdx(str) {
+	var arr = str.split(''),
+		obj = {};
+
+	// This first for loop creates the obj that will keep a count of all the letters in the string
+	for (var i = 0; i < arr.length; i++) {
+		obj[arr[i]] = {
+			letter: arr[i],
+			count: 0
+		};
+	}
+
+	// This second for loop goes through the string and sets the count of the obj to be the number of times
+	// that character appeared in the string
+	for (var j = 0; j < arr.length; j++) {
+		if (obj[arr[j]].letter == arr[j]) {
+			obj[arr[j]].count += 1;
+		}
+	}
+
+	// This final for loop will find the first unique character and return its index
+	for (var k = 0; k < arr.length; k++) {
+		if (arr[k] == obj[arr[k]].letter && obj[arr[k]].count < 2) {
+			return k;
+		}
+	}
+
+	return false;
+}
