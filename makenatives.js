@@ -90,3 +90,48 @@ function bracesValid(str) {
 function combineABBA(a, b) {
 	return a + b + b + a;
 }
+
+// Given a string, return a string with only unique characters
+var testStr = "Mississippi";
+// Function implementation
+function retUniques(str) {
+	var uniques = {},
+		newStr = "";
+
+	for (var i = 0; i < str.length; i++) {
+		uniques[str[i]] = 1;
+	}
+
+	for (x in uniques) {
+		newStr += x;
+	}
+
+	return newStr;
+}
+
+// String explosion
+function stringExplode(str) {
+	var word = str[0],
+		strArr = [],
+		idx = 0;
+
+	while (idx <= str.length) {
+		if (idx > 0) {
+			for (var i = 1; i < idx; i++) {
+				word += str[i];
+			}
+			strArr.push(word);
+			word = str[0];
+		}
+
+		idx++;
+	}
+
+	str = "";
+
+	for (var j = 0; j < strArr.length; j++) {
+		str += strArr[j];
+	}
+
+	return str;
+}
