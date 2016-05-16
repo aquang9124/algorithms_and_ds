@@ -184,3 +184,22 @@ function uniqueIdx(str) {
 
 	return false;
 }
+
+// Alternative implementation for uniqueIdx function
+function getFirstUnique(string) {
+	str = string.split("");
+	var seen = [];
+
+	while (str.length !== 0) {
+		var element = str[0];
+		str.shift();
+
+		if (str.indexOf(element) == -1 && seen.indexOf(element) == -1) {
+			return string.indexOf(element);
+		}
+
+		seen.push(element);
+	}
+
+	return false;
+}
