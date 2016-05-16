@@ -203,3 +203,45 @@ function getFirstUnique(string) {
 
 	return false;
 }
+
+// Given a string, like so '1?00?101', return an array of all possible patterns.
+var qStr = '1?00?101';
+// Helper function
+function randInt(n) {
+	return Math.round(Math.random()*n);
+}
+
+// Function implementation
+function binaryStr(string) {
+	var str = string.split(''),
+		str2 = "",
+		strArr = [],
+		pushable = true;
+	
+	for (var i = 0; i < 10; i++) {
+		str2 = "";
+		
+		for (var k = 0; k < str.length; k++) {
+
+			if (str[k] === '?') {
+
+				str[k] = randInt(1);
+			}
+		}
+		str2 = str.join("");
+		
+		for (var j = 0; j < strArr.length; j++) {
+			if (strArr[j] == str2) {
+				pushable = false;
+			}
+		}
+
+		if (pushable === true) {
+			strArr.push(str2);
+		}
+	}
+	
+	return strArr;
+}
+
+console.log(binaryStr(qStr));
