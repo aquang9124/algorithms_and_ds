@@ -213,33 +213,32 @@ function randInt(n) {
 
 // Function implementation
 function binaryStr(string) {
-	var str = string.split(''),
-		str2 = "",
 		strArr = [],
-		pushable = true;
+		obj = {},
+		pushable = true,
+		idx = 0;
 	
-	for (var i = 0; i < 10; i++) {
-		str2 = "";
-		
-		for (var k = 0; k < str.length; k++) {
-
-			if (str[k] === '?') {
-
-				str[k] = randInt(1);
+	while (idx < 10) {
+		var str2 = "";
+		var str = string.split('');
+		for (var i = 0; i < str.length; i++) {
+			if (str[i] == "?") {
+				str[i] = randInt(1);
 			}
 		}
+
 		str2 = str.join("");
 		
-		for (var j = 0; j < strArr.length; j++) {
-			if (strArr[j] == str2) {
-				pushable = false;
-			}
-		}
-
-		if (pushable === true) {
-			strArr.push(str2);
-		}
+		strArr.push(str2);
+		
+		idx++;
 	}
+
+	for (var j = 0; j < strArr.length; j++) {
+		obj[strArr[j]] = 0;
+	}
+
+	strArr = Object.keys(obj);
 	
 	return strArr;
 }
