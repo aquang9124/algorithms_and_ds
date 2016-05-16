@@ -135,3 +135,20 @@ function stringExplode(str) {
 
 	return str;
 }
+
+// Given an array, if one of the first 4 elements in the array is a 9 return true
+// The array may have a length less than 4
+function frontNines(arr) {
+
+	for (var i = 0; i < arr.length; i++) {
+		if (i === 3 && arr[i] !== 9) {
+			return false;
+		}
+
+		if (arr[i] === 9) {
+			return true;
+		}
+	}
+
+	return false;
+}
