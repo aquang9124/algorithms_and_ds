@@ -35,3 +35,23 @@ function primeFactors(n) {
 
 	return factors;
 }
+
+// Fibonacci
+function iterFib(n) {
+	var fibo = [0, 1];
+
+	for (var i = 0; i < n; i++) {
+		fibo.push(fibo[i] + fibo[i + 1]);
+	}
+
+	return fibo[n];
+}
+
+// Recursive fibonacci
+function rFib(n) {
+	if (n === 0 || n === 1) {
+		return n;
+	}
+
+	return rFib(n - 1) + rFib(n - 2);
+}
