@@ -215,7 +215,6 @@ function randInt(n) {
 function binaryStr(string) {
 		strArr = [],
 		obj = {},
-		pushable = true,
 		idx = 0;
 	
 	while (idx < 10) {
@@ -243,4 +242,16 @@ function binaryStr(string) {
 	return strArr;
 }
 
-console.log(binaryStr(qStr));
+// Given an array with duplicate strings, return an array with unique strings.
+var dupeArr = ["cat", "cat", "dog", "bird", "dog"];
+// Function Implementation
+function uniqueArr(arr) {
+	var arrObj = {};
+
+	for (var i = 0; i < arr.length; i++) {
+		arrObj[arr[i]] = 0;
+	}
+
+	arr = Object.keys(arrObj);
+	return arr;
+}
