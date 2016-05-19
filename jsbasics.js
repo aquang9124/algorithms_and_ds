@@ -109,3 +109,40 @@ function statDoubles() {
 	avg = Math.floor(avg / numRolls);
 	return [numRolls, max, min, avg];
 }
+
+// popFront
+function popFront(arr) {
+	if (arr.length < 2) {
+		return arr.pop();
+	}
+
+	for (var i = 0; i < arr.length - 1; i++) {
+		var temp = arr[i];
+		arr[i] = arr[i + 1];
+		arr[i + 1] = temp;
+	}
+
+	return arr.pop();
+}
+
+// insertAt
+function insertAt(arr, idx, val) {
+	for (var i = arr.length; i > idx; i--) {
+		arr[i] = arr[i - 1];
+	}
+	arr[idx] = val;
+	return arr;
+}
+
+// removeAt
+var remArr = [1, 2, 3, 4];
+function removeAt(arr, idx) {
+	for (var i = idx; i < arr.length - 1; i++) {
+		var temp = arr[i];
+		arr[i] = arr[i + 1];
+		arr[i + 1] = temp;
+	}
+
+	return arr.pop();
+}
+
