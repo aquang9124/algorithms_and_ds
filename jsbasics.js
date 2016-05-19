@@ -135,7 +135,7 @@ function insertAt(arr, idx, val) {
 }
 
 // removeAt
-var remArr = [1, 2, 3, 4];
+var remArr = [1, 2, 3, 4, 5];
 function removeAt(arr, idx) {
 	for (var i = idx; i < arr.length - 1; i++) {
 		var temp = arr[i];
@@ -146,3 +146,63 @@ function removeAt(arr, idx) {
 	return arr.pop();
 }
 
+// Reverse array
+function reverseArray(arr) {
+	var left = 0;
+	var right = arr.length - 1;
+
+	while (left < right) {
+		var temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+		left++;
+		right--;
+	}
+
+	return arr;
+}
+
+// Remove negatives
+
+// Helper function for removeNegatives
+function moveToEndAndPop(arr, idx) {
+	for (var i = idx; i < arr.length - 1; i++) {
+		var temp = arr[i];
+		arr[i] = arr[i + 1];
+		arr[i + 1] = temp;
+	}
+
+	return arr.pop();
+}
+
+// Actual function
+function removeNegatives(arr) {
+	var negativesLoc = {};
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] < 0) {
+			moveToEndAndPop(arr, i);
+			i--;
+		}
+	}
+
+	return arr;
+}
+
+// Alternate implementation of removeNegatives
+function onlyPositives(arr) {
+	var numNegatives = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] >= 0) {
+			arr[i - numNegatives] = arr[i];
+		} else {
+			numNegatives++;
+		}
+	}
+
+	while (numNegatives--) {
+		arr.pop();
+	}
+
+	return arr;
+}
