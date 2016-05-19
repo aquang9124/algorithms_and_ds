@@ -206,3 +206,68 @@ function onlyPositives(arr) {
 
 	return arr;
 }
+
+// Sum to One Digit
+function sumToOne(num) {
+
+	while (num >= 10) {
+		num = num % 10 + Math.floor(num / 10);
+	}
+
+	return num;
+}
+
+// Binary search
+function bSearch(arr, val) {
+	var min = 0,
+		max = arr.length - 1,
+		mid = Math.floor(arr.length / 2);
+
+	while (min <= max) {
+		if (arr[mid] == val) {
+			return true;
+		}
+		if (arr[mid] < val) {
+			min = mid + 1;
+			mid = min;
+		}
+		if (arr[mid] > val) {
+			max = mid - 1;
+			mid = max;
+		}
+	}
+
+	return false;
+}
+
+// Print 1 - n recursive
+// It will print all numbers from 1 to n inclusive.
+// At the end it returns n.
+function printR(n) {
+	if (n < 1) {
+		return n;
+	}
+
+	console.log(n);
+	return printR(n - 1) + 1;
+	
+}
+
+// Print sum 0 - n
+function printSumR(n, i, sum) {
+	if (!sum && !i) { 
+		sum = 0; 
+		i = 0;
+	}
+
+	if (i > n) {
+		return sum;
+	}
+	
+	sum += i;
+	console.log(i);
+	console.log('The sum so far: ' + sum);
+	return printSumR(n, i + 1, sum);
+}
+
+console.log(printSumR(5));
