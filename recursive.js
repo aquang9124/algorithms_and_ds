@@ -135,3 +135,61 @@ function squareArray(arr, i) {
 	arr[i] = Math.pow(arr[i], 2);
 	return squareArray(arr, i + 1);
 }
+
+// Turn negatives into zeroes
+function rNoNegatives(arr, i) {
+	if (!i) { i = 0; }
+
+	if (i == arr.length) {
+		return arr;
+	}
+
+	if (arr[i] < 0) {
+		arr[i] = 0;
+	}
+
+	return rNoNegatives(arr, i + 1);
+}
+
+// Get maximum, minimum, and average values in an array
+function rGetMaxMinAvg(arr, i, max, min, avg) {
+	if (!i) {
+		i = 1;
+		max = arr[0];
+		min = arr[0];
+		avg = arr[0];
+	}
+
+	if (i == arr.length) {
+		avg = Math.floor(avg/arr.length);
+		return [max, min, avg];
+	}
+
+	if (arr[i] > max) {
+		max = arr[i];
+	}
+
+	if (arr[i] < min) {
+		min = arr[i];
+	}
+
+	avg += arr[i];
+	return rGetMaxMinAvg(arr, i + 1, max, min, avg);
+}
+
+// Shift values towards the front and turn the last value into 0
+function rShiftVals(arr, i) {
+	if (typeof i == 'undefined') {
+		i = arr.length;
+	}
+
+	if (i === 0) {
+		arr[arr.length - 1] = 0;
+		return arr;
+	}
+
+	arr[i] = arr[i - 1];
+	return rShiftVals(arr, i - 1);
+}
+
+// 
