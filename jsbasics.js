@@ -263,11 +263,58 @@ function printSumR(n, i, sum) {
 	if (i > n) {
 		return sum;
 	}
-	
+
 	sum += i;
-	console.log(i);
 	console.log('The sum so far: ' + sum);
 	return printSumR(n, i + 1, sum);
 }
 
-console.log(printSumR(5));
+// Create array of odds recursively
+function rOddsArr(n, arr) {
+	if (!arr) {
+		arr = [];
+	}
+
+	if (n < 1) {
+		return n;
+	}
+
+	if (n % 2 == 1) {
+		arr.push(n);
+	}
+
+	rOddsArr(n - 1, arr);
+	return arr;
+}
+
+// Recursively print all members of an array
+function rPrintArr(arr, idx) {
+	if (!idx) {
+		idx = 0; 
+	}
+
+	if (idx == arr.length) {
+		return arr[idx];
+	}
+
+	console.log(arr[idx]);
+	return rPrintArr(arr, idx + 1);
+}
+
+// Recursively find the maximum number in an array
+function rFindMax(arr, max, idx) {
+	if (!max || !idx) {
+		max = arr[0];
+		idx = 0;
+	}
+
+	if (idx == arr.length) {
+		return max;
+	}
+
+	if (arr[idx] > max) {
+		max = arr[idx];
+	}
+
+	return rFindMax(arr, max, idx + 1);
+}
