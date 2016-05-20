@@ -328,3 +328,22 @@ function binarySearchR(arr, val, min, max, mid) {
 		return mid;
 	}
 }
+
+// Sigma
+function rSigma(n) {
+	if (n <= 1) {
+		return 1;
+	}
+
+	return rSigma(n - 1) + n;
+}
+
+// factorial
+function rFactorial(n) {
+	if (n <= 1) {
+		return 1;
+	}
+
+	return rFactorial(n - 1) * n;
+}
+
