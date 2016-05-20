@@ -40,3 +40,19 @@ function extractDigit(num, digit) {
 		return num[num.length - digit];
 	}
 }
+
+// CountTo 10
+function countTo(start) {
+	if (start === undefined) {
+		start = 1;
+	}
+
+	if (start > 10) {
+		return start;
+	}
+
+	console.log(start);
+	return countTo(start + 1);
+}
+
+countTo();
