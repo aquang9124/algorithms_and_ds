@@ -192,4 +192,97 @@ function rShiftVals(arr, i) {
 	return rShiftVals(arr, i - 1);
 }
 
-// 
+// random array
+function randomArray(arr, n) {
+	if (arr === undefined) {
+		arr = [];
+		n = 0;
+	}
+
+	if (n == 10) {
+		return arr;
+	}
+
+	arr.push(Math.floor(Math.random()*101));
+	return randomArray(arr, n + 1);
+}
+
+// Recursively reverse an array
+function reverseArrayR(arr, left, right) {
+	if (typeof left === 'undefined') {
+		left = 0;
+		right = arr.length - 1;
+	}
+
+	if (left >= right) {
+		return arr;
+	}
+
+	var temp = arr[left];
+	arr[left] = arr[right];
+	arr[right] = temp;
+
+	return reverseArrayR(arr, left + 1, right - 1);
+}
+
+// IsPrime recursive
+function isPrime(n, i) {
+	if (i === undefined) {
+		i = 2;
+	}
+
+	if (n == 2) {
+		return true;
+	}
+	else if (n % 2 === 0) {
+		return false;
+	}
+
+	if (i > Math.floor(n/2)) {
+		return true;
+	}
+
+	if (n % i === 0) {
+		return false;
+	}
+
+	return isPrime(n, i + 1);
+}
+
+// Insert X in Y
+function insertXInY(arr, val, y, idx) {
+	if (idx === undefined) {
+		idx = arr.length;
+	}
+
+	if (idx == y) {
+		arr[idx] = val;
+		return arr;
+	}
+
+	arr[idx] = arr[idx - 1];
+	return insertXInY(arr, val, y, idx - 1);
+}
+
+// Remove negatives
+function removeNegativesR(arr, count, idx) {
+	if (typeof count === 'undefined') {
+		count = 0;
+		idx = 0;
+	}
+
+	if (idx == arr.length) {
+		arr.length = arr.length - count;
+		return arr;
+	}
+
+	if (arr[idx] >= 0) {
+		arr[idx - count] = arr[idx];
+	} else {
+		count++;
+	}
+
+	return removeNegativesR(arr, count, idx + 1);
+}
+
+console.log(removeNegativesR([1, -1, -2, 3]));
