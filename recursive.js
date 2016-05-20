@@ -285,4 +285,46 @@ function removeNegativesR(arr, count, idx) {
 	return removeNegativesR(arr, count, idx + 1);
 }
 
-console.log(removeNegativesR([1, -1, -2, 3]));
+// Linear search recursive
+function linearSearchR(arr, val, idx) {
+	if (idx === undefined) {
+		idx = 0;
+	}
+
+	if (idx == arr.length) {
+		return false;
+	}
+
+	if (arr[idx] == val) {
+		return idx;
+	}
+
+	return linearSearchR(arr, val, idx + 1);
+}
+
+// Binary search recursive
+function binarySearchR(arr, val, min, max, mid) {
+	if (typeof min === 'undefined')
+	{
+		min = 0;
+		max = arr.length - 1;
+		mid = Math.floor(arr.length / 2);
+	}
+
+	if (min > max) {
+		return false;
+	}
+	else if (arr[mid] > val) {
+		max = mid - 1;
+		mid = Math.floor(min + (max - min) / 2);
+		return binarySearchR(arr, val, min, max, mid);
+	}
+	else if (arr[mid] < val) {
+		min = mid + 1;
+		mid = Math.floor(min + (max - min) / 2);
+		return binarySearchR(arr, val, min, max, mid);
+	}
+	else {
+		return mid;
+	}
+}
