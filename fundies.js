@@ -207,6 +207,7 @@ function removeDupes(arr) {
 	return arr;
 }
 
+// skyline heights, heights of consecutive buildings
 function skylineHeights(arr) {
 	var max = arr[0];
 
@@ -224,6 +225,40 @@ function skylineHeights(arr) {
 			arr.pop();
 			i--;
 		} 
+	}
+
+	return arr;
+}
+
+// Remove negatives without nested loops
+function removeNegatives(arr) {
+	var count = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] >= 0) {
+			arr[i - count] = arr[i];
+		} else {
+			count++;
+		}
+	}
+
+	arr.length = arr.length - count;
+	return arr;
+}
+
+// Array min to front
+function minToFront(arr) {
+	var min = arr[0],
+		minIdx = 0;
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] < min) {
+			min = arr[i];
+			minIdx = i;
+		}
+	}
+
+	for (var j = minIdx; j > 0; j--) {
+		swap(arr, j, j - 1);
 	}
 
 	return arr;
