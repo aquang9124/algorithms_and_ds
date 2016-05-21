@@ -190,3 +190,41 @@ function swapPairs(arr) {
 	return arr;
 }
 
+// Remove duplicates from sorted arrayk
+function removeDupes(arr) {
+	
+	for (var i = 0; i < arr.length - 1; i++) {
+		if (arr[i] === arr[i + 1]) {
+			var idx = i;
+			while (idx < arr.length - 1) {
+				swap(arr, idx, idx + 1);
+				idx++;
+			}
+			arr.pop();
+		}
+	}
+
+	return arr;
+}
+
+function skylineHeights(arr) {
+	var max = arr[0];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+
+		if (arr[i] < 0 || arr[i] < max) {
+			var idx = i;
+			while (idx < arr.length - 1) {
+				swap(arr, idx, idx + 1);
+				idx++;
+			}
+			arr.pop();
+			i--;
+		} 
+	}
+
+	return arr;
+}
