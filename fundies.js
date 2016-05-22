@@ -386,23 +386,91 @@ function mergeSort(arr) {
 
 // Helper function
 function merge(left, right) {
-	var result = [];
+	var results = [];
 
 	while (left.length && right.length) {
 		if (left[0] <= right[0]) {
-			result.push(left.shift());
+			results.push(left.shift());
 		} else {
-			result.push(right.shift());
+			results.push(right.shift());
 		}
 	}
 
 	while (left.length) {
-		result.push(left.shift());
+		results.push(left.shift());
 	}
 
 	while (right.length) {
-		result.push(right.shift());
+		results.push(right.shift());
 	}
 
-	return result;
+	return results;
+}
+
+// Return second to last element of array
+function nextToLast(arr) {
+	if (arr.length > 2) {
+		return arr[arr.length - 2];
+	}
+	
+	return arr[0];
+}
+
+// Return second largest element of array
+function closeToMax(arr) {
+	var max = arr[0],
+		closeMax = arr[0];
+
+	for (var i = 1; i < arr.length; i++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+
+	for (var j = 1; j < arr.length; j++) {
+		if (arr[j] > closeMax && arr[j] < max) {
+			closeMax = arr[j];
+		}
+	}
+
+	return closeMax;
+}
+
+// print 1 to 255 recursive
+function rPrint1To255(i) {
+	if (i === undefined) {
+		i = 1;
+	}
+
+	if (i === 255) {
+		return i;
+	}
+
+	console.log(i);
+	return rPrint1To255(i + 1);
+}
+
+// return nth-largest value in the array
+function nthLargest(arr, n) {
+	var idx = 0;
+
+	if (n > arr.length) {
+		return false;
+	}
+
+	while (idx < arr.length) {
+		var current = arr[idx];
+		var count = 0;
+		for (var i = idx + 1; i < arr.length; i++) {
+			if (arr[i] > current) {
+				count += 1;
+			}
+		}
+
+		if (count == (n - 1)) {
+			return current;
+		}
+
+		idx++;
+	}
 }
