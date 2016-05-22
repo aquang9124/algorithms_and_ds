@@ -263,3 +263,104 @@ function minToFront(arr) {
 
 	return arr;
 }
+
+// rotate array
+function rotateArray(arr, offset) {
+	while (offset--) {
+		var idx = arr.length - 1;
+		var temp = arr[arr.length - 1];
+
+		while (idx > 0) {
+			arr[idx] = arr[idx - 1];
+			idx--;
+		}
+		arr[0] = temp;
+	}
+
+	return arr;
+}
+
+// binary search
+function bSearch(arr, val) {
+	var min = 0,
+		max = arr.length - 1,
+		mid = Math.floor((min + max) / 2);
+
+	while (min <= max) {
+		mid = Math.floor((min + max) / 2);
+		if (arr[mid] > val) {
+			max = mid - 1;
+		}
+		else if (arr[mid] < val) {
+			min = mid + 1;
+		}
+		else {
+			return mid;
+		}
+	}
+
+	return false;
+}
+
+// recursive binary search
+function rBinarySearch(arr, val, mid, min, max) {
+	if (typeof min === 'undefined' || max === undefined) {
+		min = 0;
+		max = arr.length - 1;
+	}
+
+	mid = Math.floor((min + max) / 2);
+
+	if (min > max) {
+		return false;
+	}
+	else if (arr[mid] > val) {
+		max = mid - 1;
+		return rBinarySearch(arr, val, mid, min, max);
+	}
+	else if (arr[mid] < val) {
+		min = mid + 1;
+		return rBinarySearch(arr, val, mid, min, max);
+	}
+	else {
+		return mid;
+	}
+}
+
+// filter range
+function filterRange(arr, min, max) {
+	var newArr = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] < max && arr[i] > min) {
+			continue;
+		} else {
+			newArr.push(arr[i]);
+		}
+	}
+
+	arr = newArr;
+	return arr;
+}
+
+// zip it, insert values at alternating indices
+function zipIt(arr, arr2) {
+	var finalArr = [];
+
+	while (arr.length > 0 || arr2.length > 0) {
+		if (arr.length > 0 && arr2.length > 0) {
+			var temp = arr.shift();
+			finalArr.push(temp);
+			temp = arr2.shift();
+			finalArr.push(temp);
+		}
+		else if (arr.length > 0) {
+			finalArr.push(arr.shift());
+		}
+		else {
+			finalArr.push(arr2.shift());
+		}
+	}
+
+	return finalArr;
+}
