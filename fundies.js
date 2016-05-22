@@ -474,3 +474,42 @@ function nthLargest(arr, n) {
 		idx++;
 	}
 }
+
+// recreate array concat function
+function concatenate(arr, arr2) {
+	var arr3 = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		arr3.push(arr[i]);
+	}
+
+	for (var j = 0; j < arr2.length; j++) {
+		arr3.push(arr2[j]);
+	}
+
+	return arr3;
+}
+
+// intermediate sums
+function interSums(arr) {
+	var sum = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+
+		if (i > 0 && i % 10 === 0) {
+			for (var j = arr.length; j > i; j--) {
+				arr[j] = arr[j - 1];
+			}
+
+			arr[i] = sum;
+			sum = 0;
+			continue;
+		}
+
+		sum += arr[i];
+	}
+
+	arr[arr.length] = sum;
+
+	return arr;
+}
