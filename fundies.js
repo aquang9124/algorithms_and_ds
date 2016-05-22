@@ -345,22 +345,64 @@ function filterRange(arr, min, max) {
 
 // zip it, insert values at alternating indices
 function zipIt(arr, arr2) {
-	var finalArr = [];
+	var idx = 1;
+	while (arr2.length > 0 && idx <= arr.length) {
+		for (var i = arr.length; i > idx; i--) {
+			arr[i] = arr[i - 1];
+		}
 
-	while (arr.length > 0 || arr2.length > 0) {
-		if (arr.length > 0 && arr2.length > 0) {
-			var temp = arr.shift();
-			finalArr.push(temp);
-			temp = arr2.shift();
-			finalArr.push(temp);
-		}
-		else if (arr.length > 0) {
-			finalArr.push(arr.shift());
-		}
-		else {
-			finalArr.push(arr2.shift());
+		arr[idx] = arr2.shift();
+		idx += 2;
+	}
+
+	while (arr2.length > 0) {
+		arr.push(arr2.shift());
+	}
+
+	return arr;
+}
+
+// Recursive fibonacci
+function rFibonacci(n) {
+	if (n === 0 || n === 1) {
+		return n;
+	}
+
+	return rFibonacci(n - 1) + rFibonacci(n - 2);
+}
+
+// Merge sort
+function mergeSort(arr) {
+	if (arr.length < 2) {
+		return arr;
+	}
+
+	var mid = Math.floor(arr.length / 2),
+		left = arr.slice(0, mid),
+		right = arr.slice(mid, arr.length);
+
+	return merge(mergeSort(left), mergeSort(right));
+}
+
+// Helper function
+function merge(left, right) {
+	var result = [];
+
+	while (left.length && right.length) {
+		if (left[0] <= right[0]) {
+			result.push(left.shift());
+		} else {
+			result.push(right.shift());
 		}
 	}
 
-	return finalArr;
+	while (left.length) {
+		result.push(left.shift());
+	}
+
+	while (right.length) {
+		result.push(right.shift());
+	}
+
+	return result;
 }
