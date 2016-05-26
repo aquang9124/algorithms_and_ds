@@ -55,3 +55,49 @@ function reverseStr(str) {
 function removeBlanks(str) {
 	return str.split(' ').join('');
 }
+
+// Check if value is an integer
+function isNumber(val) {
+	return !isNaN(parseFloat(val)) && isFinite(val);
+}
+
+// Get string digits
+function getStrDigits(str) {
+	str = str.split('');
+	var strDigit = '';
+	for (var i = 1; i < str.length; i++) {
+		if (isNumber(str[i])) {
+			strDigit += str[i];
+		}
+	}
+
+	return strDigit;
+}
+
+// Acronyms
+var acroStr = "there's no free lunch - gotta pay yer way.";
+function acronym(str) {
+	str = str.split(' ');
+	var acro = '';
+
+	for (var i = 0; i < str.length; i++) {
+		acro += str[i][0].toUpperCase();
+	}
+
+	return acro;
+}
+
+// Remove short strings
+function removeShortStrs(arr, len) {
+	var shortNum = 0;
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i].length >= len) {
+			arr[i - shortNum] = arr[i];
+		} else {
+			shortNum++;
+		}
+	}
+
+	arr.length = arr.length - shortNum;
+	return arr;
+}
