@@ -101,3 +101,72 @@ function removeShortStrs(arr, len) {
 	arr.length = arr.length - shortNum;
 	return arr;
 }
+
+// parens valid
+var parensStr = 'Y(3(p)p(3)r)s';
+function parensValid(str) {
+	var parensObj = {
+		'(': [],
+		')': []
+	},
+	idx = 0;
+
+	str = str.split('');
+	for (var i = 0; i < str.length; i++) {
+		if (str[i] == '(') {
+			parensObj['('].push(i);
+		}
+		else if (str[i] == ')') {
+			parensObj[')'].push(i);
+		}
+	}
+
+	while (idx < parensObj['('].length && parensObj['('].length == parensObj[')'].length) {
+		if (parensObj['('][idx] > parensObj[')'][idx]) {
+			return false;
+		}
+
+		idx += 1;
+	}
+
+	if (parensObj['('].length != parensObj[')'].length) {
+		return false;
+	}
+
+	return true;
+}
+
+// braces valid
+var braceStr = 'W(a{t}s[o(n{ c}o)m]e )h[e{r}e]!';
+function bracesValid(str) {
+	str = str.split('');
+
+	var openArr = [],
+		closeArr = [],
+		idx = 0;
+
+	for (var i = 0; i < str.length; i++) {
+		if (str[i] == '{')
+		{
+			openArr.push(i);
+		}
+		else if (str[i] == '}') 
+		{
+			closeArr.push(i);
+		}
+	}
+
+	while (idx < openArr.length && openArr.length == closeArr.length) {
+		if (openArr[idx] > closeArr[idx]) {
+			return false;
+		}
+
+		idx++;
+	}
+
+	if (openArr.length != closeArr.length) {
+		return false;
+	}
+
+	return true;
+}
