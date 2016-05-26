@@ -170,3 +170,63 @@ function bracesValid(str) {
 
 	return true;
 }
+
+// Remove even-length strings
+function removeEvenStrings(arr) {
+	var evenNum = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i].length % 2 == 1)
+		{
+			arr[i - evenNum] = arr[i];
+		}
+		else
+		{
+			evenNum++;
+		}
+	}
+
+	arr.length = arr.length - evenNum;
+	return arr;
+}
+
+// Previous algo recursive
+function removeEvensR(arr, evenNum, idx) {
+	if (evenNum === undefined) {
+		evenNum = 0;
+		idx = 0;
+	}
+
+	if (idx == arr.length) {
+		arr.length = arr.length - evenNum;
+		return arr;
+	}
+
+	if (arr[idx].length % 2 == 1) {
+		arr[idx - evenNum] = arr[idx];
+	}
+	else {
+		evenNum += 1;
+	}
+
+	return removeEvensR(arr, evenNum, idx + 1);
+}
+
+// isPalindrome
+function isPalindrome(str) {
+
+	var left = 0,
+		right = str.length - 1;
+
+	while (left <= right) {
+		if (str[left] !== str[right])
+		{
+			return false;
+		}
+
+		left++;
+		right--;
+	}
+
+	return true;
+}
