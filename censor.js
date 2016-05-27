@@ -29,3 +29,19 @@ function censor(bleep, text) {
   return splitT.join("");
   
 }
+
+// print 1 to 255 recursive
+function printRecursive(n) {
+  if (n === undefined) {
+    n = 1;
+  }
+
+  if (n > 255) {
+    return n;
+  }
+
+  console.log(n);
+  return printRecursive(n + 1);
+}
+
+printRecursive();
