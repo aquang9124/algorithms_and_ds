@@ -28,12 +28,6 @@ var moveZeroes = function(nums) {
                 nums[j] = nums[j + 1];
                 nums[j + 1] = temp;
             }
-            
-            if (nums[i] !== 0) {
-   				break;
-            }
-
-            i--;
         }
     }
 
