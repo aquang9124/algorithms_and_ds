@@ -282,3 +282,23 @@ var reverseVowels = function(s) {
     
     return s.join('');
 };
+
+// Return an array containing all possible anagrams of a string
+function allAnagrams(str) {
+	var strArr = [];
+
+	var createAnagram = function(char, restStr) {
+		if (restStr.length === 0)
+		{
+			strArr.push(char);
+		}
+
+		for (var i = 0; i < restStr.length; i++) {
+			createAnagram(char + restStr[i], restStr.slice(0, i) + restStr.slice(i + 1));
+		}
+	}
+
+	createAnagram('', str);
+
+	return strArr;
+}
