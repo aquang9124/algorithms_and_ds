@@ -18,7 +18,25 @@ function intersection(nums1, nums2) {
 	return nums4;
 }
 
+// Intersection of two arrays II
+function intersectArrays(nums1, nums2) {
+	var nums3 = [];
+	for (var i = 0; i < nums1.length; i++) {
+		for (var j = 0; j < nums2.length; j++) {
+			if (nums1[i] === nums2[j])
+			{
+				nums2.splice(j, 1);
+				nums3.push(nums1[i]);
+				break;
+			}
+		}
+	}
+
+	return nums3;
+}
+
 // move zeroes to the end
+// this algorithm is definitely not perfect
 var moveZeroes = function(nums) {
 	for (var i = 0; i < nums.length; i++) {
         if (nums[i] === 0)
@@ -177,3 +195,49 @@ function isPowerOfThreePro(n) {
 }
 // This one is also quite slow, but at least it's much
 // faster than the previous implementation
+
+// Roman numeral into integer
+// This implementation is quite slow, it's only faster
+// than 13% of submissions for JavaScript. T-T
+var romanToInt = function(s) {
+    var romanNums = {
+        keys: {
+            I: 1,
+            V: 5,
+            X: 10,
+            L: 50,
+            C: 100,
+            D: 500,
+            M: 1000
+        }
+    };
+    var values = [];
+    var sum = 0;
+
+    if (s.length < 2 && romanNums.keys[s])
+    {
+    	return romanNums.keys[s];
+    }
+    
+    for (var i = 0; i < s.length; i++) {
+        values.push(romanNums.keys[s[i]]);
+    }
+    
+    for (var j = 0; j < values.length - 1; j++) {
+        if (values[j] >= values[j + 1]) {
+            sum += values[j];
+        }
+        else if (values[j] < values[j + 1]) {
+            sum += (values[j + 1] - values[j]);
+            j++;
+        }
+    }
+
+    if (values[values.length - 2] >= values[values.length - 1]) {
+		sum += values[values.length - 1];   	
+    }
+    
+    return sum;
+};
+
+console.log(romanToInt('M'));
