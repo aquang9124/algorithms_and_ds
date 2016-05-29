@@ -148,4 +148,32 @@ var singleNumber = function(nums) {
     return false;
 };
 
-console.log(singleNumber([1, 1, 2, 2]));
+// check if n is a power of three
+var isPowerOfThree = function(n) {
+	var limit = Math.floor(n / 3);
+
+	for (var i = 1; i < limit; i++) {
+		if (i * i * i === n)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+// This is a very slow algorithm
+// Here is a faster way of checking if
+// the value is a power of three
+function isPowerOfThreePro(n) {
+	if (n < 1) {
+		return false;
+	}
+
+	while (n % 3 === 0) {
+		n /= 3;
+	}
+
+	return n === 1;
+}
+// This one is also quite slow, but at least it's much
+// faster than the previous implementation
