@@ -114,3 +114,38 @@ function isAnagramPro(s, t) {
 
     return s.join('') === t.join('');
 }
+
+// majority element
+var majorityElement = function(nums) {
+    nums.sort();
+    
+    return nums[nums.length / 2];
+};
+
+// contains duplicates
+var containsDuplicate = function(nums) {
+    nums.sort();
+    
+    for (var i = 0; i < nums.length - 1; i++) {
+        if (nums[i] === nums[i + 1]) {
+            return true;
+        }
+    }
+    
+    return false;
+};
+
+// single number
+var singleNumber = function(nums) {
+    nums.sort();
+
+    for (var i = 0; i < nums.length; i += 2) {
+    	if (nums[i] !== nums[i + 1]) {
+    		return nums[i];
+    	}
+    }
+
+    return false;
+};
+
+console.log(singleNumber([1, 1, 2, 2]));
