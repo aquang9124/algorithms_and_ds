@@ -240,4 +240,45 @@ var romanToInt = function(s) {
     return sum;
 };
 
-console.log(romanToInt('M'));
+// reverseVowels
+var reverseVowels = function(s) {
+    s = s.split('');
+    var left = 0,
+        right = s.length - 1;
+
+	// isVowel
+	function isVowel(x) {
+		var result;
+
+	    result = x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' || x == 'A' || x == 'E' || x == 'I' || x == 'O' || x == 'U';
+
+	    return result;
+	}
+    
+    while (left <= right) {
+
+       if (isVowel(s[left]) && isVowel(s[right]))
+       {
+           var temp = s[left];
+           s[left] = s[right];
+           s[right] = temp;
+           right--;
+           left++;
+       }
+       else if (isVowel(s[left]))
+       {
+           right--;
+       }
+       else if (isVowel(s[right]))
+       {
+           left++;
+       }
+       else
+       {
+           left++;
+           right--;
+       }
+    }
+    
+    return s.join('');
+};
