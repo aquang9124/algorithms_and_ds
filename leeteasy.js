@@ -302,3 +302,29 @@ function allAnagrams(str) {
 
 	return strArr;
 }
+
+// Determine if an anagram is a palindrome
+function isAnaPalindrome(str) {
+	var anaObj = {},
+		count = 0;
+
+	for (var i = 0; i < str.length; i++) {
+		if (anaObj[str[i]])
+		{
+			anaObj[str[i]] += 1;
+		}
+		else
+		{
+			anaObj[str[i]] = 1;
+		}
+	}
+
+	for (var key in anaObj) {
+		if (anaObj[key] % 2 === 1)
+		{
+			count++;
+		}
+	}
+
+	return count < 2;
+}
