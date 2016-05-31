@@ -16,3 +16,19 @@ var hammingWeight = function(n) {
 
 	return count;
 };
+
+// test to dynamically create 10 button elements
+function createButtons() {
+	for (var i = 1; i <= 10; i++) {
+		var btn = document.createElement("BUTTON");
+		var t = document.createTextNode(i);
+		btn.setAttribute("id", i);
+		btn.appendChild(t);
+		document.body.appendChild(btn);
+	}
+	document.querySelector("body").addEventListener("click", function() {
+		if (event.target.tagName.toLowerCase() === 'button') {
+			alert(event.target.id);
+		}
+	}
+}
