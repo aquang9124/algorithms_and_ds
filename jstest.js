@@ -30,5 +30,32 @@ function createButtons() {
 		if (event.target.tagName.toLowerCase() === 'button') {
 			alert(event.target.id);
 		}
-	}
+	});
 }
+
+// recursive powersets
+var powerSet = function(str) {
+  var sets = [];
+  var lib = {};
+
+  var getSets = function(power, depth) {
+    if (depth === str.length)
+    {
+      var key = power.split('').sort().join('');
+      if (lib[key] === undefined) {
+        sets.push(key);
+        lib[key] = true;
+      }
+      return;
+    }
+
+    getSets(power, depth + 1);
+
+    getSets(power + str[depth], depth + 1);
+  };
+
+  getSets('', 0);
+  return sets;
+}
+
+console.log(powerSet('abca'));
