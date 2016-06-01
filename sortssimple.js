@@ -47,4 +47,18 @@ var selectionSort = function(input){
   return input;
 }
 
-console.log(selectionSort([4, 3, 8, 1]));
+// insertion sort
+var insertionSort = function(input){
+  // your work here
+  for (var i = 0; i < input.length; i++) {
+    if (input[i + 1] < input[i]) {
+      for (var j = i + 1; j > 0; j--) {
+        var temp = input[j];
+        input[j] = input[j - 1];
+        input[j - 1] = temp;
+      }
+    }
+  }
+
+  return input;
+}
