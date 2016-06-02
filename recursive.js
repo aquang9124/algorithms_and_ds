@@ -347,3 +347,51 @@ function rFactorial(n) {
 	return rFactorial(n - 1) * n;
 }
 
+// Print each item in an array in order
+function print(arr) {
+	var len = arr.length;
+	var traverse = function(i) {
+		if (i >= len) {
+			return;
+		}
+		console.log(arr[i]);
+		traverse(i + 1);
+	}
+
+	traverse(0);
+}
+
+// Print each item in array backwards
+function printR(arr) {
+	var len = arr.length - 1;
+
+	var traverse = function(start) {
+		if (start < 0) {
+			return;
+		}
+
+		console.log(arr[start]);
+		traverse(start - 1);
+	}
+
+	traverse(len);
+}
+
+// Reverse a string
+function reverser(str) {
+	var result,
+		len = str.length - 1;
+	var getReverse = function(char, rest) {
+		if (rest.length === 0) {
+			return char;
+		}
+
+		return getReverse(char + rest.slice(rest.length - 1), rest.slice(0, rest.length - 1));
+	
+	}
+
+	return getReverse('', str);
+
+}
+
+console.log(reverser('hello'));
