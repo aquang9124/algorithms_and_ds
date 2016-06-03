@@ -73,3 +73,36 @@ function findMissing(arr) {
 
 	return sum - actSum;
 }
+
+// function to test switch cases
+function switcheroo(n) {
+	switch (n) {
+		case 1:
+			console.log('You put in 1!');
+			break;
+		case 2:
+			console.log('You put in 2!');
+			break;
+		// It will always say both console logs if you put in 3.
+		case 3:
+			console.log('You put in 3!');
+		case 4:
+			console.log('I like green eggs and ham.');
+			break;
+		default:
+			console.log('I did\'nt find a match here.');
+			break;
+	}
+
+	// Implicit return of undefined
+}
+
+// creates a triangle in the console
+function createTriangle() {
+	var char = '';
+
+	for (var i = 0; i < 7; i++) 
+		console.log(char += '#');
+
+	// Omitted braces because it is a one-liner.
+}
