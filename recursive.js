@@ -394,4 +394,35 @@ function reverser(str) {
 
 }
 
-console.log(reverser('hello'));
+// create tuples from an array
+function createTuples(arr) {
+	var result = [];
+
+	function getTuples(rem) {
+		if (rem.length === 0) {
+			return;
+		}
+
+		result.push([rem[0], rem[1]]);
+		getTuples(rem.slice(2));
+	}
+
+	getTuples(arr);
+	return result;
+}
+
+// flatten an array using recursion
+function flatten(arr) {
+	var result = [];
+
+	function makeFlat(rem) {
+		if (!Array.isArray(rem[i])) {
+			result.push(rem[i]);
+		}
+		else {
+			for (var i = 0; i < rem.length; i++) {
+				makeFlat(rem[i]);
+			}
+		}
+	}
+}

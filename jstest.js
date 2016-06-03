@@ -58,4 +58,18 @@ var powerSet = function(str) {
   return sets;
 }
 
-console.log(powerSet('abca'));
+// given an array of integers in range of 1 to N + 1, return missing number
+function findMissing(arr) {
+	var actSum = 0,
+		sum = 0;
+
+	for (var i = 1; i <= arr.length + 1; i++) {
+		sum += i;
+	}
+
+	for (var j = 0; j < arr.length; j++) {
+		actSum += arr[j];
+	}
+
+	return sum - actSum;
+}
