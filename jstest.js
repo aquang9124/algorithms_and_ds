@@ -308,3 +308,60 @@ var isUglyPro = function(num) {
 };
 
 // creating sum and range functions
+
+// range
+function range(start, end, step) {
+	var result = [];
+
+	if (step === undefined || step === 0)
+		step = 1;
+
+	if (step < 0) {
+		while (end >= start) {
+			result.push(end);
+			end += step;
+		}
+		return result;
+	}
+	else {
+		for (var i = start; i <= end; i += step)
+			result.push(i);
+		return result;
+	}
+}
+
+// sum
+function sum(arr) {
+	var result = 0;
+
+	for (var i = 0; i < arr.length; i++)
+		result += arr[i];
+
+	return result;
+}
+
+// reverse array in place and reverse array pure
+function reverseInPlace(arr) {
+	var left = 0,
+		right = arr.length - 1;
+
+	while (left <= right) {
+		var temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+
+		left++;
+		right--;
+	}
+
+	return arr;
+}
+
+var reversePure = function(arr) {
+	var result = [];
+
+	for (var i = arr.length - 1; i >= 0; i--)
+		result.push(arr[i]);
+
+	return result;
+};
