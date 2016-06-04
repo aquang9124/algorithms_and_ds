@@ -231,3 +231,80 @@ function countChar(str, char) {
 	getCount(0);
 	return count;
 }
+
+// Testing usage of arguments in JavaScript
+function createEntry(pants) {
+	var entry = {
+		events: [],
+		pants: pants
+	};
+
+	for (var i = 1; i < arguments.length; i++)
+		entry.events.push(arguments[i]);
+
+	return entry;
+}
+
+// Write a function to check whether a given number is an ugly number
+// This means it's prime factors only include 2, 3, or 5
+
+// This function checks whether a given number is a prime number
+function isPrime(n) {
+	var divisor = 2,
+		limit = Math.floor(n / 2);
+
+	for (var i = divisor; i < limit; i++) {
+		if (n % i === 0)
+			return false;
+	}
+
+	return true;
+}
+
+// This function looks for ugly numbers
+var isUgly = function(num) {
+	var primeFactors = [2, 3, 5],
+		divisor = 7,
+		idx = 0;
+
+	if (num < 1)
+		return false;
+	else if (num === 1)
+		return true;
+
+	while (num !== 1) {
+		if (num % divisor === 0) {
+			return false;
+		}
+		else if (num % primeFactors[0] === 0 || num % primeFactors[1] === 0 || num % primeFactors[2] === 0) {
+				if (num % primeFactors[0] === 0)
+					num /= primeFactors[0];
+				else if (num % primeFactors[1] === 0)
+					num /= primeFactors[1];
+				else
+					num /= primeFactors[2];
+		}
+		else {
+			divisor += 2;
+		}
+	}
+
+	return true;
+};
+
+// This implementation is A LOT faster than the first one.
+var isUglyPro = function(num) {
+	if (num <= 0)
+		return false;
+
+	while (num % 2 === 0)
+		num /= 2;
+	while (num % 3 === 0)
+		num /= 3;
+	while (num % 5 === 0)
+		num /= 5;
+
+	return num === 1;
+};
+
+// creating sum and range functions
