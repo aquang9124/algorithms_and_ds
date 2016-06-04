@@ -365,3 +365,37 @@ var reversePure = function(arr) {
 
 	return result;
 };
+
+// array to list
+function arrayToList(arr) {
+	var singlyLinkedList = function() {
+		this.head = null;
+		this.tail = null;
+	}
+
+	var node = function(data) {
+		this.data = data;
+		this.next = null;
+	}
+
+	var sll = new singlyLinkedList();
+
+	for (var i = 0; i < arr.length; i++) {
+		if (sll.head === null) {
+			var newNode = new node(arr[i]);
+			sll.head = newNode;
+			sll.tail = newNode;
+		}
+		else {
+			var current = sll.head;
+			while (current.next !== null) {
+				current = current.next;
+			}
+			var nodeToAdd = new node(arr[i]);
+			current.next = nodeToAdd;
+			sll.tail = nodeToAdd;
+		}
+	}
+
+	return sll;
+}
