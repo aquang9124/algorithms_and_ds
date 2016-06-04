@@ -179,5 +179,55 @@ String.prototype.lpad = function(padString, length) {
     return str;
 }
 
-var stringy = "5";
-console.log(stringy.lpad("0", 4));
+// farm stuffs
+function zeroPad(number, length) {
+	number = number.toString();
+
+	while (number.length < length) {
+		number = "0" + number;
+	}
+
+	return number;
+}
+
+function printFarmAnimals(cows, pigs, chickens) {
+	console.log(zeroPad(cows, 3) + ' cows');
+	console.log(zeroPad(pigs, 3) + ' pigs');
+	console.log(zeroPad(chickens, 3) + ' chickens');
+}
+
+// Fake Math.min
+function min(a, b) {
+	if (a > b)
+		return b;
+	else
+		return a;
+}
+
+// isEven recursive
+function isEven(n) {
+	if (n < 0)
+		return (n % 2 === 0);
+	else if (n === 0)
+		return true;
+	else if (n === 1)
+		return false;
+
+	return isEven(n - 2);
+}
+
+// Count character recursive
+function countChar(str, char) {
+	var count = 0;
+
+	function getCount(idx) {
+		if (str.length === idx)
+			return;
+		else if (str[idx] === char)
+			count++;
+		getCount(idx + 1);
+	}
+
+	getCount(0);
+	return count;
+}
