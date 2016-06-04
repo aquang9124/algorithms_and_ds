@@ -106,3 +106,78 @@ function createTriangle() {
 
 	// Omitted braces because it is a one-liner.
 }
+
+// Practice with closures
+function multiplier(number) {
+	return function(factor) {
+		return number * factor;
+	}
+}
+var multiplyByN = multiplier(2);
+
+function doubler(n) {
+	var result;
+	return function() {
+		return result = n * n;
+	}
+}
+var doubleIt = doubler(5);
+
+function divide(n) {
+	return function(x) {
+		return n / x;
+	}
+}
+var divideBy = divide(25);
+
+function closingFib() {
+	var x = 0,
+		y = 1,
+		nextFib = x + y;
+
+	return function(n) {
+		while (n > 1) {
+			x = y;
+			y = nextFib;
+			nextFib = x + y;
+			n--;
+		}
+
+		return y;
+	}
+}
+var fibIt = closingFib();
+
+// Simple recursive function
+function power(base, exponent) {
+	if (exponent === 0) {
+		return 1;
+	}
+
+	return base * power(base, exponent - 1);
+}
+
+// find solution using recursion
+function findSolution(target) {
+	function find(status, history) {
+		if (status === target)
+			return history;
+		else if (status > target)
+			return false;
+		else
+			return find(status + 5, "(" + history + " + 5)") || find(status * 3, "(" + history + " * 3)");
+	}
+
+	return find(1, "1");
+}
+
+// lpad, good example of some prototypal OOP stuff
+String.prototype.lpad = function(padString, length) {
+    var str = this;
+    while (str.length < length)
+        str = padString + str;
+    return str;
+}
+
+var stringy = "5";
+console.log(stringy.lpad("0", 4));
