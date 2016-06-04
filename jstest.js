@@ -399,3 +399,59 @@ function arrayToList(arr) {
 
 	return sll;
 }
+
+// foreach test
+var feSum = 0;
+function forEach(array, action) {
+	for (var i = 0; i < array.length; i++)
+		action(array[i]);
+}
+
+forEach([1, 2, 3, 4], function(data) {
+	feSum += data;
+});
+
+// Testing the usage of the apply method
+function outerFunc(innerFunc) {
+	return function() {
+		return innerFunc.apply(null, arguments);
+	};
+}
+
+var nestedFunctions = outerFunc(function() {
+	for (var i = 0; i < arguments.length; i++)
+		console.log(arguments[i]);
+});
+
+// Using reduce and concat to flatten an array of arrays
+// This is the functional programming way of flattening an array
+var arrays = [0, [1, 2, 3], [4, 5], [6], 7, 8];
+function flatten(arr) {
+	var result = arr.reduce(function(result, current) {
+		if (Array.isArray(current))
+			return result.concat(current);
+		else
+			return result.concat([current]);
+	}, []);
+
+	return result;
+}
+
+// Here's a recursive way of flattening an array
+function rFlatten(arr) {
+	var result = [];
+
+	var makeFlat = function(element) {
+		if (!Array.isArray(element)) {
+			result.push(element);
+		}
+		else {
+			for (var i = 0; i < element.length; i++) {
+				makeFlat(element[i]);
+			}
+		}
+	}
+
+	makeFlat(arr);
+	return result;
+}

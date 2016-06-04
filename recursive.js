@@ -410,19 +410,3 @@ function createTuples(arr) {
 	getTuples(arr);
 	return result;
 }
-
-// flatten an array using recursion
-function flatten(arr) {
-	var result = [];
-
-	function makeFlat(rem) {
-		if (!Array.isArray(rem[i])) {
-			result.push(rem[i]);
-		}
-		else {
-			for (var i = 0; i < rem.length; i++) {
-				makeFlat(rem[i]);
-			}
-		}
-	}
-}
