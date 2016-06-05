@@ -455,3 +455,30 @@ function rFlatten(arr) {
 	makeFlat(arr);
 	return result;
 }
+
+// Test of every and some implementation
+function every(array, processor) {
+	var result = false;
+
+	for (var i = 0; i < array.length; i++) {
+		result = processor(array[i]);
+
+		if (result === false)
+			return false;
+	}
+
+	return result;
+}
+
+function some(array, processor) {
+	var result = false;
+
+	for (var i = 0; i < array.length; i++) {
+		result = processor(array[i]);
+
+		if (result === true)
+			return true;
+	}
+
+	return result;
+}
