@@ -21,3 +21,11 @@ rabbit.prototype.speak = function(line) {
 
 // testing call on arrays using prototype
 console.log(Array.prototype.toString.call([1, 2, 3]));
+
+// testing objects without prototypes
+( function() {
+	var noProto = Object.create(null);
+	noProto.apples = 'tasty';
+	console.log(noProto);
+		
+} )();
