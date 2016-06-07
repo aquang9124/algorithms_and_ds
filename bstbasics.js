@@ -189,14 +189,3 @@ bst.prototype.isBalanced = function() {
 
 	return true;
 }
-
-var bst1 = new bst();
-bst1.add(8).add(2).add(11).add(13);
-console.log(bst1.contains(23));
-console.log(bst1.contains(8));
-console.log(bst1.size());
-console.log(bst1.isValid());
-console.log(bst1.root.getMin());
-console.log(bst1.root.getMax());
-console.log(bst1.getHeight());
-console.log(bst1.isBalanced());
