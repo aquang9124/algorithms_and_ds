@@ -46,27 +46,25 @@ linkedList.prototype.insert = function(value, target) {
   }
   else {
     var current = this.head;
-    while (current !== null) {
+    while (current.next !== null) {
       if (current.value === target) {
         var newNode = new listNode(value);
         newNode.next = current.next;
-        if (current.next === null) {
-          current.next = newNode;
-          this.tail = newNode;
-        }
-        else {
-          current.next = newNode;
-        }
+        current.next = newNode;
         this.length += 1;
         break;
       }
       current = current.next;
     }
+    var newNode = new listNode(value);
+    current.next = newNode;
+    this.tail = newNode;
+    this.length += 1;
   }
   return this;
 };
 
-linkedList.prototype.remove = function(target) {
+linkedList.prototype.delete = function(target) {
   if (target === undefined) {
     var current = this.head;
     while (current.next !== null) {
@@ -92,8 +90,21 @@ linkedList.prototype.remove = function(target) {
   return this;
 }
 
+linkedList.prototype.contains = function(target) {
+  var current = this.head;
+  while (current) {
+    if (current.value === target) {
+      return true;
+    }
+    current = current.next;
+  }
+  return false;
+}
+
 var sLinkedList = new linkedList();
 sLinkedList.append(3).append(4);
 sLinkedList.insert(5, 4);
-sLinkedList.remove(4);
+sLinkedList.delete(4);
+sLinkedList.insert(6, 7);
+console.log(sLinkedList.contains(6));
 console.log(sLinkedList);
