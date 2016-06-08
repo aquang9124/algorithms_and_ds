@@ -21,16 +21,14 @@ linkedList.prototype.append = function(value) {
 
     this.head = newNode;
     this.tail = newNode;
-    this.length += 1;
   }
   else {
     var newNode = new listNode(value);
 
     this.tail.next = newNode;
     this.tail = this.tail.next;
-    this.length += 1;
   }
-
+  this.length += 1;
   return this;
 };
 
