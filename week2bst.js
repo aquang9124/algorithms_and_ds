@@ -41,6 +41,29 @@ function binarySearchTree() {
   }
 }
 
+binarySearchTree.prototype.search = function(targetValue) {
+  var check = false;
+
+  var traverse = function(cNode) {
+    if (cNode === null) {
+      return;
+    } else if (cNode.value === targetValue) {
+      check = true;
+      return;
+    }
+
+    if (targetValue > cNode.value) {
+      traverse(cNode.rightChild);
+    } else if (targetValue < cNode.value) {
+      traverse(cNode.leftChild);
+    }
+  }
+
+  traverse(this.rootNode);
+  
+  return check;
+}
+
 binarySearchTree.prototype.depth = function() {
 	var result = [];
 
