@@ -30,4 +30,54 @@ function mergeArrays(arr1, arr2) {
   return result;
 }
 
-console.log(mergeSort([2, 5, 1, 8, 9, 3]));
+function genArray() {
+    var result = [];
+    var randNum;
+    for (var i = 0; i < 100; i++) {
+        randNum = Math.floor(Math.random() * 1000);
+        result.push(randNum);
+    }
+
+    return result;
+}
+var arrayTest = genArray();
+
+
+// quick sort
+// left, mid and pivot
+// when left is greater than pivot do nothing
+// if left is less than pivot, swap mid with left
+// then you increment mid
+// base case is when start and end are pointing at same value
+function quickSort(arr) {
+
+    function placePivot(start, end) {
+        if (start >= end) {
+            return;
+        }
+
+        var mid = start;
+        for (var i = start; i < end; i++) {
+            if (arr[i] < arr[end]) {
+                swap(arr, mid, i);
+                mid += 1;
+            }
+        }
+        swap(arr, end, mid);
+        placePivot(start, mid - 1);
+        placePivot(mid + 1, end);
+    }
+
+    placePivot(0, arr.length - 1);
+    return arr;
+}
+
+function swap(arr, idx1, idx2) {
+    var temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+
+    return true;
+}
+
+console.log(quickSort(arrayTest));

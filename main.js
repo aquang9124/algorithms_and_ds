@@ -104,5 +104,44 @@ sLinkedList.append(3).append(4);
 sLinkedList.insert(5, 4);
 sLinkedList.delete(4);
 sLinkedList.insert(6, 7);
-console.log(sLinkedList.contains(6));
-console.log(sLinkedList);
+
+function binaryNode(value) {
+  this.value = value;
+  this.leftChild = null;
+  this.rightChild = null;
+}
+
+function binaryTree() {
+  this.root = null;
+}
+
+binaryTree.prototype = {
+  insert: function(value) {
+    if (this.root === null) {
+      this.root = new binaryNode(value);
+      return this;
+    }
+
+    var newNode = new binaryNode(value);
+    var current = this.root;
+
+    while (true) {
+      if (current.rightChild === null) {
+        current.rightChild = newNode;
+        break;
+      }
+      if (current.leftChild === null) {
+        current.leftChild = newNode;
+        break;
+      }
+      else {
+        if (current.rightChild !== null)
+          current = current.rightChild;
+        if (current.leftChild !== null)
+          current = current.leftChild;
+      }
+    }
+
+    return this;
+  },
+};
