@@ -189,4 +189,4 @@ var quickSort = function(arr) {
 
 	placePivot(0, arr.length - 1);
 	return arr;
-}
+};
