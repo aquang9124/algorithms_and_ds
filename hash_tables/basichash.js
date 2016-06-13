@@ -19,7 +19,13 @@ HashTable.prototype = {
     if (this.storage[placement] === undefined) {
       this.storage[placement] = [key, value];
     } else {
-      this.storage[placement][1] = value;
+      for (var i = 0; i < this.storage[placement].length; i++) {
+        if (this.storage[placement][i] == key) {
+          this.storage[placement][i+1] = value;
+          return this;
+        }
+      }
+      this.storage[placement].push(key, value);
     }
 
     return this;
@@ -35,8 +41,10 @@ HashTable.prototype = {
   retrieve: function(key) {
     var target = this.hash(key);
 
-    if (this.storage[target][0] == key) {
-      return this.storage[target][1];
+    for (var i = 0; i < this.storage[target].length; i++) {
+      if (this.storage[target][i] == key) {
+        return this.storage[target][i+1];
+      }
     }
   }
 };
@@ -46,5 +54,6 @@ hashTableau.insert('hello', 'world');
 hashTableau.insert('apple', 'banana');
 console.log(hashTableau.retrieve('hello'));
 console.log(hashTableau.retrieve('apple'));
-hashTableau.delete('apple');
+hashTableau.insert('apple', 'cherries');
+console.log(hashTableau.retrieve('apple'));
 console.log(hashTableau.storage);
