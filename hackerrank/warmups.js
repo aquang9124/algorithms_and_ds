@@ -38,4 +38,95 @@ var timeConvert = function(time) {
 
 }
 
-timeConvert('02:40:22AM');
+// pangrams
+var testStr = "qmExzBIJmdELxyOFWv LOCmefk TwPhargKSPEqSxzveiun";
+function checkPangram(string) {
+	var letters = {};
+
+	for (var i = 0; i < string.length; i++) {
+		if (string[i].toUpperCase() !== string[i].toLowerCase()) {
+			if (letters[string[i].toLowerCase()] === undefined) {
+				letters[string[i].toLowerCase()] = true;
+			}
+		}
+	}
+	
+	if (Object.keys(letters).length === 26) {
+		return true;
+	}
+
+	return false;
+}
+
+// N x M matrix and target number
+function findX(matrix, x) {
+	var i = 0,
+		j = matrix[0].length - 1;
+
+	while (i < matrix.length && j >= 0) {
+		if (matrix[i][j] === x) {
+			return true;
+		}
+
+		if (matrix[i][j] > x) {
+			j--;
+		} else {
+			i++;
+		}
+	}
+
+	return false;
+}
+
+// Maximum number of 1s
+function findMaxOnes(arr) {
+	var max = 0,
+		maxIdx = 0,
+		i = 0,
+		cIdx = Math.floor(arr[0].length / 2),
+		start = 0,
+		end = arr[0].length - 2,
+		lengths = arr[0].length;
+
+	function setMax(difference) {
+		var count = lengths - difference;
+		if (count > max) {
+			max = count;
+			maxIdx = i;
+		}
+		i++;
+		cIdx = Math.floor(arr[0].length / 2);
+		start = 0;
+		end = lengths - 2;
+	}
+
+	while (i < arr.length) {
+		if (arr[i][cIdx] === 1) {
+			if (cIdx === 1 && arr[i][cIdx - 1] !== 0) {
+				setMax(0);
+			}
+			else if (arr[i][cIdx - 1] === 0) {
+				setMax(cIdx);
+			}
+			else {
+				cIdx--;
+			}
+		}
+		else if (arr[i][cIdx] === 0) {
+			if (cIdx === end && arr[i][cIdx + 1] !== 1) {
+				i++;
+				cIdx = Math.floor(arr[0].length / 2);
+			}
+			else if (arr[i][cIdx + 1] === 1) {
+				setMax(cIdx + 1);
+			}
+			else {
+				cIdx++;
+			}
+		}
+	}
+
+	return maxIdx;
+}
+
+console.log(findMaxOnes([[0, 0, 0, 1, 1, 1, 1], [0, 0, 1, 1, 1, 1, 1], [0, 0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 0, 1, 1], [0, 0, 0, 0, 0, 0, 1], [0, 1, 1, 1, 1, 1, 1]]));
