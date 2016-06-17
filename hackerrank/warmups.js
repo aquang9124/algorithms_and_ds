@@ -1,3 +1,5 @@
+'use strict';
+
 // time conversion from 12 to 24 hour format
 var timeConvert = function(time) {
 	var result = "";
@@ -129,4 +131,13 @@ function findMaxOnes(arr) {
 	return maxIdx;
 }
 
-console.log(findMaxOnes([[0, 0, 0, 1, 1, 1, 1], [0, 0, 1, 1, 1, 1, 1], [0, 0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 0, 1, 1], [0, 0, 0, 0, 0, 0, 1], [0, 1, 1, 1, 1, 1, 1]]));
+function generateFuncs() {
+	var result = [];
+	// Because `let` creates a block scoped variable
+	// the closures will return the values we want for `i`
+	for (let i = 0; i < 5; i++) {
+		result.push(function() { return i; });
+	}
+
+	return result;
+}

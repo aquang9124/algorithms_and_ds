@@ -1,3 +1,5 @@
+'use strict';
+
 function genSum(arr) {
 	var result = 0;
 
@@ -41,4 +43,42 @@ function getOddsR(arr, sum, idx) {
 	return getOddsR(arr, sum, idx+1);
 }
 
-console.log(getOddsR([1, 2, 3, 4, 5, 6]));
+// factorial
+function rFactorial(n) {
+	if (n === 1 || n === 0) {
+		return 1;
+	}
+
+	return rFactorial(n - 1) * n;
+}
+
+// sigma
+function rSigma(n) {
+	if (n === 1 || n === 0) {
+		return n;
+	}
+
+	return rSigma(n - 1) + n;
+}
+
+// recursive flatten
+function flatten(arr) {
+	var result = [];
+
+	function makeFlat(element) {
+
+		if (!Array.isArray(element)) {
+			result.push(element);
+		}
+		else {
+			for (var i = 0; i < element.length; i++) {
+				makeFlat(element[i]);
+			}
+		}
+	}
+
+	makeFlat(arr);
+	return result;
+}
+
+console.log(flatten([1, 2, [3], 0, 2, [9, 8, 7]]));
