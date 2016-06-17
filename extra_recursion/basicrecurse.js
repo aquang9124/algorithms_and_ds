@@ -75,10 +75,25 @@ function flatten(arr) {
 				makeFlat(element[i]);
 			}
 		}
+
 	}
 
 	makeFlat(arr);
 	return result;
 }
 
-console.log(flatten([1, 2, [3], 0, 2, [9, 8, 7]]));
+// reverse print a string using recursion
+function revPrintR(str) {
+
+	var traverse = function(char, restStr) {
+		if (restStr.length < 1) {
+			return;
+		}
+		
+		console.log(char + restStr.slice(restStr.length - 1));
+		traverse(char, restStr.slice(0, restStr.length - 1));
+	}
+
+	traverse('', str, 1);
+}
+revPrintR('hello');
