@@ -89,11 +89,126 @@ function revPrintR(str) {
 		if (restStr.length < 1) {
 			return;
 		}
-		
+
 		console.log(char + restStr.slice(restStr.length - 1));
 		traverse(char, restStr.slice(0, restStr.length - 1));
 	}
 
 	traverse('', str, 1);
 }
-revPrintR('hello');
+
+// standard print using recursion
+function printR(arr) {
+	var traverse = function(start) {
+		if (start === arr.length) {
+			return;
+		}
+		console.log(arr[start]);
+		traverse(start + 1);
+	}
+	traverse(0);
+}
+
+// print each item in array reverse
+function reversePrint(arr) {
+	var traverse = function(start) {
+		if (start < 0) {
+			return;
+		}
+		console.log(arr[start]);
+		traverse(start - 1);
+	}
+	traverse(arr.length - 1);
+}
+
+Array.prototype.makeSwap = function(idx, idx2) {
+	var temp = this[idx];
+	this[idx] = this[idx2];
+	this[idx2] = temp;
+
+	return true;
+};
+// reverse a string using recursion
+function reverseStr(str) {
+	str = str.split("");
+
+	function traverse(left, right) {
+		if (left >= right) {
+			return;
+		}
+
+		str.makeSwap(left, right);
+		traverse(++left, --right);
+	}
+
+	traverse(0, str.length - 1);
+	return str.join('');
+}
+
+function makeTuples(arr) {
+	var result = [];
+
+	function tupleCreator(i) {
+		if (i > arr.length) {
+			return;
+		}
+		result.push([arr[i], arr[i+1]]);
+		tupleCreator(i+2);
+	}
+
+	tupleCreator(0);
+	return result;
+}
+
+// get power using recursion
+function toPower(base, exponent) {
+	var result = 1;
+
+	function multiply(count) {
+		if (count === exponent) {
+			return;
+		}
+		result *= base;
+		multiply(++count);
+	}
+
+	multiply(0);
+	return result;
+}
+
+function mergeSort(arr) {
+	var left = arr.slice(0, Math.floor(arr.length / 2));
+	var right = arr.slice(Math.floor(arr.length / 2));
+
+	if (arr.length < 2) {
+		return arr;
+	}
+
+	return merge(mergeSort(left), mergeSort(right));
+}
+// recursively merge two arrays
+function merge(arr1, arr2) {
+	var result = [];
+
+	function traverse(pointer1, pointer2) {
+		if (pointer1 === arr1.length) {
+			result = result.concat(arr2.slice(pointer2));
+			return;
+		}
+		else if (pointer2 === arr2.length) {
+			result = result.concat(arr1.slice(pointer1));
+			return;
+		}
+
+		if (arr1[pointer1] <= arr2[pointer2]) {
+			result.push(arr1[pointer1]);
+			traverse(pointer1+1, pointer2);
+		} else {
+			result.push(arr2[pointer2]);
+			traverse(pointer1, pointer2+1);
+		}
+	}
+
+	traverse(0, 0);
+	return result;
+}
