@@ -212,3 +212,63 @@ function merge(arr1, arr2) {
 	traverse(0, 0);
 	return result;
 }
+
+// move to end of arr
+Array.prototype.moveToEnd = function(idx) {
+	for (var i = idx; i < this.length - 1; i++) {
+		var temp = this[i];
+		this[i] = this[i + 1];
+		this[i + 1] = temp;
+	}
+
+	return this;
+}
+
+// remove even length strings from an array using recursion
+function removeEvens(arr, idx) {
+	if (idx === undefined) {
+		idx = 0;
+	}
+	if (idx === arr.length) {
+		return arr;
+	}
+	else if (arr[idx].length % 2 === 0) {
+		arr.moveToEnd(idx);
+		arr.pop();
+		idx--;
+	}
+	return removeEvens(arr, idx+1);
+}
+
+// non recursive, this is a test of function currying in javascript
+function greetCurried(greeting) {
+	return function(name) {
+		console.log(greeting + ", " + name);
+	}
+}
+
+// greetCurried('Hello')('Alex'); 
+// You can invoke the returned function directly if you wanted to
+function curryCeption(greeting) {
+	return (separator) => {
+		return (name) => {
+			return (emphasis) => {
+				console.log(greeting + separator + name + emphasis);
+			};
+		};
+	};
+}
+
+// curryCeption('Hello')(', ')('Alex')('!');
+// Using fat arrow functions for the curryception
+
+String.prototype.addEmphasis = function(emphasis) {
+	var emphasize = () => {
+		return this + emphasis;
+	};
+	return emphasize();
+};
+// Just a test of how `this` works inside of a fat arrow function.
+// Lexical `this` is so much better than how it worked before,
+// especially with strict mode
+

@@ -189,4 +189,3 @@ function getNthPrime(...args) {
 }
 
 var cheapNthPrime = memoize(getNthPrime);
-console.log(cheapNthPrime(100, 99, 98, 97));
