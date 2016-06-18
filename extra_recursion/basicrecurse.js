@@ -328,12 +328,36 @@ function nthFibonacci(n) {
 // powerset
 // take in a string and return an array of that string's permutations
 function powerSet(str) {
-	var result = [];
+	var result = [],
+		permutations = {};
 
-	function getSets(char, depth) {
+	function traverse(char, depth) {
+		if (depth === str.length) {
+			var key = char.split('').sort().join('');
+			if (permutations.hasOwnProperty(key) === false) {
+				permutations[key] = true;
+				result.push(key);
+			}
 
+			return;
+		}
+
+		// left side
+		traverse(char, depth+1);
+		// right side
+		traverse(char + str[depth], depth+1);
 	}
 
-	getSets('', 0);
+	traverse('', 0);
 	return result;
 }
+
+// factorial recursive
+function specFactorial(n) {
+	if (n > 1) {
+		return specFactorial(n - 1) * n;
+	} else {
+		return 1;
+	}
+}
+
