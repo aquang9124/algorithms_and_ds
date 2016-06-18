@@ -141,3 +141,52 @@ function generateFuncs() {
 
 	return result;
 }
+
+// isPrime and getNthPrime
+
+// Andrew's one-line memoize
+function memoize(myFunc, memo={}) { 
+	return (...args) => memo.hasOwnProperty(JSON.stringify(args)) ? memo[JSON.stringify(args)] : ( memo[JSON.stringify(args)] = myFunc(...args) );
+}
+
+function isPrime(num) {
+	if (num !== 2 && num % 2 === 0) {
+		return false;
+	}
+	var limit = Math.floor(num / 2),
+		idx = 2;
+	while (idx < limit) {
+		if (num % idx === 0) {
+			return false;
+		}
+		idx++;
+	}
+
+	return true;
+}
+
+function getNthPrime(...args) {
+	var count = 0,
+		primes = [],
+		currentIdx = 0,
+		currentNum = 2;
+
+	while (currentIdx < args.length) {
+		if (isPrime(currentNum)) {
+			count++;
+		}
+		if (count === args[currentIdx]) {
+			primes.push(currentNum);
+			currentNum = 2;
+			count = 0;
+			currentIdx += 1;
+			continue;
+		}
+		currentNum++;
+	}
+
+	return primes;
+}
+
+var cheapNthPrime = memoize(getNthPrime);
+console.log(cheapNthPrime(100, 99, 98, 97));
