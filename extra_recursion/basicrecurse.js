@@ -271,4 +271,69 @@ String.prototype.addEmphasis = function(emphasis) {
 // Just a test of how `this` works inside of a fat arrow function.
 // Lexical `this` is so much better than how it worked before,
 // especially with strict mode
+function nthFibo(n) {
+	if (n === 1 || n === 0) {
+		return n;
+	}
 
+	return nthFibo(n - 2) + nthFibo(n - 1);
+}
+
+// fizzbuzz with fibonacci
+function isPerfectSq(num) {
+	var i = 1;
+	while (true) {
+		if (num < 0) {
+			return false;
+		}
+		if (num === 0) {
+			return true;
+		}
+		num -= i;
+		i += 2;
+	}
+}
+
+function fizzBuzzFibo(n) {
+
+	for (var i = 1; i <= n; i++) {
+		if (isPerfectSq((5*Math.pow(i, 2)) + 4) || isPerfectSq((5*Math.pow(i, 2)) - 4)) {
+			console.log('fizz');
+		} else {
+			console.log('buzz');
+		}
+	}
+
+	return true;
+}
+
+// nthFibonacci
+function nthFibonacci(n) {
+	var fibonacci = [0, 1];
+
+	function searchFib(count, limit) {
+		if (count === limit - 1) {
+			return;
+		}
+		var temp = fibonacci[1];
+		fibonacci[1] = fibonacci[0] + fibonacci[1];
+		fibonacci[0] = temp;
+		searchFib(count+1, limit);
+	}
+
+	searchFib(0, n);
+	return fibonacci[1];
+}
+
+// powerset
+// take in a string and return an array of that string's permutations
+function powerSet(str) {
+	var result = [];
+
+	function getSets(char, depth) {
+
+	}
+
+	getSets('', 0);
+	return result;
+}
