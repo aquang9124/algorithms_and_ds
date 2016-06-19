@@ -442,3 +442,48 @@ function rBubble(arr) {
 	traverse();
 	return arr;
 }
+
+var latticePaths = function(n){
+	var count = 0;
+
+	function traverse(x, y) {
+		if (x === n && y === n) {
+			count += 1;
+			return;
+		}
+		else if (x > n || y > n) {
+			return;
+		}
+
+		traverse(x + 1, y);
+		traverse(x, y + 1);
+	}
+
+	traverse(0, 0);
+	return count;
+}
+
+function latticeSE(n, x, y) {
+	x = x || 0;
+	y = y || 0;
+
+	if (x === n && y === n) {
+		return 1;
+	}
+	else if (x > n || y > n) {
+		return 0;
+	}
+
+	return latticeSE(n, x + 1, y) + latticeSE(n, x, y + 1);
+}
+
+function latticePure(x, y) {
+	if (x === 0 && y === 0) {
+		return 1;
+	}
+	else if (x < 0 || y < 0) {
+		return 0;
+	}
+
+	return latticePure(x - 1, y) + latticePure(x, y - 1);
+}

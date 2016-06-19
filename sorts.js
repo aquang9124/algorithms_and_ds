@@ -1,3 +1,4 @@
+'use strict';
 // mergesort test
 var mergeSort = function(input){
   // your work here
@@ -41,7 +42,6 @@ function genArray() {
     return result;
 }
 var arrayTest = genArray();
-
 
 // quick sort
 // left, mid and pivot
