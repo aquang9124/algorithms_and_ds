@@ -418,3 +418,27 @@ function theMatrix(matrix) {
 	traverse(matrix);
 	return true;
 }
+
+// is it time to graduate from basic recursion?
+function rBubble(arr) {
+
+	function traverse(swapped=true, limit=1) {
+		if (swapped) {
+			swapped = false;
+			for (var i = 0; i < arr.length - limit; i++) {
+				if (arr[i] > arr[i + 1]) {
+					var temp = arr[i];
+					arr[i] = arr[i + 1];
+					arr[i + 1] = temp;
+					swapped = true;
+				}
+			}
+			traverse(swapped, limit+1);
+		} else {
+			return;
+		}
+	}
+
+	traverse();
+	return arr;
+}
