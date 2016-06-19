@@ -59,6 +59,22 @@ Stack.prototype = {
 	}
 }
 
-var stackA = new Stack();
+// using bind
+function plus(a, b) {
+	return a + b;
+}
 
-console.log(stackA.isEmpty());
+// var plusTen = plus.bind(null, 10);
+// console.log(plusTen(20));
+
+// Bind allows for partial function application
+// A new function is created that called plus
+// with the parameter `a` always set to 10
+
+// in es6 you can just use default parameters
+function add(a, b=10) {
+	return a + b;
+}
+
+// console.log(add(5));
+// Still, bind could have its uses
