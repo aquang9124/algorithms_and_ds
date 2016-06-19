@@ -361,3 +361,60 @@ function specFactorial(n) {
 	}
 }
 
+// Works just fine without the named function expression, however
+var namedFact = function namedFE(n) {
+	if (n > 1) {
+		return namedFE(n - 1) * n;
+	} else {
+		return 1;
+	}
+};
+
+// remove from front
+function popFront(arr) {
+	var traverse = (runner=0) => {
+		if (runner === arr.length) {
+			arr.pop();
+			return;
+		} else {
+			arr[runner] = arr[runner+1];
+			traverse(runner+1);
+		}
+	};
+
+	traverse();
+	return arr;
+}
+
+// recursive pushFront
+function pushFront(arr, value) {
+	var traverse = (idx=arr.length) => {
+		if (idx > 0) {
+			arr[idx] = arr[idx - 1];
+			traverse(idx - 1);
+		} else {
+			arr[0] = value;
+			return;
+		}
+	};
+
+	traverse();
+	return arr;
+}
+
+// recursive matrix iteration
+function theMatrix(matrix) {
+	var traverse = (element) => {
+		if (!Array.isArray(element)) {
+			console.log(element);
+		}
+		else {
+			for (let i = 0; i < element.length; i++) {
+				traverse(element[i]);
+			}
+		}
+	};
+
+	traverse(matrix);
+	return true;
+}
