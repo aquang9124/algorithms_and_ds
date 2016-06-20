@@ -113,21 +113,6 @@ function quickSort(arr) {
 	return quickSort(before).concat(pivot).concat(quickSort(after));
 }
 
-// lattice paths, count number of possible paths
-function latticePaths(n, x, y) {
-	x = x || 0;
-	y = y || 0;
-
-	if (x === n && y === n) {
-		return 1;
-	}
-	else if (x > n || y > n) {
-		return 0;
-	}
-
-	return latticePaths(n, x + 1, y) + latticePaths(n, x, y + 1);
-}
-
 // remove all negatives from array
 function removeNegatives(arr) {
 	var negativeCount = 0;
@@ -179,7 +164,7 @@ function memoize(func) {
 		if (!memo.hasOwnProperty(input)) {
 			memo[input] = func(input);
 		}
-		console.log(memo);
+
 		return memo[input];
 	}
 }
@@ -193,10 +178,31 @@ function fibo(n) {
 	return fibo(n - 1) + fibo(n - 2);
 }
 
+// 
 var maxConsecutiveSum = function(input) {
-	
+	// instantiate the localMax and ultimateMax variables
+	var localMax = input[0],
+		ultimateMax = input[0];
+
+	// loop through the rest of the values
+	for (var i = 1; i < input.length; i++) {
+		// update the localMax
+		// check which is larger:
+		// - the current element plus the localMax
+		// - the current element by itself
+		localMax = Math.max((localMax + input[i]), input[i]);
+		
+		// update the ultimateMax
+		// check which is larger:
+		// - the localMax
+		// - the ultimateMax
+		ultimateMax = Math.max(localMax, ultimateMax);
+	}
+	// return the ultimate Maximum
+	return ultimateMax;
 };
 
+// lattice paths with memoize
 var latticePaths = function(n, x, y) {
 	x = x || 0; 
 	y = y || 0;
@@ -212,6 +218,3 @@ var latticePaths = function(n, x, y) {
 }
 
 var memoLPaths = memoize(latticePaths);
-console.log(memoLPaths(3));
-console.log(memoLPaths(3));
-console.log(memoLPaths(4));
