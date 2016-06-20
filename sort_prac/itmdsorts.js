@@ -130,5 +130,3 @@ function quicklySort(arr) {
 
 	return quicklySort(before).concat(pivot).concat(quicklySort(after));
 }
-
-console.log(quicklySort(genRandArr()));

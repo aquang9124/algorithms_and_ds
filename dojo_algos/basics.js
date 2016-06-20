@@ -178,7 +178,7 @@ function fibo(n) {
 	return fibo(n - 1) + fibo(n - 2);
 }
 
-// 
+// max consecutive sum
 var maxConsecutiveSum = function(input) {
 	// instantiate the localMax and ultimateMax variables
 	var localMax = input[0],
@@ -191,7 +191,7 @@ var maxConsecutiveSum = function(input) {
 		// - the current element plus the localMax
 		// - the current element by itself
 		localMax = Math.max((localMax + input[i]), input[i]);
-		
+
 		// update the ultimateMax
 		// check which is larger:
 		// - the localMax
@@ -218,3 +218,97 @@ var latticePaths = function(n, x, y) {
 }
 
 var memoLPaths = memoize(latticePaths);
+
+// print 1 to 255
+function print1To255() {
+	var num = 1;
+	while (num < 256) {
+		console.log(num);
+		num++;
+	}
+
+	return true;
+}
+
+// print array max
+function printArrayMax(arr) {
+	if (arr.length < 1) {
+		console.log('[], no max value in an empty array');
+		return;
+	}
+
+	var max = arr[0];
+
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+
+	console.log("The maximum value is: " + max);
+	return max;
+}
+
+// return array of odds up to `n`
+function getOddsArray(n) {
+	var result = [];
+
+	for (let i = 1; i <= n; i += 2) {
+		result.push(i);
+	}
+
+	return result;
+}
+
+function verifyOdds(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 === 0) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// linked list implementation
+function ListNode(value) {
+	this.value = value;
+	this.next = null;
+}
+
+function SinglyLinkedList() {
+	this.head = null;
+	this.tail = null;
+}
+
+SinglyLinkedList.prototype = {
+	pushFront: function(value) {
+		var newNode = new ListNode(value);
+		if (this.head === null) {
+			this.head = newNode;
+			this.tail = newNode;
+		}
+		else {
+			newNode.next = this.head;
+			this.head = newNode;
+		}
+
+		return this;
+	},
+	removeFront: function() {
+		if (this.head === null) {
+			return null;
+		}
+		else {
+			this.head = this.head.next;
+		}
+
+		return this;
+	}
+};
+
+var sll = new SinglyLinkedList();
+sll.pushFront(5).pushFront(4);
+console.log(sll);
+sll.removeFront();
+console.log(sll);
