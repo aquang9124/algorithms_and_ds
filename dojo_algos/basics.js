@@ -171,3 +171,47 @@ function anaPalindrome(str) {
 
 	return true;
 }
+
+// dynamic programming memoization
+function memoize(func) {
+	var memo = {};
+	return (input) => {
+		if (!memo.hasOwnProperty(input)) {
+			memo[input] = func(input);
+		}
+		console.log(memo);
+		return memo[input];
+	}
+}
+
+// fibonacci
+function fibo(n) {
+	if (n <= 1) {
+		return n;
+	}
+
+	return fibo(n - 1) + fibo(n - 2);
+}
+
+var maxConsecutiveSum = function(input) {
+	
+};
+
+var latticePaths = function(n, x, y) {
+	x = x || 0; 
+	y = y || 0;
+
+	if (x === n && y === n) {
+		return 1;
+	}
+	else if (x > n || y > n) {
+		return 0;
+	}
+
+	return latticePaths(n, x + 1, y) + latticePaths(n, x, y + 1);
+}
+
+var memoLPaths = memoize(latticePaths);
+console.log(memoLPaths(3));
+console.log(memoLPaths(3));
+console.log(memoLPaths(4));
