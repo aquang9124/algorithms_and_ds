@@ -127,31 +127,7 @@ function mergeSort(arr) {
 }
 
 // quick sort
-function quickSort(arr) {
-
-	var placePivot = (start, end) => {
-		if (start >= end) {
-			return;
-		}
-
-		var mid = start;
-		for (var i = start; i < end; i++) {
-			if (arr[i] < arr[end]) {
-				swapper(arr, mid, i);
-				mid++;
-			}
-		}
-
-		swapper(arr, end, mid);
-		placePivot(start, mid - 1);
-		placePivot(start + 1, mid);
-	};
-
-	placePivot(0, arr.length - 1);
-	return arr;
-}
-
-var quicklySort = (input) => {
+var quickSort = (input) => {
 	if (input.length < 2) {
 		return input;
 	}
@@ -175,5 +151,5 @@ var quicklySort = (input) => {
 	// before: [3, 4, 2, 1]
 	// pivot: [5]
 	// after: [7, 6, 9]
-	return quicklySort(before).concat(pivot).concat(quicklySort(after));
+	return quickSort(before).concat(pivot).concat(quickSort(after));
 }

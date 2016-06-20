@@ -12,7 +12,7 @@ function genRandArr(size=10) {
 	return result;
 }
 
-// function to swap two values in an array
+// function to swap two elements in an array
 function swapValues(arr, idx1, idx2) {
 	var temp = arr[idx1];
 	arr[idx1] = arr[idx2];
@@ -80,4 +80,55 @@ function mergeSort(arr) {
 	return joinArrays(mergeSort(arr.slice(0, midIdx)), mergeSort(arr.slice(midIdx)));
 }
 
-console.log(mergeSort(genRandArr()));
+// quick sort
+function quickSort(arr) {
+
+	var doSort = (start=0, end=arr.length - 1) => {
+		if (start >= end) {
+			return;
+		}
+
+		var mid = start;
+		for (let i = start; i < end; i++) {
+			if (arr[i] < arr[end]) {
+				swapValues(arr, mid, i);
+				mid++;
+			}
+		}
+
+		swapValues(arr, mid, end);
+		// left side
+		doSort(start, mid - 1);
+		// right side
+		doSort(mid + 1, end);
+	};
+
+	doSort();
+	return arr;
+}
+
+function quicklySort(arr) {
+	if (arr.length < 2) {
+		return arr;
+	}
+
+	var pivIdx = Math.floor(arr.length / 2),
+		pivot = arr[pivIdx],
+		before = [],
+		after = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (i !== pivIdx) {
+			if (arr[i] <= pivot) {
+				before.push(arr[i]);
+			}
+			else {
+				after.push(arr[i]);
+			}
+		}
+	}
+
+	return quicklySort(before).concat(pivot).concat(quicklySort(after));
+}
+
+console.log(quicklySort(genRandArr()));
