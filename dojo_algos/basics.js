@@ -10,6 +10,7 @@ function bookIndex(arr) {
 
 		if (arr[i] === (arr[i+1] - 1)) {
 			start = i;
+
 			for (var j = i; j < arr.length; j++) {
 				if (arr[j] === (arr[j+1] - 1)) {
 					end = j+1;
@@ -18,7 +19,14 @@ function bookIndex(arr) {
 					break;
 				}
 			}
-			result += (arr[start] + "-" + arr[end] + ", ");
+
+			if (end !== arr.length - 1) {
+				result += (arr[start] + "-" + arr[end] + ", ");
+			}
+			else {
+				result += (arr[start] + "-" + arr[end]);
+			}
+
 			i = j;
 		}
 		else {
@@ -34,4 +42,42 @@ function bookIndex(arr) {
 	return result;
 }
 
-console.log(bookIndex([1, 3, 4, 5, 7, 8, 9, 10, 12]));
+// find all subsets of a string
+function getPermutations(str) {
+	var result = [];
+
+	function getSets(char, depth=0) {
+		if (depth === str.length) {
+			result.push(char);
+			return;
+		}
+
+		// left side
+		getSets(char, depth + 1);
+		// right side
+		getSets(char + str[depth], depth + 1);
+	}
+
+	getSets('');
+	return result;
+}
+
+// return count of how many deletions are needed
+// to get a string of alternating characters
+function getAlternations(str) {
+	str = str.split('');
+	var count = 0;
+
+	for (let i = 0; i < str.length - 1; i++) {
+		if (str[i].toLowerCase() !== str[i + 1].toLowerCase()) {
+			continue;
+		}
+		str.splice(i, 1);
+		i--;
+		count++;
+	}
+
+	return count;
+}
+
+console.log(getAlternations('bbb'));
