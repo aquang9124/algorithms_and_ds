@@ -112,3 +112,62 @@ function quickSort(arr) {
 
 	return quickSort(before).concat(pivot).concat(quickSort(after));
 }
+
+// lattice paths, count number of possible paths
+function latticePaths(n, x, y) {
+	x = x || 0;
+	y = y || 0;
+
+	if (x === n && y === n) {
+		return 1;
+	}
+	else if (x > n || y > n) {
+		return 0;
+	}
+
+	return latticePaths(n, x + 1, y) + latticePaths(n, x, y + 1);
+}
+
+// remove all negatives from array
+function removeNegatives(arr) {
+	var negativeCount = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] >= 0) {
+			arr[i - negativeCount] = arr[i];
+		}
+		else {
+			negativeCount++;
+		}
+	}
+
+	arr.length -= negativeCount;
+	return arr;
+}
+
+// is the anagram a palindrome
+function anaPalindrome(str) {
+	var letters = {},
+		count = 0;
+
+	for (var i = 0; i < str.length; i++) {
+		if (!letters.hasOwnProperty(str[i])) {
+			letters[str[i]] = 1;
+		}
+		else {
+			letters[str[i]] += 1;
+		}
+	}
+
+	for (var key in letters) {
+		if (letters[key] % 2 === 1) {
+			count++;
+		}
+	}
+
+	if (count > 1) {
+		return false;
+	}
+
+	return true;
+}
