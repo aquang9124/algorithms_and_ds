@@ -171,11 +171,9 @@ var quicklySort = (input) => {
 		}
 	}
 
-	// input: [3, 4, 5, 2, 7, 1, 6, 9];
-	// before: [3, 4, 2, 1];
-	// pivot: [5];
-	// after: [7, 6, 9];
+	// input: [3, 4, 5, 2, 7, 1, 6, 9]
+	// before: [3, 4, 2, 1]
+	// pivot: [5]
+	// after: [7, 6, 9]
 	return quicklySort(before).concat(pivot).concat(quicklySort(after));
 }
-
-console.log(quicklySort(generateRandArr(10)));
