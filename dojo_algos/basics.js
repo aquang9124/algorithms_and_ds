@@ -1,4 +1,12 @@
 'use strict';
+// swap two elements of an array
+function swapValues(arr, idx1, idx2) {
+	var temp = arr[idx1];
+	arr[idx1] = arr[idx2];
+	arr[idx2] = temp;
+
+	return arr;
+}
 // Given a sorted array of indexes produce a book index string
 // For example, input: [1, 3, 4, 5, 7, 8, 10] produces output: "1, 3-5, 7-8, 10"
 function bookIndex(arr) {
@@ -80,4 +88,27 @@ function getAlternations(str) {
 	return count;
 }
 
-console.log(getAlternations('bbb'));
+// quick sort
+function quickSort(arr) {
+	if (arr.length < 2) {
+		return arr;
+	}
+
+	var pivIdx = Math.floor(arr.length / 2),
+		pivot = arr[pivIdx],
+		before = [],
+		after = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (i !== pivIdx) {
+			if (arr[i] <= pivot) {
+				before.push(arr[i]);
+			}
+			else {
+				after.push(arr[i]);
+			}
+		}
+	}
+
+	return quickSort(before).concat(pivot).concat(quickSort(after));
+}
