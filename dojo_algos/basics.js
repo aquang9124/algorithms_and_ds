@@ -323,7 +323,7 @@ function findMaxOnes(arr) {
 
 	return bestSlice;
 } 
-
+// need to finish this algo
 // console.log(findMaxOnes([1, 0, 1, 0, 0, 1, 0, 1]));
 
 function fizzBuzzFib(n) {
@@ -360,4 +360,99 @@ function climbStairs(n) {
 	return climbStairs(n - 1) + climbStairs(n - 2);
 }
 
-console.log(climbStairs(3));
+// ksum with pairs
+function kSum(arr, k) {
+	var result = [];
+	var numbers = {};
+
+	for (var i = 0; i < arr.length; i++) {
+		var diff = k - arr[i];
+		if (numbers.hasOwnProperty(diff)) {
+			result.push([arr[i], diff]);
+		}
+		if (!numbers.hasOwnProperty(arr[i])) {
+			numbers[arr[i]] = true;
+		}
+	}
+
+	return result;
+}
+
+function kSum3(arr, k) {
+	var result = [];
+	var numbers = {};
+
+	for (var i = 0; i < arr.length; i++) {	
+		for (var j = i + 1; j < arr.length - 1; j++) {
+			var test = k - (arr[i] + arr[j]);
+			if (numbers.hasOwnProperty(test)) {
+				result.push([arr[i], arr[j], test]);
+			}
+			if (!numbers.hasOwnProperty(arr[i])) {
+				numbers[arr[i]] = true;
+			}
+			if (!numbers.hasOwnProperty(arr[j])) {
+				numbers[arr[j]] = true;
+			}
+		}
+	}
+
+	return result;
+}
+
+console.log(kSum([1, 4, 5, 8, 2, 33, 3, 7], 6));
+// is prime
+function isPrime(num) {
+	var limit = Math.floor(num / 2),
+		divisor = 2;
+
+	if (num !== 2 && num % 2 === 0) {
+		return false;
+	}
+	else if (num <= 1) {
+		return false;
+	}
+
+	while (divisor <= limit) {
+		if (num % divisor === 0) {
+			return false;
+		}
+
+		divisor++;
+	}
+
+	return true;
+}
+
+function print0To100() {
+	for (var i = 0; i < 101; i++) {
+		if (isPrime(i)) {
+			console.log(i);
+		}
+	}
+
+	return true;
+}
+
+function binarySearch(arr, x) {
+	var mid = Math.floor(arr.length / 2),
+		left = 0,
+		right = arr.length - 1;
+
+	while (left <= right) {
+		if (arr[mid] === x) {
+			return mid;
+		}
+		if (arr[mid] < x) {
+			left = mid + 1;
+			mid = Math.floor((right + left) / 2);
+		}
+		if (arr[mid] > x) {
+			console.log('here');
+			right = mid - 1;
+			mid = Math.floor((right + left) / 2);
+		}
+	}
+
+	return false;
+}
