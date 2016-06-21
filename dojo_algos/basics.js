@@ -307,8 +307,57 @@ SinglyLinkedList.prototype = {
 	}
 };
 
-var sll = new SinglyLinkedList();
-sll.pushFront(5).pushFront(4);
-console.log(sll);
-sll.removeFront();
-console.log(sll);
+// find maximum number of 1's in an array of
+// 0's and 1's where you must make only one
+// consecutive flip of 0's and 1's
+// Input: [1, 0, 1, 0, 0, 1, 0, 1] returns Output: 6
+// You flip in the range of [1 - 4]
+function findMaxOnes(arr) {
+	var currentSlice = arr[0],
+		bestSlice = arr[0],
+		range = [];
+
+	for (var i = 1; i < arr.length; i++) {
+		
+	}
+
+	return bestSlice;
+} 
+
+// console.log(findMaxOnes([1, 0, 1, 0, 0, 1, 0, 1]));
+
+function fizzBuzzFib(n) {
+	var fibo = [1, 1];
+
+	function getFibs(num) {
+		for (let i = 2; i <= num; i++) {
+			fibo[i] = fibo[i - 1] + fibo[i - 2];
+		}
+	}
+
+	getFibs(n);
+
+	for (var idx = 0; idx < n; idx++) {
+		if (fibo.indexOf(idx) !== -1) {
+			console.log('fizz');
+		}
+		else {
+			console.log('buzz');
+		}
+	}
+
+	return fibo;
+}
+
+function climbStairs(n) {
+	if (n === 0) {
+		return 1;
+	}
+	else if (n < 0) {
+		return 0;
+	}
+
+	return climbStairs(n - 1) + climbStairs(n - 2);
+}
+
+console.log(climbStairs(3));
