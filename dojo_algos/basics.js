@@ -400,7 +400,6 @@ function kSum3(arr, k) {
 	return result;
 }
 
-console.log(kSum([1, 4, 5, 8, 2, 33, 3, 7], 6));
 // is prime
 function isPrime(num) {
 	var limit = Math.floor(num / 2),
@@ -455,4 +454,47 @@ function binarySearch(arr, x) {
 	}
 
 	return false;
+}
+
+// max continuous sum
+function maxContinuousSum(arr) {
+	var max = arr[0],
+		finalMax = arr[0];
+
+	for (var i = 0; i < arr.length; i++) {
+		max = Math.max(arr[i], (max + arr[i]));
+		finalMax = Math.max(max, finalMax);
+	}
+
+	return finalMax;
+}
+
+// find start
+function findStart(arr) {
+	var bestIdx = 0,
+		runningStreak = arr[0];
+
+	for (var i = 1; i < arr.length; i++) {
+		runningStreak += arr[i];
+
+		if (runningStreak < arr[i]) {
+			bestIdx = i;
+			runningStreak = arr[i];
+		}
+	}
+
+	return bestIdx;
+}
+
+function maxSum(arr) {
+	var start = findStart(arr),
+		max = arr[start],
+		runningSum = arr[start];
+
+	for (var i = start + 1; i < arr.length; i++) {
+		runningSum += arr[i];
+		max = Math.max(max, runningSum);
+	}
+
+	return max;
 }
