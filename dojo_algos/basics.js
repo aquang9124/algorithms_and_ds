@@ -498,3 +498,8 @@ function maxSum(arr) {
 
 	return max;
 }
+
+// min to one
+function minToOne(input) {
+
+}
