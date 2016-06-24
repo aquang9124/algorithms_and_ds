@@ -26,7 +26,6 @@ var maxDepth = function(root) {
 };
 
 bt = new BinaryTree();
-console.log(maxDepth(bt.root));
 
 // quick sort
 function quickSort(arr) {
@@ -108,4 +107,24 @@ function createSubArrays(arr, num) {
 	}
 
 	return result;
+}
+
+// recursive binary search
+function rBSearch(arr, target, mid, min, max) {
+	mid = mid || Math.floor(arr.length / 2);
+	min = min || 0;
+	max = max || arr.length - 1;
+
+	if (arr[mid] === target) {
+		return mid;
+	}
+	else if (arr[mid] < target) {
+		min = mid + 1;
+	}
+	else if (arr[mid] > target) {
+		max = mid - 1;
+	}
+
+	mid = Math.floor((max + min) / 2);
+	return rBSearch(arr, target, mid, min, max);
 }
