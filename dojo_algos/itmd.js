@@ -325,3 +325,45 @@ function bubbleSort(arr) {
 
 	return arr;
 }
+
+// insertion sort
+function insertionSort(arr) {
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] < arr[i - 1]) {
+			for (var j = i; j > 0; j--) {
+				if (arr[j] < arr[j - 1]) {
+					var temp = arr[j];
+					arr[j] = arr[j - 1];
+					arr[j - 1] = temp;
+				}
+			}
+		}
+	}
+
+	return arr;
+}
+
+// selection sort
+function selectionSort(arr) {
+	var sorted = 0,
+		minIdx = 0,
+		min = arr[0];
+
+	for (var i = 0; i < arr.length; i++) {
+		for (var j = sorted; j < arr.length; j++) {
+			if (arr[j] < min) {
+				min = arr[j];
+				minIdx = j;
+			}
+		}
+		var temp = arr[sorted];
+		arr[sorted] = arr[minIdx];
+		arr[minIdx] = temp;
+
+		sorted++;
+		min = arr[sorted];
+		minIdx = sorted;
+	}
+
+	return arr;
+}
