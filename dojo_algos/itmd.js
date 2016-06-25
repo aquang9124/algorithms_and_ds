@@ -292,20 +292,36 @@ SinglyLinkedList.prototype = {
 		}
 		else {
 			var count = 0,
-				average = this.head.value,
+				avg = this.head.value,
 				current = this.head;
 
 			while (current) {
 				count++;
-				average += current.value;
+				avg += current.value;
 				current = current.next;
 			}
-			average /= count;
-			return average;
+			avg /= count;
+			return avg;
 		}
 	}
 };
 
-var sll = new SinglyLinkedList();
-sll.insert(6).insert(7).insert(8);
-console.log(sll);
+// bubble sort
+function bubbleSort(arr) {
+	var swapped = true,
+		limit = 1;
+
+	while (swapped) {
+		swapped = false;
+		for (var i = 0; i < arr.length - limit; i++) {
+			if (arr[i] > arr[i + 1]) {
+				var temp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = temp;
+				swapped = true;
+			}
+		}
+	}
+
+	return arr;
+}
