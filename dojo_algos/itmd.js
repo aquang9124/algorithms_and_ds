@@ -303,6 +303,46 @@ SinglyLinkedList.prototype = {
 			avg /= count;
 			return avg;
 		}
+	},
+	partition: function(value) {
+		var beforeVal = new SinglyLinkedList();
+		var afterVal = new SinglyLinkedList();
+		var p1 = this.head;
+
+		while (p1) {
+			if (p1.value < value) {
+				beforeVal.insert(p1.value);
+			}
+			else if (p1.value >= value) {
+				afterVal.insert(p1.value);
+			} 
+
+			p1 = p1.next;
+		}
+
+		// merge before and after linked lists
+		var p2 = beforeVal.head;
+		while (p2.next) {
+			p2 = p2.next;
+		}
+
+		p2.next = afterVal.head;
+		beforeVal.tail = afterVal.tail;
+		return beforeVal;
+	},
+	splitOnValue: function(value) {
+		var p1 = this.head;
+		while (p1.next) {
+			if (p1.next.value === value) {
+				var temp = p1.next;
+				p1.next = null;
+				return temp;
+			}
+
+			p1 = p1.next;
+		}
+
+		return false;
 	}
 };
 
@@ -366,4 +406,38 @@ function selectionSort(arr) {
 	}
 
 	return arr;
+}
+
+function swap(arr, idx1, idx2) {
+	var temp = arr[idx1];
+	arr[idx1] = arr[idx2];
+	arr[idx2] = temp;
+
+	return arr;
+}
+
+// permutations with backtracking
+function permute(alphabets, start, end) {
+	start = start || 0;
+	end = end || alphabets.length - 1;
+
+	if (start === end) {
+		console.log(alphabets.join(''));
+	}
+	else {
+		for (var i = start; i <= end; i++) {
+			swap(alphabets, start, i);
+			permute(alphabets, start + 1, end);
+			swap(alphabets, i, start); // backtrack
+
+		}
+	}
+}
+
+function getPerformance(callback, ...args) {
+	var init = new Date().getTime();
+
+	callback(args);
+
+	return new Date().getTime() - init;
 }
