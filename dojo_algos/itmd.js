@@ -504,8 +504,6 @@ function parensValid(str) {
 	return false;
 }
 
-console.log(parensValid('{()}({)'));
-
 // lattice paths pure recursion
 function pureLattice(x, y) {
 	if (x === 0 && y === 0) {
@@ -521,4 +519,24 @@ function pureLattice(x, y) {
 // memoized lattice paths
 function magicLattice(n) {
 	var memo = {};
+
+	function latticePaths(x, y) {
+		var key = x + ", " + y;
+
+		if (memo.hasOwnProperty(key)) {
+			return memo[key];
+		}
+		else if (x === 0 && y === 0) {
+			return 1;
+		}
+		else if (x < 0 || y < 0) {
+			return 0;
+		}
+		else {
+			return memo[key] = latticePaths(x - 1, y) + latticePaths(x, y - 1);
+		}
+		
+	}
+
+	return latticePaths(n, n);
 }
