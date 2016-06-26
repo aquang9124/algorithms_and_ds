@@ -447,7 +447,7 @@ function getPerformanceSorts(fn, arr) {
 function generateHugeArray() {
 	var result = [];
 	var randInt = 0;
-	for (var i = 0; i < 100000; i++) {
+	for (var i = 0; i < 10000; i++) {
 		randInt = Math.floor(Math.random()*1000);
 		result.push(randInt);
 	}
@@ -539,4 +539,94 @@ function magicLattice(n) {
 	}
 
 	return latticePaths(n, n);
+}
+
+// bucket sort
+var insertSort = function(arr) {
+	for (var i = 0; i < arr.length; i++) {
+		var temp = arr[i];
+		var pointer = i;
+
+		while (pointer > 0 && temp < arr[pointer - 1]) {
+			arr[pointer] = arr[pointer - 1];
+			pointer--;
+		}
+
+		arr[pointer] = temp;
+	}
+
+	return arr;
+};
+
+var bucketSort = function(arr) {
+
+	var placeIntoBuckets = function(input, lowerRange, upperRange) {
+		var buckets = [[], [], [], [], [], [], [], [], [], []],
+			division = (upperRange - lowerRange) / 10;
+
+		input.forEach(function(value) {
+			buckets[Math.floor(value / division)].push(value);
+		});
+
+		for (var i = 0; i < buckets.length; i++) {
+			if (buckets[i].length > 1) {
+				buckets[i] = insertSort(buckets[i]);
+			}
+		}
+
+		var result = [];
+
+		buckets.forEach(function(bucket) {
+			if (bucket.length > 0) {
+				result = result.concat(bucket);
+			}
+		});
+
+		return result;
+	}
+
+	return placeIntoBuckets(arr, 0, 1000);
+};
+
+// find kth smallest element in range
+// 1000 - 9000 is the range for this implementation
+function kthSmallest(arr, k) {
+	if (k > arr.length) {
+		console.log('K out of range');
+		return;
+	}
+
+	var result;
+	k--;
+
+	function delve(input, start, end) {
+		var pivIdx = Math.floor(input.length / 2);
+		var pivot = input[pivIdx];
+		var before = [];
+		var after = [];
+
+		input.forEach(function(element, index) {
+			if (index !== pivIdx) {
+				if (element < pivot) {
+					before.push(element);
+				}
+				else if (element >= pivot) {
+					after.push(element);
+				}
+			}
+		});
+
+		if (start + before.length === k) {
+			result = pivot;
+		}
+		else if (start + before.length > k) {
+			delve(before, start, start + before.length - 1);
+		}
+		else if (start + before.length < k) {
+			delve(after, start + before.length + 1, end);
+		}
+	}
+
+	delve(arr, 0, arr.length - 1);
+	return result;
 }
