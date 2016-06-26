@@ -477,3 +477,48 @@ function countingSort(arr, min, max) {
 
 	return arr;
 }
+
+// parentheses valid
+function parensValid(str) {
+	var parensOpen = [],
+		parensClose = [];
+
+	for (var i = 0; i < str.length; i++) {
+		if (str[i] === "(") {
+			parensOpen.push(i);
+		}
+		else if (str[i] === ")") {
+			parensClose.push(i);
+		}
+	}
+
+	if (parensOpen.length === parensClose.length) {
+		for (var j = 0; j < parensOpen.length; j++) {
+			if (parensOpen[j] > parensClose[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	return false;
+}
+
+console.log(parensValid('{()}({)'));
+
+// lattice paths pure recursion
+function pureLattice(x, y) {
+	if (x === 0 && y === 0) {
+		return 1;
+	}
+	else if (x < 0 || y < 0) {
+		return 0;
+	}
+
+	return pureLattice(x - 1, y) + pureLattice(x, y - 1);
+}
+
+// memoized lattice paths
+function magicLattice(n) {
+	var memo = {};
+}
