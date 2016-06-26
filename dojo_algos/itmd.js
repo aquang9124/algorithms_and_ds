@@ -434,10 +434,46 @@ function permute(alphabets, start, end) {
 	}
 }
 
-function getPerformance(callback, ...args) {
+// get performance for a sort
+function getPerformanceSorts(fn, arr) {
 	var init = new Date().getTime();
 
-	callback(args);
+	fn(arr);
 
-	return new Date().getTime() - init;
+	return (new Date().getTime() - init).toFixed(3);
+}
+
+// generate an array with 100000 values
+function generateHugeArray() {
+	var result = [];
+	var randInt = 0;
+	for (var i = 0; i < 100000; i++) {
+		randInt = Math.floor(Math.random()*1000);
+		result.push(randInt);
+	}
+
+	return result;
+}
+
+// counting sort implementation, not that great
+// will refactor later
+function countingSort(arr, min, max) {
+	var counts = [],
+		z = 0;
+
+	for (var i = min; i <= max; i++) {
+		counts[i] = 0;
+	}
+
+	for (i = 0; i < arr.length; i++) {
+		counts[arr[i]]++;
+	}
+
+	for (i = min; i <= max; i++) {
+		while (counts[i]-- > 0) {
+			arr[z++] = i;
+		}
+	}
+
+	return arr;
 }
