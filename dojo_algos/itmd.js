@@ -630,3 +630,69 @@ function kthSmallest(arr, k) {
 	delve(arr, 0, arr.length - 1);
 	return result;
 }
+
+// array average
+function getAverage(arr) {
+	var result = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		result += arr[i];
+	}
+
+	return result /= arr.length;
+}
+
+// balance point
+function balancePoint(arr) {
+	var leftSum = 0,
+		rightSum = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		leftSum += arr[i];
+
+		for (var j = i + 1; j < arr.length; j++) {
+			rightSum += arr[j];
+		}
+
+		if (leftSum === rightSum) {
+			return true;
+		}
+		else {
+			rightSum = 0;
+		}
+	}
+
+	return false;
+}
+
+// balance index
+function balanceIndex(arr) {
+	var p1 = 0,
+		p2 = 0;
+
+	for (var i = 1; i < arr.length - 1; i++) {
+		p1 = i - 1;
+		p2 = i + 1;
+
+		var leftSum = 0;
+		var rightSum = 0;
+
+		while (p1 >= 0) {
+			leftSum += arr[p1];
+			p1--;
+		}
+
+		while (p2 < arr.length) {
+			rightSum += arr[p2];
+			p2++;
+		}
+
+		if (leftSum === rightSum) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+console.log(balanceIndex([1, 2, 1, 0, 2, 2, 2, 2, 2]));
