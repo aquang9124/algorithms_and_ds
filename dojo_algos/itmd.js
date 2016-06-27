@@ -695,4 +695,36 @@ function balanceIndex(arr) {
 	return -1;
 }
 
-console.log(balanceIndex([1, 2, 1, 0, 2, 2, 2, 2, 2]));
+// flatten an array and keep it stable
+function getFlat(arr) {
+	var result = [];
+
+	function makeFlat(element) {
+		if (!Array.isArray(element)) {
+			result.push(element);
+		}
+		else {
+			for (var i = 0; i < element.length; i++) {
+				makeFlat(element[i]);
+			}
+		}
+	}
+
+	makeFlat(arr);
+	return result;
+}
+
+function magicFlatten(arr) {
+	return arr.reduce(function(prev, current) {
+		return prev.concat(Array.isArray(current) ? magicFlatten(current) : current);
+	}, []);
+}
+
+// get array average using reduce
+function getAvgWithReduce(arr) {
+	var average = arr.reduce(function(total, current) { 
+		return total + current;
+	}, 0);
+
+	return average /= arr.length;
+}
