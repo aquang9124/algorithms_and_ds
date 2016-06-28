@@ -728,3 +728,123 @@ function getAvgWithReduce(arr) {
 
 	return average /= arr.length;
 }
+
+// de-dupe an array in place
+function removeDuplicates(arr) {
+	var arrayValues = {};
+
+	for (var i = 0; i < arr.length; i++) {
+		if (arrayValues.hasOwnProperty(arr[i])) {
+			arrayValues[arr[i]] += 1;
+
+			if (arrayValues[arr[i]] > 1) {
+				arr.splice(i, 1);
+			}
+		}
+		else {
+			arrayValues[arr[i]] = 1;
+		}
+	}
+
+	return arr;
+}
+
+// return mode of array
+function getMode(arr) {
+	var occurences = {},
+		maxValue,
+		mode;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (!occurences.hasOwnProperty(arr[i])) {
+			occurences[arr[i]] = 0;
+		}
+		occurences[arr[i]] += 1;
+	}
+	
+	for (var key in occurences) {
+		if (mode === undefined) {
+			mode = key;
+			maxValue = occurences[key];
+		}
+		else if (occurences[key] > maxValue) {
+			mode = key;
+			maxValue = occurences[key];
+		}
+	}
+
+	return mode;
+}
+
+// median of two sorted arrays
+function getMedian(arr1, arr2) {
+	var values = {},
+		p1 = 0,
+		p2 = 0;
+
+	while (p1 < arr1.length) {
+		if (!values.hasOwnProperty(arr1[p1])) {
+			values[arr1[p1]] = true;
+		}
+
+		p1++;
+	}
+
+	while (p2 < arr2.length) {
+		if (!values.hasOwnProperty(arr2[p2])) {
+			values[arr2[p2]] = true;
+		}
+
+		p2++;
+	}
+
+	values = quicklySort(Object.keys(values));
+	return values[Math.floor(values.length / 2)];
+}
+
+// get last digit of a raised to power of b
+function getLastDigit(a, b) {
+	var num = Math.pow(a, b);
+
+	return num % 10;
+}
+
+// binary search for existence of target, not index
+function binarySearch(arr, element) {
+	var mid,
+		left = 0,
+		right = arr.length - 1;
+
+	while (left <= right) {
+		mid = Math.floor((right + left) / 2);
+		if (arr[mid] === element) {
+			return true;
+		}
+		else if (arr[mid] < element) {
+			left = mid + 1;
+		}
+		else if (arr[mid] > element) {
+			right = mid - 1;
+		}
+	}
+
+	return false;
+}
+
+// matrix search, efficiency is far from good
+function matrixSearch(mat1, mat2) {
+
+	mat1.forEach(function(element) {
+		quicklySort(element);
+	});
+
+	for (var i = 0; i < mat2.length; i++) {
+		for (var j = 0; j < mat2[i].length; j++) {
+			if (binarySearch(mat1[i], mat2[i][j]) !== true) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
