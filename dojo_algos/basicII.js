@@ -123,3 +123,69 @@ function unevenNum(num, current) {
 	
 	return unevenNum(num, current - 1);
 }
+
+// recursive tribonacci
+function rTrib(n) {
+	if (n < 0) {
+		return -1;
+	}
+	else if (n === 0 || n === 1) {
+		return n;
+	}
+
+	return rTrib(n - 1) + rTrib(n - 2) + rTrib(n - 3);
+}
+
+// string subsets
+function strPermute(str, char, result, depth) {
+	result = result || [];
+	char = char || "";
+	depth = depth || 0;
+
+	if (depth === str.length) {
+		result.push(char);
+		return;
+	}
+
+	strPermute(str, char, result, depth + 1);
+	strPermute(str, char + str[depth], result, depth + 1);
+
+	return result;
+}
+
+// rising odd squares, descending even squares
+function risingSquares(n, height) {
+	height = height || 0;
+
+	if (height <= n) {
+		if (height % 2 === 1) {
+			console.log(Math.pow(height, 2));
+		}
+		risingSquares(n, height + 1);
+	}
+	else if (n > 0) {
+		if (n % 2 === 0) {
+			console.log(Math.pow(n, 2));
+		}
+
+		risingSquares(n - 1, height);
+	}
+}
+
+// get max number of grapes, non-consecutive
+function getMaxGrapes(grapes) {
+
+	function countGrapes(start, sum) {
+		sum = sum || 0;
+
+		if (start >= grapes.length) {
+			return sum;
+		}
+
+		sum += grapes[start];
+		return countGrapes(start + 2, sum);
+	}
+
+	
+	return Math.max(countGrapes(0), countGrapes(1));
+}
