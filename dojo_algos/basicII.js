@@ -107,4 +107,19 @@ function bStringExp(str) {
 	return result;
 }
 
-console.log(bStringExp("1?0?"));
+// recursively take all even digits out of number
+function unevenNum(num, current) {
+	if (current === undefined) {
+		num = num.toString().split('');
+		current = num.length - 1;
+	}
+
+	if (current < 0) {
+		return num.join('');
+	}
+	else if (num[current] % 2 === 0) {
+		num.splice(current, 1);
+	}
+	
+	return unevenNum(num, current - 1);
+}
