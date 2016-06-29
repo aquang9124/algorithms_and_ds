@@ -189,3 +189,53 @@ function getMaxGrapes(grapes) {
 	
 	return Math.max(countGrapes(0), countGrapes(1));
 }
+
+// recursive factorial
+function rFact(n) {
+	if (n <= 1) {
+		return 1;
+	}
+
+	return rFact(n - 1) * n;
+}
+
+// merge sort
+function mergeSort(arr) {
+	var mid = Math.floor(arr.length / 2),
+		left = arr.slice(0, mid),
+		right = arr.slice(mid);
+
+	if (arr.length < 2) {
+		return arr;
+	}
+
+	return mergeArrays(mergeSort(left), mergeSort(right));
+}
+
+function mergeArrays(arr1, arr2) {
+	var p1 = 0,
+		p2 = 0,
+		result = [];
+
+	while (p1 < arr1.length && p2 < arr2.length) {
+		if (arr1[p1] <= arr2[p2]) {
+			result.push(arr1[p1]);
+			p1++;
+		}
+		else if (arr2[p2] < arr1[p1]) {
+			result.push(arr2[p2]);
+			p2++;
+		}
+	}
+
+	if (p1 === arr1.length) {
+		result = result.concat(arr2.slice(p2));
+	}
+	else if (p2 === arr2.length) {
+		result = result.concat(arr1.slice(p1));
+	}
+
+	return result;
+}
+
+console.log(mergeSort([5, 33, 8, 2, 0, -1, 77, 5, 7, 1]));
