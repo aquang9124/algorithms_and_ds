@@ -503,3 +503,32 @@ function maxSum(arr) {
 
 	return max;
 }
+
+// a more functional approach to checking if num is a perfect square
+function isPerfectSq(num) {
+	var test = Math.sqrt(num);
+
+	if (Math.floor(test) === Math.sqrt(num)) {
+		return true;
+	}
+
+	return false;
+}
+
+function perfectOrNot(num) {
+	var subtractor = 1;
+
+	while (num > 1) {
+		num -= subtractor;
+
+		subtractor += 2;
+	}
+
+	if (num === 0) {
+		return true;
+	}
+
+	return false;
+}
+
+console.log(perfectOrNot(24));
