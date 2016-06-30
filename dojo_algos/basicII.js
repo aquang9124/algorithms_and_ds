@@ -238,4 +238,51 @@ function mergeArrays(arr1, arr2) {
 	return result;
 }
 
-console.log(mergeSort([5, 33, 8, 2, 0, -1, 77, 5, 7, 1]));
+// get anagrams
+function getAnagrams(str) {
+	var memo = {};
+
+	function createAnagrams(char, idx1, idx2) {
+		if (!memo.hasOwnProperty(char)) {
+			memo[char.join('')] = true;
+		}
+
+		if (idx1 === str.length || idx2 < 0) {
+			return;
+		}
+
+		var temp = char[idx1];
+		char[idx1] = char[idx2];
+		char[idx2] = temp;
+
+		createAnagrams(char, idx1 + 1, idx2);
+		createAnagrams(char, idx1, idx2 - 1);
+	}
+
+	createAnagrams(str.split(''), 0, str.length - 1);
+	return Object.keys(memo);
+}
+
+// climb stairs, return array of ways to climb
+function stairMaster(n) {
+	var results = [];
+
+	function doClimb(start, result) {
+		if (start === n) {
+			results.push(result);
+			return;
+		}
+		else if (start > n) {
+			return;
+		}
+					
+		doClimb(start + 1, result.concat(1));
+
+		doClimb(start + 2, result.concat(2));
+	}
+
+	doClimb(0, []);
+	return results;
+}
+
+console.log(stairMaster(3));
