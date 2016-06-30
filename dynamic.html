@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	
+</head>
+<body>
+	<button onclick="createButtons()">Make Buttons</button>
+	<script>
+		function createButtons() {
+			for (var i = 1; i <= 10; i++) {
+				var btn = document.createElement("BUTTON");
+				var t = document.createTextNode(i);
+				btn.setAttribute("id", i);
+				btn.appendChild(t);
+				document.body.appendChild(btn);
+			}
+			
+			document.body.addEventListener("click", function() {
+				if (event.target.tagName === "BUTTON" && event.target.id !== "") {
+					alert(event.target.id);
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>
