@@ -45,7 +45,7 @@ describe('permuteString', function() {
 		var test = permuteString('aba');
 
 		test.should.equal(false);
-	})
+	});
 });
 
 describe('insertionSort', function() {

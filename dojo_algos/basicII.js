@@ -390,6 +390,43 @@ function insertionSort(arr) {
 	return arr;
 }
 
+// srmcards, given an int[] return max num of turns to empty the array
+function maxTurns(arr) {
+	var results = 0,
+		altResult = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		var tempArr = arr.slice(0);
+		var turns = 0;
+		var idx = i;
+
+		while (tempArr.length > 0) {
+			var temp = [].concat(tempArr.splice(idx, 1));
+			var card = temp.pop();
+			var cardPlus = tempArr.indexOf(card + 1);
+			var cardMinus = tempArr.indexOf(card - 1);
+
+			if (cardPlus !== -1) {
+				tempArr.splice(cardPlus, 1);
+			}
+			
+			if (cardMinus !== -1) {
+				tempArr.splice(cardMinus, 1);
+			}
+
+			if (idx > 0) {
+				idx = 0;
+			}
+
+			turns++;
+		}
+
+		altResult = turns;
+		results = Math.max(results, altResult);
+	}
+	return results;
+}
+
 module.exports = {
 	mingleStrings: mingleStrings,
 	permuteString: permuteString,
