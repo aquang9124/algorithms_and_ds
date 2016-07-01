@@ -531,4 +531,24 @@ function perfectOrNot(num) {
 	return false;
 }
 
-console.log(perfectOrNot(24));
+function isNumHappy(n) {
+	var arr = [];
+	var num = n.toString()
+				.split('')
+				.reduce(function(sum, current) {
+					return sum + (+current * +current);
+				}, 0);
+
+	if (num === 58 || num === 4 || num == 37) {
+		return false;
+	}
+
+	if (num === 1) {
+		return true;
+	}
+	else {
+		return isNumHappy(num);
+	}
+}
+
+console.log(isNumHappy(19));
