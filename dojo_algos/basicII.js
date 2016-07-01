@@ -351,6 +351,29 @@ function mingleStrings(x, y) {
 	return result;
 }
 
+// given a string of even length, swap the even indexed characters with the following character
+function permuteString(str, idx) {
+	idx = idx || 0;
+
+	if (str.length % 2 !== 0) {
+		return false;
+	}
+
+	str = !Array.isArray(str) ? str.split('') : str;
+
+	if (idx >= str.length) {
+		return str.join('');
+	}
+	else if (idx % 2 === 0) {
+		var temp = str[idx];
+		str[idx] = str[idx + 1];
+		str[idx + 1] = temp;
+	}
+
+	return permuteString(str, idx + 2);
+}
+
 module.exports = {
-	mingleStrings: mingleStrings
+	mingleStrings: mingleStrings,
+	permuteString: permuteString
 };

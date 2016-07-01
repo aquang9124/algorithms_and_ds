@@ -4,6 +4,7 @@
 											*/
 //////////////////////////////////////////////
 var mingleStrings = require('../dojo_algos/basicII').mingleStrings;
+var permuteString = require('../dojo_algos/basicII').permuteString;
 var chai = require('chai');
 var should = require('chai').should();
 
@@ -18,9 +19,8 @@ describe('mingleStrings', function() {
 
 	it('should return false when lengths are unequal', function() {
 		var test = mingleStrings('abc', 'defg');
-		var answer = false;
 
-		test.should.equal(answer);
+		test.should.equal(false);
 	});
 
 	it('should return apbqcrdset', function() {
@@ -29,4 +29,20 @@ describe('mingleStrings', function() {
 
 		test.should.equal(answer);
 	});
+});
+
+describe('permuteString', function() {
+
+	it('should return badcqpsr', function() {
+		var test = permuteString('abcdpqrs');
+		var answer = 'badcqpsr';
+
+		test.should.equal(answer);
+	});
+
+	it('should return false when string length is not equal', function() {
+		var test = permuteString('aba');
+
+		test.should.equal(false);
+	})
 });
