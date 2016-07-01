@@ -1,0 +1,23 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "A collection of my algo solutions",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aquang9124/aquang-js-algos.git"
+  },
+  "author": "Alex Quang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aquang9124/aquang-js-algos/issues"
+  },
+  "homepage": "https://github.com/aquang9124/aquang-js-algos#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

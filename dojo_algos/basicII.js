@@ -285,4 +285,72 @@ function stairMaster(n) {
 	return results;
 }
 
-console.log(stairMaster(3));
+// get gcd
+function getGCD(x, y) {
+	// if the two numbers are equal, just return x
+	if (x === y) {
+		return x;
+	}
+	// if x < y, we swap their values to maintain consistency in our code
+	if (x < y) {
+		var oldX = x;
+		x = y;
+		y = oldX;
+	}
+	// this is our base case, if x % y === 0, return the previous remainder which is `y`
+	if (x % y === 0) {
+		return y;
+	}
+	// the euclidian algorithm: x === (y * Math.floor(x / y)) + (x % y)
+	var temp = y;
+	y = (x % y);
+	x = temp;
+
+	return getGCD(x, y);
+}
+
+// print the first k rows of pascal's triangle
+function printPascal(k) {
+
+	var getRows = (n) => {
+		if (n === k) {
+			return;
+		}
+
+		var rowOutput = "";
+		for (var i = n; i >= 0; i--) {
+			var current = rFact(n)/(rFact(i)*rFact(n - i));
+			rowOutput = rowOutput + " " + current;
+		}
+
+		console.log(rowOutput);
+		getRows(n + 1);
+	};
+
+	getRows(0);
+}
+
+// string mingling, given two strings of equal length, print string of length 2 times `n`
+function mingleStrings(x, y) {
+	if (x.length !== y.length) {
+		return false;
+	}
+
+	var result = "";
+
+	function mingler(idx) {
+		if (idx === x.length) {
+			return;
+		}
+
+		result += (x[idx] + y[idx]);
+		mingler(idx + 1);
+	}
+
+	mingler(0);
+	return result;
+}
+
+module.exports = {
+	mingleStrings: mingleStrings
+};
