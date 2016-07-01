@@ -373,7 +373,25 @@ function permuteString(str, idx) {
 	return permuteString(str, idx + 2);
 }
 
+// insertion sort
+function insertionSort(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] < arr[i - 1]) {
+			for (let j = i; j > 0; j--) {
+				if (arr[j] < arr[j - 1]) {
+					var temp = arr[j];
+					arr[j] = arr[j - 1];
+					arr[j - 1] = temp;
+				}
+			}
+		}
+	}
+
+	return arr;
+}
+
 module.exports = {
 	mingleStrings: mingleStrings,
-	permuteString: permuteString
+	permuteString: permuteString,
+	insertionSort: insertionSort
 };

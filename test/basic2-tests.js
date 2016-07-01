@@ -5,6 +5,7 @@
 //////////////////////////////////////////////
 var mingleStrings = require('../dojo_algos/basicII').mingleStrings;
 var permuteString = require('../dojo_algos/basicII').permuteString;
+var insertionSort = require('../dojo_algos/basicII').insertionSort;
 var chai = require('chai');
 var should = require('chai').should();
 
@@ -45,4 +46,20 @@ describe('permuteString', function() {
 
 		test.should.equal(false);
 	})
+});
+
+describe('insertionSort', function() {
+
+	it('should return [1, 2, 3, 4, 5, 6, 7, 8, 9]', function() {
+		var test = insertionSort([9, 3, 5, 2, 1, 7, 4, 8, 6]);
+		var answer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+		test.should.eql(answer);
+	});
+
+	it('should return []', function() {
+		var test = insertionSort([]);
+
+		test.should.eql([]);
+	});
 });
