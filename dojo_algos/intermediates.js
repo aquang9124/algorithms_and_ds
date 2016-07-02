@@ -42,7 +42,58 @@ function commonChars(x, y) {
 	return result;
 }
 
+// return third greatest number in the array, assume that array has at least 3 numbers
+function thirdGreatest(arr) {
+	var max = arr[0],
+		second = -Infinity,
+		third = -Infinity,
+		idx = 1;
+
+	while (idx < arr.length) {
+		if (arr[idx] > max) {
+			third = second;
+			second = max;
+			max = arr[idx];
+		}
+		else if (arr[idx] > second && arr[idx] < max) {
+			third = second;
+			second = arr[idx];
+		}
+		else if (arr[idx] > third && arr[idx] < second) {
+			third = arr[idx];
+		}
+
+		idx++;
+	}
+
+	return third;
+}
+
+// return the number of letters that repeat. Keep in mind this is not the number of times each letter repeats.
+function repeaters(str) {
+	var letters = {};
+	var count = 0;
+
+	for (var i = 0; i < str.length; i++) {
+		if (!letters.hasOwnProperty(str[i])) {
+			letters[str[i]] = 0;
+		}
+
+		letters[str[i]] += 1;
+	}
+
+	for (var key in letters) {
+		if (letters[key] > 1) {
+			count++;
+		}
+	}
+
+	return count;
+}
+
 module.exports = {
 	isPrime: isPrime,
-	commonChars: commonChars
+	commonChars: commonChars,
+	thirdGreatest: thirdGreatest,
+	repeaters: repeaters
 };

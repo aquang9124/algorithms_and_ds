@@ -52,3 +52,39 @@ describe('commonChars', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('thirdGreatest', function() {
+
+	it('should return 3', function() {
+		var test = algos.thirdGreatest([5, 3, 7]);
+
+		test.should.equal(3);
+	});
+
+	it('should return 5', function() {
+		var test = algos.thirdGreatest([-2, 0, 55, 7, 5]);
+
+		test.should.equal(5);
+	});
+});
+
+describe('repeaters', function() {
+
+	it('should return 2', function() {
+		var test = algos.repeaters('aabb');
+
+		test.should.equal(2);
+	});
+
+	it('should return 0', function() {
+		var test = algos.repeaters('abcde');
+
+		test.should.equal(0);
+	});
+
+	it('should return 6', function() {
+		var test = algos.repeaters('eiibbalvaseesva');
+
+		test.should.equal(6);
+	});
+});

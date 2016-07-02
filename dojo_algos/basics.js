@@ -550,5 +550,3 @@ function isNumHappy(n) {
 		return isNumHappy(num);
 	}
 }
-
-console.log(isNumHappy(19));
