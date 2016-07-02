@@ -209,3 +209,20 @@ describe('scrambleStr', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('mostCommonChar', function() {
+
+	it('should return ["a", 2]', function() {
+		var test = algos.mostCommonChar('abca');
+		var answer = ["a", 2];
+
+		test.should.eql(answer);
+	});
+
+	it('should return ["b", 3]', function() {
+		var test = algos.mostCommonChar("abbab");
+		var answer = ["b", 3];
+
+		test.should.eql(answer);
+	});
+});

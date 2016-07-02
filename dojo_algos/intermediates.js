@@ -207,6 +207,30 @@ function scrambleStr(str, order) {
 	return result;
 }
 
+// returns an array containing most common character and the number of times it appeared
+function mostCommonChar(str) {
+	var	count = 0,
+		char = str[0],
+		letters = {};
+
+	for (var i = 0; i < str.length; i++) {
+		if (!letters.hasOwnProperty(str[i])) {
+			letters[str[i]] = 0;
+		}
+
+		letters[str[i]] += 1;
+	}
+
+	for (var key in letters) {
+		if (letters[key] > count) {
+			char = key;
+			count = letters[key];
+		}
+	}
+
+	return [char, count];
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -218,5 +242,6 @@ module.exports = {
 	capWords: capWords,
 	nthPrime: nthPrime,
 	countVowels: countVowels,
-	scrambleStr: scrambleStr
+	scrambleStr: scrambleStr,
+	mostCommonChar: mostCommonChar
 };
