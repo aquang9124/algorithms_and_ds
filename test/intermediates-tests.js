@@ -88,3 +88,54 @@ describe('repeaters', function() {
 		test.should.equal(6);
 	});
 });
+
+describe('getGCF', function() {
+
+	it('should return 5', function() {
+		var test = algos.getGCF(10, 45);
+
+		test.should.equal(5);
+	});
+});
+
+describe('sumNums', function() {
+
+	it('should return 3', function() {
+		var test = algos.sumNums(2);
+
+		test.should.equal(3);
+	});
+
+	it('should return 15', function() {
+		var test = algos.sumNums(5);
+
+		test.should.equal(15);
+	});
+});
+
+describe('dasherizeNum', function() {
+
+	it('should return 20-3', function() {
+		var test = algos.dasherizeNum(203);
+
+		test.should.equal('20-3');
+	});
+
+	it('should return 3-3-3', function() {
+		var test = algos.dasherizeNum(333);
+
+		test.should.equal('3-3-3');
+	});
+
+	it('should equal 3-0-3', function() {
+		var test = algos.dasherizeNum(303);
+
+		test.should.equal('3-0-3');
+	});
+
+	it('should return 3-22-3', function() {
+		var test = algos.dasherizeNum(3223);
+
+		test.should.equal('3-22-3');
+	})
+});

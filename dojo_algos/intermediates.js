@@ -91,9 +91,73 @@ function repeaters(str) {
 	return count;
 }
 
+// get greatest common factor using Euclidean formula
+function getGCF(x, y) {
+	if (x < y) {
+		var temp = x;
+		x = y;
+		y = temp;
+	}
+
+	if (x % y === 0) {
+		return y;
+	}
+	else if (x === (y * Math.floor(x/y)) + (x % y)) {
+		var newY = x % y;
+		return getGCF(y, newY);
+	}
+}
+
+// sum nums
+function sumNums(num) {
+	var sum = 0;
+
+	for (var i = num; i > 0; i--) {
+		sum += i;
+	}
+
+	return sum;
+}
+
+// dasherize num
+function dasherizeNum(num) {
+	num = num.toString();
+	var result = "",
+		prev;
+
+	for (var i = 0; i < num.length; i++) {
+		if (i === 0 && num[i] % 2 === 1) {
+			result = num[i] + "-";
+			prev = '-';
+		}
+		else if (num[i] % 2 === 0) {
+			result += num[i];
+			prev = num[i];
+		}
+		else if (i === num.length - 1 && num[i] % 2 === 1) {
+			result += ('-' + num[i]);
+		}
+		else if (num[i] % 2 === 1 && prev !== '-') {
+			result += ('-' + num[i] + '-');
+			prev = '-';
+		}
+		else if (num[i] % 2 === 1) {
+			result += num[i];
+			prev = num[i];
+		}
+	}
+	
+	return result;
+}
+
+dasherizeNum(333);
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
 	thirdGreatest: thirdGreatest,
-	repeaters: repeaters
+	repeaters: repeaters,
+	getGCF: getGCF,
+	sumNums: sumNums,
+	dasherizeNum: dasherizeNum
 };
