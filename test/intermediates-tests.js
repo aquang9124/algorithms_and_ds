@@ -137,5 +137,43 @@ describe('dasherizeNum', function() {
 		var test = algos.dasherizeNum(3223);
 
 		test.should.equal('3-22-3');
-	})
+	});
+});
+
+describe('capWords', function() {
+
+	it('should return Apple Trees', function() {
+		var test = algos.capWords('apple trees');
+		var answer = 'Apple Trees';
+
+		test.should.equal(answer);
+	});
+
+	it('should return This Is A Sentence', function() {
+		var test = algos.capWords('this is a sentence');
+		var answer = 'This Is A Sentence';
+
+		test.should.equal(answer);
+	});
+});
+
+describe('nthPrime', function() {
+
+	it('should return 11', function() {
+		var test = algos.nthPrime(5);
+
+		test.should.equal(11);
+	});
+
+	it('should return 2', function() {
+		var test = algos.nthPrime(1);
+
+		test.should.equal(2);
+	});
+
+	it('should return 541', function() {
+		var test = algos.nthPrime(100);
+
+		test.should.equal(541);
+	});
 });

@@ -146,11 +146,40 @@ function dasherizeNum(num) {
 			prev = num[i];
 		}
 	}
-	
+
 	return result;
 }
 
-dasherizeNum(333);
+// is prime number
+function nthPrime(n) {
+	var countPrimes = 0,
+		currentPrime = 2,
+		num = 2;
+
+	while (countPrimes < n) {
+		if (isPrime(num)) {
+			countPrimes++;
+			currentPrime = num;
+		}
+
+		num++;
+	}
+
+	return currentPrime;
+}
+
+// capitalize words
+function capWords(str) {
+	str = str.split(' ');
+
+	for (let i = 0; i < str.length; i++) {
+		str[i] = str[i].split('');
+		str[i][0] = str[i][0].toUpperCase();
+		str[i] = str[i].join('');
+	}
+
+	return str.join(' ');
+}
 
 module.exports = {
 	isPrime: isPrime,
@@ -159,5 +188,7 @@ module.exports = {
 	repeaters: repeaters,
 	getGCF: getGCF,
 	sumNums: sumNums,
-	dasherizeNum: dasherizeNum
+	dasherizeNum: dasherizeNum,
+	capWords: capWords,
+	nthPrime: nthPrime
 };
