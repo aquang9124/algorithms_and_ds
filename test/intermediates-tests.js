@@ -28,3 +28,27 @@ describe('isPrime', function() {
 		test.should.equal(true);
 	});
 });
+
+describe('commonChars', function() {
+
+	it('should return cd', function() {
+		var test = algos.commonChars('abcd', 'cdf');
+		var answer = "cd";
+
+		test.should.equal(answer);
+	});
+
+	it('should return axa', function() {
+		var test = algos.commonChars('biraxa', 'axaff');
+		var answer = 'axa';
+
+		test.should.equal(answer);
+	});
+
+	it('should return happytrees', function() {
+		var test = algos.commonChars('treesthatarehappytreeshere', 'happytrees');
+		var answer = 'happytrees';
+
+		test.should.equal(answer);
+	});
+});

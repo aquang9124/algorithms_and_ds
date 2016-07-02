@@ -20,6 +20,29 @@ function isPrime(num) {
 	return true;
 }
 
+// return subsequence of two strings
+function commonChars(x, y) {
+	var result = "";
+
+	function findCommons(xEnd, yEnd) {
+		if (xEnd === x.length) {
+			return;
+		}
+		
+		if (x[xEnd] === y[yEnd]) {
+			result += x[xEnd];
+			findCommons(xEnd + 1, yEnd + 1);
+		}
+		else {
+			findCommons(xEnd + 1, yEnd);
+		}
+	}
+
+	findCommons(0, 0);
+	return result;
+}
+
 module.exports = {
-	isPrime: isPrime
+	isPrime: isPrime,
+	commonChars: commonChars
 };
