@@ -177,3 +177,35 @@ describe('nthPrime', function() {
 		test.should.equal(541);
 	});
 });
+
+describe('countVowels', function() {
+
+	it('should return 5', function() {
+		var test = algos.countVowels('eeeee');
+
+		test.should.equal(5);
+	});
+
+	it('should return 2', function() {
+		var test = algos.countVowels('aye');
+
+		test.should.equal(2);
+	});
+});
+
+describe('scrambleStr', function() {
+
+	it('should return dbca', function() {
+		var test = algos.scrambleStr('abcd', [3, 1, 2, 0]);
+		var answer = 'dbca';
+
+		test.should.equal(answer);
+	});
+
+	it('should return vkaorm', function() {
+		var test = algos.scrambleStr("markov", [5, 3, 1, 4, 2, 0]);
+		var answer = 'vkaorm';
+
+		test.should.equal(answer);
+	});
+});

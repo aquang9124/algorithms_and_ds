@@ -181,6 +181,32 @@ function capWords(str) {
 	return str.join(' ');
 }
 
+// count vowels in a string, treat y as a consonant
+function countVowels(str) {
+	var vowelCount = 0;
+
+	for (var i = 0; i < str.length; i++) {
+		var char = str[i].toLowerCase();
+
+		if (char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u') {
+			vowelCount++;
+		}
+	}
+
+	return vowelCount;
+}
+
+// take in a string and an int[], return a new string with the input string's characters in the order specified
+function scrambleStr(str, order) {
+	var result = "";
+
+	for (var i = 0; i < order.length; i++) {
+		result += str[order[i]];
+	}
+
+	return result;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -190,5 +216,7 @@ module.exports = {
 	sumNums: sumNums,
 	dasherizeNum: dasherizeNum,
 	capWords: capWords,
-	nthPrime: nthPrime
+	nthPrime: nthPrime,
+	countVowels: countVowels,
+	scrambleStr: scrambleStr
 };
