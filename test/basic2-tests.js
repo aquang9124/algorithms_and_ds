@@ -6,6 +6,10 @@
 var mingleStrings = require('../dojo_algos/basicII').mingleStrings;
 var permuteString = require('../dojo_algos/basicII').permuteString;
 var insertionSort = require('../dojo_algos/basicII').insertionSort;
+var printReverse = require('../dojo_algos/basicII').printReverse;
+var commonChars = require('../dojo_algos/basicII').commonChars;
+var flatten = require('../dojo_algos/basicII').flatten;
+var flatArr = require('../dojo_algos/basicII').flatArr;
 var chai = require('chai');
 var should = require('chai').should();
 
@@ -61,5 +65,45 @@ describe('insertionSort', function() {
 		var test = insertionSort([]);
 
 		test.should.eql([]);
+	});
+});
+
+describe('printReverse', function() {
+
+	it('should return [4, 3, 2, 1]', function() {
+		var test = printReverse([1, 2, 3, 4]);
+		var answer = [4, 3, 2, 1];
+
+		test.should.eql(answer);
+	});
+});
+
+describe('commonChars', function() {
+
+	it('should return cd', function() {
+		var test = commonChars('abcde', 'cdf');
+		var answer = 'cd';
+
+		test.should.equal(answer);
+	});
+});
+
+describe('flatten', function() {
+
+	it('should return a flattened array', function() {
+		var test = flatten([[1], [[2, 3, 4]], [5]]);
+		var answer = [1, 2, 3, 4, 5];
+
+		test.should.eql(answer);
+	});
+});
+
+describe('flatArr', function() {
+
+	it('should return a flat array', function() {
+		var test = flatArr([[1], [[2, 3, 4]], [5]]);
+		var answer = [1, 2, 3, 4, 5];
+
+		test.should.eql(answer);
 	});
 });

@@ -427,8 +427,95 @@ function maxTurns(arr) {
 	return results;
 }
 
+// print array reverse
+function printReverse(arr) {
+	var result = [];
+
+	for (var i = arr.length - 1; i >= 0; i--) {
+		result.push(arr[i]);
+	}
+
+	return result;
+}
+
+// takes two strings and returns a string that contains only the elements found in both
+function commonChars(str1, str2) {
+	var result = "";
+
+	for (var i = 0; i < str1.length; i++) {
+		if (str2.indexOf(str1[i]) !== -1) {
+			result += str1[i];
+		}
+	}
+
+	return result;
+}
+
+// flatten nested list using recursion
+function flatten(arr) {
+	return arr.reduce(function(flat, notFlat) {
+		return flat.concat(!Array.isArray(notFlat) ? notFlat : flatten(notFlat));
+	}, []);
+}
+
+// flatten nested list, different implementation
+function flatArr(arr) {
+	var result = [];
+
+	function makeFlat(element) {
+		if(!Array.isArray(element)) {
+			result.push(element);
+		}
+		else {
+			for (var i = 0; i < element.length; i++) {
+				makeFlat(element[i]);
+			}
+		}
+	}
+
+	makeFlat(arr);
+	return result;
+}
+
+// foobars
+function bar(n) {
+	var timesCalled = 0;
+
+	return (mult) => {
+		timesCalled++;
+		var result = (n * mult) + timesCalled;
+		console.log(result);
+		return result;
+	}
+}
+
+// throttle the function
+function loading(a, b) {
+	console.log('Loading... ' + a + " " + b);
+}
+
+function throttler(fn, time) {
+	var runnable = true;
+
+	return function() {
+		if (runnable) {
+			runnable = false;
+
+			setTimeout(function() {
+				runnable = true;
+			}, time);
+
+			fn.apply(null, arguments);
+		}
+	}
+}
+
 module.exports = {
 	mingleStrings: mingleStrings,
 	permuteString: permuteString,
-	insertionSort: insertionSort
+	insertionSort: insertionSort,
+	printReverse: printReverse,
+	commonChars: commonChars,
+	flatten: flatten,
+	flatArr: flatArr
 };
