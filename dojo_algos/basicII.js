@@ -510,6 +510,38 @@ function throttler(fn, time) {
 	}
 }
 
+// consecutive max sum
+function cMaxSum(arr) {
+	var localMax = arr[0],
+		ultMax = arr[0];
+
+	for (var i = 0; i < arr.length - 1; i++) {
+		localMax = Math.max(localMax, (arr[i] + arr[i + 1]));
+		ultMax = Math.max(localMax, ultMax);
+	}
+
+	return ultMax;
+}
+
+// reverse a string in place
+function reverser(str) {
+	var left = 0,
+		right = str.length - 1;
+
+	str = str.split('');
+
+	while (left <= right) {
+		var temp = str[left];
+		str[left] = str[right];
+		str[right] = temp;
+
+		left++;
+		right--;
+	}
+
+	return str.join('');
+}
+
 module.exports = {
 	mingleStrings: mingleStrings,
 	permuteString: permuteString,
