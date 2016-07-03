@@ -257,3 +257,48 @@ describe('bigPalindrome', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('nearestLarger', function() {
+
+	it('should handle a simple case to the right', function() {
+		var test = algos.nearestLarger([2, 3, 4, 8], 2);
+		var answer = 3;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a simple case to the left', function() {
+		var test = algos.nearestLarger([2, 8, 4, 3], 2);
+		var answer = 1;
+
+		test.should.equal(answer);
+	});
+
+	it('should choose the left case in a tie', function() {
+		var test = algos.nearestLarger([2, 6, 4, 8], 2);
+		var answer = 1;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a case with an answer > 1 to the right', function() {
+		var test = algos.nearestLarger([2, 4, 3, 8], 1);
+		var answer = 3;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a case with an answer > 1 distance to the left', function() {
+		var test = algos.nearestLarger([8,2,4,3], 2);
+		var answer = 0;
+
+		test.should.equal(answer);
+	});
+
+	it('should return false if no larger number is found', function() {
+		var test = algos.nearestLarger([2, 6, 4, 8], 3);
+		var answer = false;
+
+		test.should.equal(answer);
+	});
+});

@@ -267,6 +267,27 @@ function bigPalindrome(str) {
 	return longest;
 }
 
+// return index of nearest larger number, left number wins ties
+function nearestLarger(arr, idx) {
+	var left = idx - 1,
+		right = idx + 1,
+		num = arr[idx];
+
+	while (left >= 0 || right < arr.length) {
+		if (arr[left] > num) {
+			return left;
+		}
+		else if (arr[right] > num) {
+			return right;
+		}
+
+		left--;
+		right++;
+	}
+
+	return false;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -280,5 +301,6 @@ module.exports = {
 	countVowels: countVowels,
 	scrambleStr: scrambleStr,
 	mostCommonChar: mostCommonChar,
-	bigPalindrome: bigPalindrome
+	bigPalindrome: bigPalindrome,
+	nearestLarger: nearestLarger
 };
