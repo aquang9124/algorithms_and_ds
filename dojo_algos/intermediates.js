@@ -231,6 +231,42 @@ function mostCommonChar(str) {
 	return [char, count];
 }
 
+// longest palindrome substring
+function bigPalindrome(str) {
+	let longest = "";
+
+	for (let i = 0; i < str.length; i++) {
+		let word = "";
+		let lWord = "";
+		let rWord = "";
+		let centerOrig = str[i];
+		let center = str[i];
+		let left = i - 1;
+		let right = i + 1;
+
+		while (centerOrig === str[right]) {
+			center += str[right];
+			right += 1;
+		}
+
+		while (left >= 0 && right < str.length && str[left] === str[right]) {
+			lWord += str[left];
+			rWord += str[right];
+
+			left--;
+			right++;
+		}
+
+		word = (lWord + center + rWord);
+
+		if (word.length > longest.length) {
+			longest = word;
+		}
+	}
+
+	return longest;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -243,5 +279,6 @@ module.exports = {
 	nthPrime: nthPrime,
 	countVowels: countVowels,
 	scrambleStr: scrambleStr,
-	mostCommonChar: mostCommonChar
+	mostCommonChar: mostCommonChar,
+	bigPalindrome: bigPalindrome
 };

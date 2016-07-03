@@ -226,3 +226,34 @@ describe('mostCommonChar', function() {
 		test.should.eql(answer);
 	});
 });
+
+describe('bigPalindrome', function() {
+
+	it('should return effe', function() {
+		var test = algos.bigPalindrome("abcbdeffe");
+		var answer = 'effe';
+
+		test.should.equal(answer);
+	});
+
+	it('should return bcb', function() {
+		var test = algos.bigPalindrome('abcbd');
+		var answer = 'bcb';
+
+		test.should.equal(answer);
+	});
+
+	it('should return abba', function() {
+		var test = algos.bigPalindrome('abba');
+		var answer = 'abba';
+
+		test.should.equal(answer);
+	});
+
+	it('should return zzz', function() {
+		var test = algos.bigPalindrome('azzzg');
+		var answer = 'zzz';
+
+		test.should.equal(answer);
+	});
+});
