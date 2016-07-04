@@ -42,7 +42,68 @@ function commonChars(x, y) {
 	return result;
 }
 
+// iterative binary search
+function binarySearch(arr, x) {
+	var left = 0,
+		right = arr.length - 1,
+		mid = Math.floor((right + left) / 2);
+
+	while (left <= right) {
+		mid = Math.floor((right + left) / 2);
+		if (arr[mid] === x) {
+			return mid;
+		}
+
+		if (arr[mid] > x) {
+			right = mid - 1;
+		}
+
+		if (arr[mid] < x) {
+			left = mid + 1;
+		}
+	}
+
+	return -1;
+}
+
+// recursive binary search
+function rBinary(arr, x, min, max, mid) {
+	if (min === undefined) {
+		min = 0;
+		max = arr.length - 1;
+	}
+
+	mid = Math.floor((max + min) / 2);
+
+	if (min > max) {
+		return -1;
+	}
+
+	if (arr[mid] > x) {
+		max = mid - 1;
+		return rBinary(arr, x, min, max, mid);
+	}
+	else if (arr[mid] < x) {
+		min = mid + 1;
+		return rBinary(arr, x, min, max, mid);
+	}
+	else {
+		return mid;
+	}
+}
+
+// wonky coins
+function wonkyCoins(n) {
+	if (n === 0) {
+		return 1;
+	}
+
+	return wonkyCoins(Math.floor(n / 2)) + wonkyCoins(Math.floor(n / 3)) + wonkyCoins(Math.floor(n / 4));
+}
+
 module.exports = {
 	isPrime: isPrime,
-	commonChars: commonChars
+	commonChars: commonChars,
+	rBinary: rBinary,
+	wonkyCoins: wonkyCoins
 };

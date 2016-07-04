@@ -52,3 +52,45 @@ describe('commonChars', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('rBinary', function() {
+	var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+	it('should handle a case to the farthest left', function() {
+		var test = algos.rBinary(testArr, 1);
+		var answer = 0;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a case to the farthest right', function() {
+		var test = algos.rBinary(testArr, 20);
+		var answer = 19;
+
+		test.should.equal(answer);
+	});
+
+	it('should return -1 when target is not found', function() {
+		var test = algos.rBinary(testArr, 22);
+		var answer = -1;
+
+		test.should.equal(answer);
+	});
+});
+
+describe('wonkyCoins', function() {
+
+	it('should handle a simple case of 1', function() {
+		var test = algos.wonkyCoins(1);
+		var answer = 3;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a larger case of 5', function() {
+		var test = algos.wonkyCoins(5);
+		var answer = 11;
+
+		test.should.equal(answer);
+	});
+});
