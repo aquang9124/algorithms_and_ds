@@ -333,3 +333,27 @@ describe('nearestLarger', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('validAnagram', function() {
+
+	it('should return true when inputs are anagrams', function() {
+		var test = algos.validAnagram('anagram', 'nagaram');
+		var answer = true;
+
+		test.should.equal(answer);
+	});
+
+	it('should return false when inputs are not anagrams', function() {
+		var test = algos.validAnagram('rat', 'car');
+		var answer = false;
+
+		test.should.equal(answer);
+	});
+
+	it('should return false when one string is longer than the other', function() {
+		var test = algos.validAnagram('sss', 'ssss');
+		var answer = false;
+
+		test.should.equal(answer);
+	});
+});

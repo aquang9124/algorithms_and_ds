@@ -346,6 +346,37 @@ function nearestLarger(arr, idx) {
 	return false;
 }
 
+// valid anagram
+function validAnagram(s, t) {
+	if (s.length !== t.length) {
+		return false;
+	}
+
+	var idx = 0;
+
+	while (idx < s.length) {
+		if (t.indexOf(s[idx]) === -1) {
+			return false;
+		}
+
+		idx++;
+	}
+
+	return true;
+}
+
+// alternative valid anagram implementation with faster runtime
+function fastValid(s, t) {
+	if (s.length !== t.length) {
+		return false;
+	}
+
+	s = s.split('').sort();
+	t = t.split('').sort();
+
+	return s.join('') === t.join('');
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -362,5 +393,6 @@ module.exports = {
 	scrambleStr: scrambleStr,
 	mostCommonChar: mostCommonChar,
 	bigPalindrome: bigPalindrome,
-	nearestLarger: nearestLarger
+	nearestLarger: nearestLarger,
+	validAnagram: validAnagram
 };
