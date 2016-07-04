@@ -357,3 +357,37 @@ describe('validAnagram', function() {
 		test.should.equal(answer);
 	});
 });
+
+describe('latticePaths', function() {
+
+	it('should return 6', function() {
+		var test = algos.latticePaths(2, 2);
+		var answer = 6;
+
+		test.should.equal(answer);
+	});
+
+	it('should return 20', function() {
+		var test = algos.latticePaths(3, 3);
+		var answer = 20;
+
+		test.should.equal(20);
+	});
+});
+
+describe('helperLattice', function() {
+
+	it('should return 6', function() {
+		var test = algos.helperLattice(2);
+		var answer = 6;
+
+		test.should.equal(answer);
+	});
+
+	it('should return 20', function() {
+		var test = algos.helperLattice(3);
+		var answer = 20;
+
+		test.should.equal(20);
+	});
+});

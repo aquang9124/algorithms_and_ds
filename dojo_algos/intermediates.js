@@ -377,6 +377,39 @@ function fastValid(s, t) {
 	return s.join('') === t.join('');
 }
 
+// lattice paths
+function latticePaths(x, y) {
+	if (x === 0 && y === 0) {
+		return 1;
+	}
+	else if (x < 0 || y < 0) {
+		return 0;
+	}
+
+	return latticePaths(x - 1, y) + latticePaths(x, y - 1);
+}
+
+// lattice paths with helper function
+function helperLattice(n) {
+	var count = 0;
+
+	var findPaths = (x, y) => {
+		if (x === n && y === n) {
+			count++;
+			return;
+		}
+		else if (x > n || y > n) {
+			return;
+		}
+
+		findPaths(x + 1, y);
+		findPaths(x, y + 1);
+	};
+
+	findPaths(0, 0);
+	return count;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -394,5 +427,7 @@ module.exports = {
 	mostCommonChar: mostCommonChar,
 	bigPalindrome: bigPalindrome,
 	nearestLarger: nearestLarger,
-	validAnagram: validAnagram
+	validAnagram: validAnagram,
+	latticePaths: latticePaths,
+	helperLattice: helperLattice
 };
