@@ -410,6 +410,49 @@ function helperLattice(n) {
 	return count;
 }
 
+// max number of 1s in n by m matrix
+function maxOnes(matrix) {
+	var max = -Infinity;
+	var maxIdx = 0;
+	var temp;
+
+	for (var i = 0; i < matrix.length; i++) {
+		var mid = Math.floor(matrix[i].length / 2);
+
+		if (matrix[i][mid] === 0) {
+			while (matrix[i][mid + 1] !== 1 && mid < matrix[i].length - 1) {
+				mid += 1;
+			}
+
+			temp = matrix[i].length - (mid + 1);
+
+			if (max < temp) {
+				max = temp;
+				maxIdx = i;
+			}
+
+			continue;
+		}
+		
+		if (matrix[i][mid] === 1) {
+			while (matrix[i][mid - 1] !== 0 && mid >= 0) {
+				mid -= 1;
+			}
+
+			temp = matrix[i].length - mid;
+			
+			if (max < temp) {
+				max = temp;
+				maxIdx = i;
+			}
+
+			continue;
+		}
+	}
+
+	return maxIdx;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
