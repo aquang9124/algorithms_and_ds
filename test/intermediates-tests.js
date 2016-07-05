@@ -391,3 +391,47 @@ describe('helperLattice', function() {
 		test.should.equal(20);
 	});
 });
+
+describe('findMissing', function() {
+	function generateArray(max) {
+		var result = [],
+			exclude = Math.floor(max / 2);
+
+		for (var i = 1; i <= max; i++) {
+			if (i === exclude) {
+				continue;
+			}
+			result.push(i);
+		}
+
+		return result;
+	}
+
+	function getSum(inputSize) {
+		var sum = 0;
+
+		for (var i = 1; i <= inputSize; i++) {
+			sum += i;
+		}
+
+		return sum;
+	}
+
+	it('should handle a 100 input array', function() {
+		var input = generateArray(100);
+		var sum = getSum(100);
+		var test = algos.findMissing(input, sum);
+		var answer = 50;
+
+		test.should.equal(answer);
+	});
+
+	it('should handle a 9999 input array', function() {
+		var input = generateArray(10000);
+		var sum = getSum(10000);
+		var test = algos.findMissing(input, sum);
+		var answer = 5000;
+
+		test.should.equal(answer);
+	});
+});

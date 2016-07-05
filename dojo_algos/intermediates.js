@@ -453,6 +453,17 @@ function maxOnes(matrix) {
 	return maxIdx;
 }
 
+// find the missing number in an array of 1 - 10000
+function findMissing(nums, sum) {
+	var total = nums.reduce(function(sum, next) {
+		return sum += next;
+	});
+	
+	var missing = sum - total;
+
+	return missing;
+}
+
 module.exports = {
 	isPrime: isPrime,
 	commonChars: commonChars,
@@ -472,5 +483,6 @@ module.exports = {
 	nearestLarger: nearestLarger,
 	validAnagram: validAnagram,
 	latticePaths: latticePaths,
-	helperLattice: helperLattice
+	helperLattice: helperLattice,
+	findMissing: findMissing
 };
