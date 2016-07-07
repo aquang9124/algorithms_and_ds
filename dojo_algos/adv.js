@@ -9,3 +9,21 @@ function climbStairs(n) {
 
 	return climbStairs(n - 1) + climbStairs(n - 2);
 }
+
+// reverse digits of an integer
+var reverse = function(x) {
+    x = x.toString().split('');
+    var i = 0;
+    
+    if (x[0] === '-') {
+        i = 1;
+    }
+    
+    for (var j = x.length - 1; i <= j; i++, j--) {
+        var temp = x[i];
+        x[i] = x[j];
+        x[j] = temp;
+    }
+    
+    return parseInt(x.join(''));
+};
