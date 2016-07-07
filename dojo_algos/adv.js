@@ -29,6 +29,80 @@ var reverse = function(x) {
     return parseInt(x.join(''));
 };
 
+// testing OO in JS
+var bindedToThis = function() {
+    var person = {
+        name: 'Alex',
+        talk() {
+            console.log(this.name + " says hello world!");
+        }
+    };
+
+    return person.talk.bind(person);
+};
+
+function origin(a, b) {
+    console.log('I like ' + a + " and " + b);
+}
+
+function convertFunc(fn) {
+    return function() {
+        fn.apply(null, arguments);
+    };
+}
+
+var animalSounds = function(sound) {
+    var animal = {
+        sound: sound,
+        makeSound(_, target) {
+            console.log('The animal says: ' + this.sound + " to scare away " + target);
+        }
+    };
+
+    animal.makeSound.apply(animal, arguments);
+};
+
+// string to array
+function splitUp(str, delimiter) {
+    var result = [];
+    var word = "";
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === delimiter) {
+            result.push(word);
+            word = "";
+            continue;
+        }
+
+        word += str[i];
+    }
+
+    if (word.length !== 0) {
+        result.push(word);
+    }
+
+    return result;
+}
+
+// longest word in string
+function longestWord(str) {
+    str = str.split(' ');
+    var longest = str[0];
+    var letters = str[0].length;
+
+    for (var i = 1; i < str.length; i++) {
+        
+        if (str[i].length > letters) {
+            longest = str[i];
+            letters = str[i].length;
+        }
+    }
+
+    return longest;
+}
+
+console.log(longestWord('Snap crackle pop makes the world go round!'));
+
 // binary tree
 function TreeNode(value) {
     this.value = value;
@@ -38,15 +112,3 @@ function TreeNode(value) {
 function BinaryTree() {
     this.root = null;
 }
-
-// testing OO in JS
-var bindedToThis = {
-    x: 'Alex',
-    printX(y) {
-        return this.x + " says hello, " + y;
-    }
-};
-
-console.log(bindedToThis.printX('all'));
-var b = bindedToThis.printX.bind(bindedToThis, 'world');
-console.log(b());
