@@ -29,5 +29,3 @@ function memoStairs(n : number) {
 	memo[n] = doClimb(n);
 	return memo[n];
 }
-
-console.log(memoStairs(5));

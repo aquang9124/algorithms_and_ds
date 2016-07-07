@@ -1,3 +1,4 @@
+'use strict';
 // climb stairs slightly more efficiently
 function climbStairs(n) {
 	if (n === 1) {
@@ -27,3 +28,25 @@ var reverse = function(x) {
     
     return parseInt(x.join(''));
 };
+
+// binary tree
+function TreeNode(value) {
+    this.value = value;
+    this.left = this.right = null;
+}
+
+function BinaryTree() {
+    this.root = null;
+}
+
+// testing OO in JS
+var bindedToThis = {
+    x: 'Alex',
+    printX(y) {
+        return this.x + " says hello, " + y;
+    }
+};
+
+console.log(bindedToThis.printX('all'));
+var b = bindedToThis.printX.bind(bindedToThis, 'world');
+console.log(b());
