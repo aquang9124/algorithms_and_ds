@@ -185,14 +185,9 @@ BinarySearchTree.prototype = {
         }
 
         return current;
-    }
+    },
+    
 };
-
-var bst = new BinarySearchTree();
-bst.insert(5).insert(9).insert(3).insert(1).insert(2).insert(10);
-console.log(bst.getMin());
-console.log(bst.getMax());
-console.log(bst.find(9));
 
 // binary tree
 var BinaryTree = function() {
@@ -280,3 +275,53 @@ function postOrder(node) {
     }
 }
 
+// can you win the nim game, 1-3 stones
+function winNim(n) {
+    return (n % 4) !== 0;
+}
+
+function lastToGoal(num) {
+    var result = [];
+
+    function getCount(total, path) {
+        if (path === undefined) {
+            path = "";
+        }
+
+        if (winNim(total)) {
+            path += total;
+        }
+
+        if (total === (num - 3)) {
+            result.push(path);
+            return;
+        }
+        else if (total > num) {
+            return;
+        }
+
+        getCount(total + 1, path);
+        getCount(total + 2, path);
+        getCount(total + 3, path);
+    }
+
+    getCount(1);
+    return result;
+}
+
+// fisher yates shuffle
+function shuffle(array) {
+    var m = array.length, t, i;
+
+    // While there remain elements to shuffle…
+    while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+
+    return array;
+}
