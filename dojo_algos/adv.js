@@ -280,32 +280,28 @@ function winNim(n) {
     return (n % 4) !== 0;
 }
 
+// note to self: do not run this function with input greater than 20
 function lastToGoal(num) {
     var result = [];
 
-    function getCount(total, path) {
-        if (path === undefined) {
-            path = "";
-        }
+    function getCount(total, path="") {
 
-        if (winNim(total)) {
-            path += total;
-        }
+        path += (total + " ");
 
-        if (total === (num - 3)) {
+        if (total === 3) {
             result.push(path);
             return;
         }
-        else if (total > num) {
+        else if (total < 3) {
             return;
         }
 
-        getCount(total + 1, path);
-        getCount(total + 2, path);
-        getCount(total + 3, path);
+        getCount(total - 1, path);
+        getCount(total - 2, path);
+        getCount(total - 3, path);
     }
 
-    getCount(1);
+    getCount(num);
     return result;
 }
 
@@ -324,4 +320,46 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+// testing iife
+var greeting = (function(name) {
+    
+    return ('Hello ' + name + "!");
+
+}('Alex'));
+
+// test closures for fun
+function buildFunctions() {
+    var arr = [];
+
+    for (var i = 0; i < 3; i++) {
+        arr.push(function() {
+            console.log(i);
+        });
+    }
+
+    return arr;
+}
+
+// fun with iifes and closures
+function fnBuilder() {
+    var arr = [];
+
+    for (var i = 0; i < 3; i++) {
+        // iife creates another execution context which returns its own closure.
+        var fnCeption = (
+            function(j) {
+                // here we basically capture the value of i as j in the execution context of the iife
+                return function() {
+                    // The returned closures will then print 0, 1, 2 instead of all printing 3
+                    console.log(j);
+                }
+            }(i)
+        );
+
+        arr.push(fnCeption);
+    }
+
+    return arr;
 }
