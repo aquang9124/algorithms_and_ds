@@ -101,10 +101,16 @@ function longestWord(str) {
     return longest;
 }
 
-// binary tree
-function TreeNode(value) {
-    this.value = value;
-    this.left = this.right = null;
+// binary search tree
+function TreeNode(data) {
+    this.data = data;
+    this.l = this.r = null;
+}
+
+TreeNode.prototype = {
+    show: function() {
+        return this.data;
+    }
 }
 
 function BinarySearchTree() {
@@ -125,19 +131,19 @@ BinarySearchTree.prototype = {
             while (true) {
                 parent = current;
 
-                if (val < current.value) {
-                    current = current.left;
+                if (val < current.data) {
+                    current = current.l;
 
                     if (current === null) {
-                        parent.left = leaf;
+                        parent.l = leaf;
                         break;
                     }
                 }
                 else {
-                    current = current.right;
+                    current = current.r;
 
                     if (current === null) {
-                        parent.right = leaf;
+                        parent.r = leaf;
                         break;
                     }
                 }
@@ -145,9 +151,50 @@ BinarySearchTree.prototype = {
         }
 
         return this;
+    },
+    getMin: function() {
+        var current = this.root;
+        while (current.l !== null) {
+            current = current.l;
+        }
+
+        return current.data;
+    },
+    getMax: function() {
+        var current = this.root;
+        while(current.r !== null) {
+            current = current.r;
+        }
+
+        return current.data;
+    },
+    find: function(val) {
+        var current = this.root;
+
+        while (current.data !== val) {
+            if (current.data > val) {
+                current = current.l;
+            }
+            else {
+                current = current.r;
+            }
+
+            if (current === null) {
+                return -1;
+            }
+        }
+
+        return current;
     }
 };
 
+var bst = new BinarySearchTree();
+bst.insert(5).insert(9).insert(3).insert(1).insert(2).insert(10);
+console.log(bst.getMin());
+console.log(bst.getMax());
+console.log(bst.find(9));
+
+// binary tree
 var BinaryTree = function() {
     this.root = null;
 }
@@ -233,7 +280,3 @@ function postOrder(node) {
     }
 }
 
-var bt = new BinaryTree();
-bt.insert(5).insert(3).insert(9).insert(11).insert(15).insert(4).insert(7).insert(8);
-console.log(bt);
-preOrder(bt.root);
