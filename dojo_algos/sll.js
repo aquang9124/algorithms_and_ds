@@ -31,7 +31,19 @@ SinglyLinkedList.prototype = {
 
 		return -1;
 	},
-	insert: function()
+	insert: function(data) {
+		var node = new ListNode(data);
+
+		if (this.head === null) {
+			this.tail = this.head = node;
+		}
+		else {
+			this.tail.next = node;
+			this.tail = this.tail.next;
+		}
+
+		return this;
+	}
 };
 
 module.exports = {
