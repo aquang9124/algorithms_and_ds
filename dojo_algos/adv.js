@@ -101,14 +101,139 @@ function longestWord(str) {
     return longest;
 }
 
-console.log(longestWord('Snap crackle pop makes the world go round!'));
-
 // binary tree
 function TreeNode(value) {
     this.value = value;
     this.left = this.right = null;
 }
 
-function BinaryTree() {
+function BinarySearchTree() {
     this.root = null;
 }
+
+BinarySearchTree.prototype = {
+    insert: function(val) {
+        var leaf = new TreeNode(val);
+
+        if (this.root === null) {
+            this.root = leaf;
+        }
+        else {
+            var current = this.root;
+            var parent;
+
+            while (true) {
+                parent = current;
+
+                if (val < current.value) {
+                    current = current.left;
+
+                    if (current === null) {
+                        parent.left = leaf;
+                        break;
+                    }
+                }
+                else {
+                    current = current.right;
+
+                    if (current === null) {
+                        parent.right = leaf;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return this;
+    }
+};
+
+var BinaryTree = function() {
+    this.root = null;
+}
+
+var BTNode = function(data) {
+    this.data = data;
+    this.l = this.r = null;
+}
+
+BTNode.prototype = {
+    show: function() {
+        return this.data;
+    }
+}
+
+BinaryTree.prototype = {
+    insert: function(data) {
+        if (this.root === null) {
+            this.root = new BTNode(data);
+        }
+        else {
+            this._insert(data, this.root);
+        }
+
+        return this;
+    },
+    _insert: function(data, node) {
+        if (node.l === null && node.r === null) {
+            var randInt = Math.floor(Math.random() * 10);
+            var n = new BTNode(data);
+
+            if (randInt > 5) {
+                node.r = n;
+                return;
+            }
+            else {
+                node.l = n;
+                return;
+            }
+        }
+        else if (node.l === null && node.r !== null) {
+            node.l = new BTNode(data);
+            return;
+        }
+        else if (node.r === null && node.l !== null) {
+            node.r = new BTNode(data);
+            return;
+        }
+        else if (node.r !== null && node.l !== null) {
+            var randInt = Math.floor(Math.random() * 10);
+
+            if (randInt > 5) {
+                this._insert(data, node.r);
+            }
+            else {
+                this._insert(data, node.l);
+            }
+        }
+    }
+};
+
+function inOrder(node) {
+    if (node !== null) {
+        inOrder(node.l);
+        console.log(node.show());
+        inOrder(node.r);
+    }
+}
+
+function preOrder(node) {
+    if (node !== null) {
+        console.log(node.show());
+        preOrder(node.l);
+        preOrder(node.r);
+    }
+}
+
+function postOrder(node) {
+    if (node !== null) {
+        postOrder(node.l);
+        postOrder(node.r);
+        console.log(node.show());
+    }
+}
+
+var bt = new BinaryTree();
+bt.insert(5).insert(3).insert(9).insert(11).insert(15).insert(4).insert(7).insert(8);
+console.log(bt);
+preOrder(bt.root);
