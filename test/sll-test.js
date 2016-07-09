@@ -15,7 +15,6 @@ describe('SinglyLinkedList', function() {
 	var playground;
 
 	beforeEach(function() {
-
 		sll = new ListClass.SinglyLinkedList();
 	});
 
@@ -121,19 +120,38 @@ describe('SinglyLinkedList', function() {
 			playground.restore();
 		});
 
-		it('should log all nodes, printing 1 - 3', function() {
+		it('should log all nodes, printing 1 - 3 and \'->\'', function() {
 			sll.insert(1).insert(2).insert(3);
 			sll.display();
 
-			( console.log.called ).should.be.true;
+			( console.log.calledThrice ).should.be.true;
+			( console.log.calledWith(1, '->', 2) ).should.be.true;
+			( console.log.calledWith(2, '->', 3) ).should.be.true;
+			( console.log.calledWith(3, '->', null) ).should.be.true;
 		});
 
 		it('should have a return value of true when done', function() {
 			sll.insert(1).insert(2);
 			var test = sll.display();
-			var answer = true;
 
-			test.should.equal(true);
+			test.should.be.true;
+		});
+	});
+
+	describe('contains', function() {
+
+		it('should return true when target node is present in sll', function() {
+			sll.insert(1).insert(2).insert(3);
+			var test = sll.contains(3);
+
+			test.should.be.true;
+		});
+
+		it('should return false when target node is not present in sll', function() {
+			sll.insert(1).insert(2).insert(3);
+			var test = sll.contains(4);
+
+			test.should.be.false;
 		});
 	});
 });

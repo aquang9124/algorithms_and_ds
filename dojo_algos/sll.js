@@ -75,12 +75,35 @@ SinglyLinkedList.prototype = {
 	display: function() {
 		var current = this.head;
 
-		while (current) {
-			console.log(current.data);
+		while (current.next !== null) {
+			console.log(current.data, '->', current.next.data);
 			current = current.next;
 		}
 
+		console.log(current.data, '->', null);
+
 		return true;
+	},
+	contains: function(data) {
+		var current = this.head;
+
+		if (this.head === null) {
+			return false;
+		}
+		else if (this.head.data === data) {
+			return true;
+		}
+		else {
+			while (current) {
+				if (current.data === data) {
+					return true;
+				}
+
+				current = current.next;
+			}
+		}
+
+		return false;
 	}
 };
 
