@@ -43,6 +43,34 @@ SinglyLinkedList.prototype = {
 		}
 
 		return this;
+	},
+	remove: function(data) {
+		if (this.head.data === data) {
+			this.head = this.head.next;
+		}
+		else {
+			var current = this.head;
+			var after = current.next;
+
+			while (current.next !== null) {
+
+				if (current.next.data === data) {
+					if (current.next.data === this.tail.data && current.next.next === null) {
+						current.next = null;
+						this.tail = current;
+						break;
+					}
+					else {
+						current.next = current.next.next;
+						break;
+					}
+				}
+
+				current = current.next;
+			}
+		}
+
+		return this;
 	}
 };
 
