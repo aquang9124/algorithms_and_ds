@@ -35,4 +35,58 @@ describe('DoublyLinkedList', function() {
 			dll.tail.data.should.equal(4);
 		});
 	});
+
+	describe('find', function() {
+		beforeEach(function() {
+			dll.insert(1).insert(2).insert(3).insert(4).insert(5);
+		});
+
+		it('should handle a case where head.data === value', function() {
+			var test = dll.find(1);
+
+			test.should.not.be.false;
+			test.data.should.equal(1);
+			test.next.data.should.equal(2);
+		});
+
+		it('should handle a case where the value is near the middle of the list', function() {
+			var test = dll.find(3);
+
+			test.should.not.be.false;
+			test.prev.data.should.equal(2);
+			test.data.should.equal(3);
+			test.next.data.should.equal(4);
+		});
+
+		it('should handle a case where tail.data === value', function() {
+			var test = dll.find(5);
+
+			test.should.not.be.false;
+			test.data.should.equal(5);
+			test.prev.data.should.equal(4);
+		});
+	});
+
+	describe('display', function() {
+		var sandbox;
+
+		before(function() {
+			sandbox = sinon.sandbox.create();
+			sandbox.stub(console, 'log');
+		});
+
+		after(function() {
+			sandbox.restore();
+		});
+
+		it('should print 1 - 3', function() {
+			dll.insert(1).insert(2).insert(3);
+			dll.display();
+
+			( console.log.calledThrice ).should.be.true;
+			( console.log.calledWith(1) ).should.be.true;
+			( console.log.calledWith(2) ).should.be.true;
+			( console.log.calledWith(3) ).should.be.true;
+		});
+	});
 });

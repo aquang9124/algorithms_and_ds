@@ -2,6 +2,7 @@
 // doubly linked list
 var DListClass = (
 	function() {
+
 		function DoublyLinkedList() {
 			this.tail = this.head = null;
 			this.length = 0;
@@ -27,6 +28,37 @@ var DListClass = (
 
 				this.length++;
 				return this;
+			},
+			find: function(value) {
+				var cNode = this.head;
+
+				if (this.head.data === value) {
+					return this.head;
+				}
+				else if (this.tail.data === value) {
+					return this.tail;
+				}
+				else {
+					while (cNode) {
+						if (cNode.data === value) {
+							return cNode;
+						}
+
+						cNode = cNode.next;
+					}
+				}
+
+				return false;
+			},
+			display: function() {
+				var cNode = this.head;
+
+				while (cNode) {
+					console.log(cNode.data);
+					cNode = cNode.next;
+				}
+
+				return true;
 			}
 		};
 
