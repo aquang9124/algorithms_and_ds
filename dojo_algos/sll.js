@@ -71,6 +71,16 @@ SinglyLinkedList.prototype = {
 		}
 
 		return this;
+	},
+	display: function() {
+		var current = this.head;
+
+		while (current) {
+			console.log(current.data);
+			current = current.next;
+		}
+
+		return true;
 	}
 };
 

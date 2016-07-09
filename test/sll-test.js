@@ -1,6 +1,10 @@
 // set up chai
 var chai = require('chai');
+var sinon = require('sinon');
+var sinonChai = require('sinon-chai');
 var should = chai.should();
+
+chai.use(sinonChai);
 
 // get the object for sll
 var ListClass = require('./../dojo_algos/sll');
@@ -8,8 +12,10 @@ var ListClass = require('./../dojo_algos/sll');
 // tests
 describe('SinglyLinkedList', function() {
 	var sll;
+	var playground;
 
 	beforeEach(function() {
+
 		sll = new ListClass.SinglyLinkedList();
 	});
 
@@ -102,6 +108,32 @@ describe('SinglyLinkedList', function() {
 			var answer = 3;
 
 			test.tail.data.should.equal(answer);
+		});
+	});
+
+	describe('display', function() {
+		before(function() {
+			playground = sinon.sandbox.create();
+			playground.stub(console, 'log');
+		});
+
+		after(function() {
+			playground.restore();
+		});
+
+		it('should log all nodes, printing 1 - 3', function() {
+			sll.insert(1).insert(2).insert(3);
+			sll.display();
+
+			( console.log.called ).should.be.true;
+		});
+
+		it('should have a return value of true when done', function() {
+			sll.insert(1).insert(2);
+			var test = sll.display();
+			var answer = true;
+
+			test.should.equal(true);
 		});
 	});
 });

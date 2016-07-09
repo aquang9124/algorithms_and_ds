@@ -18,6 +18,9 @@
   "homepage": "https://github.com/aquang9124/aquang-js-algos#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "mocha-sinon": "^1.1.5",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   }
 }
