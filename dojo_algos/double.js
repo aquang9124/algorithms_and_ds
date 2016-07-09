@@ -59,6 +59,41 @@ var DListClass = (
 				}
 
 				return true;
+			},
+			displayReverse: function() {
+				var cNode = this.tail;
+
+				while (cNode) {
+					console.log(cNode.data);
+					cNode = cNode.prev;
+				}
+
+				return true;
+			},
+			remove: function(value) {
+				var cNode = this.head;
+
+				if (this.head.data === value) {
+					this.head = this.head.next;
+					this.head.prev = null;
+				}
+				else if (this.tail.data === value) {
+					this.tail = this.tail.prev;
+					this.tail.next = null;
+				}
+				else {
+					while (cNode) {
+						if (cNode.data === value) {
+							cNode.prev.next = cNode.next;
+							cNode.next.prev = cNode.prev;
+							cNode.prev = cNode.next = null;
+						}
+
+						cNode = cNode.next;
+					}
+				}
+
+				return true;
 			}
 		};
 

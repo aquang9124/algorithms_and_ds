@@ -67,26 +67,66 @@ describe('DoublyLinkedList', function() {
 		});
 	});
 
+	describe('remove', function() {
+		beforeEach(function() {
+			dll.insert(1).insert(2).insert(3).insert(4);
+		});
+
+		it('should remove the head', function() {
+			var test = dll.remove(1);
+
+			test.should.be.true;
+			dll.head.data.should.equal(2);
+		});
+
+		it('should remove the tail', function() {
+			var test = dll.remove(4);
+
+			test.should.be.true;
+			dll.tail.data.should.equal(3);
+			dll.tail.prev.data.should.equal(2);
+		});
+
+		it('should handle a case where node to be removed is neither head nor tail', function() {
+			var test = dll.remove(2);
+
+			test.should.be.true;
+			dll.head.next.data.should.equal(3);
+		});
+	});
+
 	describe('display', function() {
 		var sandbox;
 
-		before(function() {
+		beforeEach(function() {
 			sandbox = sinon.sandbox.create();
 			sandbox.stub(console, 'log');
+			dll.insert(1).insert(2).insert(3);
 		});
 
-		after(function() {
+		afterEach(function() {
 			sandbox.restore();
 		});
 
 		it('should print 1 - 3', function() {
-			dll.insert(1).insert(2).insert(3);
 			dll.display();
 
 			( console.log.calledThrice ).should.be.true;
 			( console.log.calledWith(1) ).should.be.true;
 			( console.log.calledWith(2) ).should.be.true;
 			( console.log.calledWith(3) ).should.be.true;
+		});
+
+		describe('displayReverse', function() {
+
+			it('should print 3 - 1', function() {
+				dll.displayReverse();
+
+				( console.log.calledThrice ).should.be.true;
+				( console.log.calledWith(3) ).should.be.true;
+				( console.log.calledWith(2) ).should.be.true;
+				( console.log.calledWith(1) ).should.be.true;
+			});
 		});
 	});
 });
