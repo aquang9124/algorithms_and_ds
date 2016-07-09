@@ -67,6 +67,34 @@ describe('DoublyLinkedList', function() {
 		});
 	});
 
+	describe('findLast', function() {
+		beforeEach(function() {
+			dll.insert(1).insert(2).insert(3).insert(4).insert(3).insert(5).insert(4);
+		});
+
+		it('should locate and return the head', function() {
+			var test = dll.findLast(1);
+
+			test.data.should.equal(1);
+			test.next.data.should.equal(2);
+		});
+
+		it('should handle a case where last instance is also the tail', function() {
+			var test = dll.findLast(4);
+
+			test.data.should.equal(4);
+			test.prev.data.should.equal(5);
+		});
+
+		it('should return the second 3 node', function() {
+			var test = dll.findLast(3);
+
+			test.data.should.equal(3);
+			test.prev.data.should.equal(4);
+			test.next.data.should.equal(5);
+		});
+	});
+
 	describe('remove', function() {
 		beforeEach(function() {
 			dll.insert(1).insert(2).insert(3).insert(4);

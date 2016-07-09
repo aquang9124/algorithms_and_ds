@@ -50,6 +50,32 @@ var DListClass = (
 
 				return false;
 			},
+			findLast: function(value) {
+				var lNode = this.head;
+				var rNode = this.tail;
+
+				while (lNode) {
+					if (lNode.data === value) {
+						if (rNode.data === value) {
+							return rNode;
+						}
+						else {
+							if (rNode.prev !== null) {
+								rNode = rNode.prev;
+							}
+							else {
+								return lNode;
+							}
+						}
+					}
+					else {
+						rNode = this.tail;
+						lNode = lNode.next;
+					}
+				}
+
+				return false;
+			},
 			display: function() {
 				var cNode = this.head;
 
