@@ -12,7 +12,6 @@ var ListClass = require('./../dojo_algos/sll');
 // tests
 describe('SinglyLinkedList', function() {
 	var sll;
-	var playground;
 
 	beforeEach(function() {
 		sll = new ListClass.SinglyLinkedList();
@@ -111,6 +110,8 @@ describe('SinglyLinkedList', function() {
 	});
 
 	describe('display', function() {
+		var playground;
+		
 		before(function() {
 			playground = sinon.sandbox.create();
 			playground.stub(console, 'log');
