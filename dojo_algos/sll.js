@@ -104,6 +104,17 @@ SinglyLinkedList.prototype = {
 		}
 
 		return false;
+	},
+	count: function() {
+		var count = 0;
+		var cNode = this.head;
+
+		while (cNode) {
+			count++;
+			cNode = cNode.next;
+		}
+
+		return count;
 	}
 };
 
