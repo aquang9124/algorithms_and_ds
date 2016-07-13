@@ -12,7 +12,7 @@ function GenericModel(data) {
 				if (!relianceMapping.hasOwnProperty(_data[k].dependencies[i])) {
 					relianceMapping[_data[k].dependencies[i]] = [k];
 				}
-				else {
+				else if (relianceMapping[_data[k].dependencies[i]].indexOf(k) === -1) {
 					relianceMapping[_data[k].dependencies[i]] = relianceMapping[_data[k].dependencies[i]].concat(k);
 				}
 			}
@@ -20,7 +20,7 @@ function GenericModel(data) {
 			if (!memo.hasOwnProperty(k)) {
 				memo[k] = _data[k].compute.call(this);
 			}
-
+	
 			return memo[k];
 		}
 		else {
@@ -45,6 +45,12 @@ var person = new GenericModel({
 		dependencies: ['firstName', 'lastName'],
 		compute: function() {
 			return `${this.get('firstName')} ${this.get('lastName')}`;
+		}
+	},
+	firstNameLowerCase: {
+		dependencies: ['firstName'],
+		compute: function() {
+			return this.get('firstName').toLowerCase();
 		}
 	},
 	lastNameLowerCase: {
