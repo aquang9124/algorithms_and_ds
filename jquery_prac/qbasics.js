@@ -25,6 +25,8 @@ function handleFormSubmit(e) {
 	// console log the sum
 	console.log(sum);
 
+	// set sum to be previous sum
+
 	// reset the sum
 	sum = 0;
 
