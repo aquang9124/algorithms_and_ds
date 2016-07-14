@@ -11,7 +11,7 @@ function BlackJack() {
 
 	this.get = (k) => {
 		return _data[k];
-	}
+	};
 
 	this.set = (k, v) => {
 		_data[k] = v;
@@ -135,4 +135,42 @@ p1.arrangeHand(game);
 let p2 = new Player();
 p2.arrangeHand(game);
 
-console.log(p1.get('total'));
+let dealtCard = false;
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+var util = require('util');
+
+process.stdin.on('data', function(text) {
+	console.log('received data: ', util.inspect(text));
+
+	if (text === 'quit\r\n') {
+		done();
+	}
+	else if (text === 'yes\r\n') {
+		continueProcess();
+	}
+});
+
+function done() {
+	console.log('Process completed.');
+	process.exit();
+}
+
+function continueProcess() {
+	let card = game.hit(1);
+	let hand = p1.get('hand').concat(card);
+	let sum = p1.calcTotal(hand);
+
+	p1.set('hand', hand);
+	p1.set('total', sum);
+
+	dealtCard = true;
+
+	if (dealtCard) {
+		console.log(p1.get('hand'));
+	}
+
+	done();
+}
+
