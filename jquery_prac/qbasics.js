@@ -3,8 +3,7 @@
 // set up some needed variables
 let sum = 0;
 let currentSelections = "";
-let prevSum = document.getElementById('prev-output').value;
-let currentSum = document.getElementById('current-output').value;
+let currentSum;
 
 // select necessary elements
 let form = document.getElementById('calc-form');
@@ -19,13 +18,20 @@ numButtons.forEach(function(numBtn) {
 
 // event handlers
 function handleFormSubmit(e) {
-	// grab the current selections span element
+	// set current sum
+	currentSum = document.getElementById('current-output').innerHTML;
+
+	// grab the needed span elements
 	let span = document.getElementById('current-selections');
+	let prevOutputSpan = document.getElementById('prev-output');
+	let currentOutputSpan = document.getElementById('current-output');
 
-	// console log the sum
-	console.log(sum);
+	// set the current and previous sums
+	if (currentSum !== 'N/A') {
+		prevOutputSpan.innerHTML = currentSum;
+	}
 
-	// set sum to be previous sum
+	currentOutputSpan.innerHTML = sum;
 
 	// reset the sum
 	sum = 0;
