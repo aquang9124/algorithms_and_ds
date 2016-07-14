@@ -72,8 +72,8 @@ function Player() {
 }
 
 Player.prototype = {
-	initialize(deck) {
-		let cards = deck.hit(2);
+	initialize(gameInst) {
+		let cards = gameInst.hit(2);
 		let hand = this.get('hand');
 		let sum = this.get('total');
 
@@ -98,10 +98,16 @@ Player.prototype = {
 			}
 		});
 
+		this.set('total', sum);
 
+		return this.get('total');
 	},
 };
 
 let game = new BlackJack();
 game.addCards();
 game.shuffle();
+
+let p1 = new Player();
+
+console.log(p1.initialize(game));
