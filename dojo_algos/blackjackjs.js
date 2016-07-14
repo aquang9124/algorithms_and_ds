@@ -4,7 +4,13 @@
 
 // the blackjack class
 function BlackJack() {
-	this.deck = [];
+	let _data = {
+		deck: []
+	};
+
+	this.get = (k) => {
+		return _data[k];
+	}
 }
 
 BlackJack.prototype = {
@@ -15,14 +21,87 @@ BlackJack.prototype = {
 			let count = 4;
 
 			while (count--) {
-				this.deck.push(types[i]);
+				this.get('deck').push(types[i]);
 			}
 		}
 
 		return this.deck;
  	},
+ 	shuffle() {
+ 		let cIdx = this.get('deck').length;
+ 		let tempValue;
+ 		let rIdx;
 
+ 		while (cIdx !== 0) {
+ 			rIdx = Math.floor(Math.random() * cIdx);
+ 			cIdx--;
+
+ 			// swap
+ 			tempValue = this.get('deck')[cIdx];
+ 			this.get('deck')[cIdx] = this.get('deck')[rIdx];
+ 			this.get('deck')[rIdx] = tempValue;
+ 		}
+
+ 		return this.deck;
+ 	},
+ 	hit(n) {
+ 		let hand = [];
+ 		while (n--) {
+ 			hand.push(this.get('deck').pop());
+ 		}
+
+ 		return hand;
+ 	}
+};
+
+function Player() {
+	let _data = {
+		hand: [],
+		total: 0
+	};
+
+	this.get = (k) => {
+		return _data[k];
+	};
+
+	this.set = (k, v) => {
+		_data[k] = v;
+
+		return true;
+	};
+}
+
+Player.prototype = {
+	initialize(deck) {
+		let cards = deck.hit(2);
+		let hand = this.get('hand');
+		let sum = this.get('total');
+
+		hand = hand.concat(cards);
+
+		hand.forEach(function(card) {
+			if (card === 'ace') {
+				let tempSum = sum + 11;
+
+				if (tempSum > 21) {
+					sum += 1;
+				}
+				else {
+					sum += 11;
+				}
+			}
+			else if (card === 'king' || card === 'queen' || card === 'jack') {
+				sum += 10;
+			}
+			else {
+				sum += card;
+			}
+		});
+
+
+	},
 };
 
 let game = new BlackJack();
-console.log(game.addCards());
+game.addCards();
+game.shuffle();
