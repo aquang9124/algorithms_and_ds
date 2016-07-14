@@ -1,0 +1,40 @@
+.container {
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.calc-number {
+	display: inline-block;
+	width: 25%;
+	height: 50px;
+	margin: 0 auto 15px auto;
+	border-radius: 20px;
+	background-color: #177dca;
+	border: 2px solid #199dca
+}
+
+.calc-number:active {
+	background-color: #199dcb;
+}
+
+#current-s-wrapper {
+	display: block;
+	margin: 0 auto 20px auto;
+	width: 70%;
+	height: 100px;
+	border: 1px solid black;
+	resize: none;
+	text-align: center;
+}
+
+#current-selections {
+	display: inline-block;
+	width: 75%;
+	padding: 10px 0 0 0;
+	border-bottom: 2px solid black;
+}
+
+.calc-outputs {
+	margin: 10px 0;
+}
