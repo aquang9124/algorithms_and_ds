@@ -403,4 +403,28 @@ function rDecode(str) {
     return result;
 }
 
-console.log(rDecode('a2b1c2'));
+// pure recursion decode string
+function pureDecoder(str, idx, rep, result) {
+    if (idx === undefined) {
+        idx = 1;
+        rep = str[idx];
+        result = "";
+    }
+
+    if (idx >= str.length) {
+        return result;
+    }
+    
+    if (rep === 0) {
+        idx += 2;
+        rep = parseInt(str[idx]) + 1;
+    }
+    else {
+        result += str[idx - 1];
+    }
+
+    return pureDecoder(str, idx, rep - 1, result);
+
+}
+
+console.log(pureDecoder('a2b1c1'));
