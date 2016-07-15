@@ -363,3 +363,44 @@ function fnBuilder() {
 
     return arr;
 }
+
+// string decode
+function decodeString(str) {
+    var result = "";
+
+    for (let i = 0; i < str.length; i++) {
+        let count = str[i + 1];
+
+        while (count--) {
+            result += str[i];
+        }
+    }
+
+    return result;
+}
+
+// decode string recursive
+function rDecode(str) {
+    var result = "";
+
+    function decoder(count, rep) {
+        if (count >= str.length) {
+            return;
+        }
+
+        if (rep === 0) {
+            count += 2;
+            rep = parseInt(str[count]) + 1;
+        }
+        else {
+            result += str[count - 1];
+        }
+        decoder(count, rep - 1);
+    }
+
+    decoder(1, str[1]);
+
+    return result;
+}
+
+console.log(rDecode('a2b1c2'));

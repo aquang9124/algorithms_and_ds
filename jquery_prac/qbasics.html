@@ -9,12 +9,13 @@
 	<div class="container">
 		<form id="calc-form">
 			<section class="calc-wrapper">
+				<!-- Current selections and the previous/current calculated sums -->
 				<div name="current-sum-calc" id="current-s-wrapper" rows="3">
 					<span id="current-selections">0</span>
 					<p class="calc-outputs">Previous Calculated Sum: <span id="prev-output">N/A</span></p>
 					<p class="calc-outputs">Current Calculated Sum: <span id="current-output">N/A</span></p>
 				</div>
-
+				<!-- Calculator buttons -->
 				<button type="button" class="calc-number" value="0">0</button>
 				<button type="button" class="calc-number" value="1">1</button>	
 				<button type="button" class="calc-number" value="2">2</button>
@@ -26,7 +27,7 @@
 				<button type="button" class="calc-number" value="8">8</button>
 				<button type="button" class="calc-number" value="9">9</button>
 			</section>
-			<button type="submit">Add</button>
+			<button class="btn-submit" type="submit">Add</button>
 		</form>
 	</div>
 	<script src="qbasics.js"></script>

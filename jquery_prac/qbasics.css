@@ -13,7 +13,8 @@
 	margin: 0 auto 15px auto;
 	border-radius: 20px;
 	background-color: #177dca;
-	border: 2px solid #199dca
+	border: 2px solid #199dca;
+	color: white;
 }
 
 .calc-number:active {
@@ -39,4 +40,12 @@
 
 .calc-outputs {
 	margin: 10px 0;
+}
+
+.btn-submit {
+	width: 50%;
+	height: 25px;
+	background-color: #fff;
+	border-radius: 20px;
+	border: 1px solid black;
 }

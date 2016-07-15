@@ -55,7 +55,7 @@ function handleCalcBtnClick(e) {
 
 	// add value to current selections
 	if (currentSelections === "") {
-		currentSelections = `${valueToAdd}`
+		currentSelections = `${valueToAdd}`;
 	}
 	else {
 		currentSelections = `${currentSelections} + ${valueToAdd}`;
