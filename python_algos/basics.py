@@ -8,7 +8,7 @@ fruits = [
 } 
 ]
 
-def print_fruits():
+def print_fruits(fruits):
 	for x in range(0, len(fruits)):
 		baskets_sum = 0
 		print(fruits[x]['name'], end=" ")
@@ -42,3 +42,23 @@ def has_adjacent_2(nums):
 			return True
 
 	return False
+
+def concat_two_lists(arr, arr_two):
+	result = arr + arr_two
+
+	return result
+
+arr_three = concat_two_lists([1, 2], [3, 4])
+
+def print_stars(string):
+	length = len(string)
+
+	print('*' * length)
+
+def lattice_paths(x, y):
+	if x == 0 and y == 0:
+		return 1
+	elif x < 0 or y < 0:
+		return 0
+
+	return lattice_paths(x - 1, y) + lattice_paths(x, y - 1)
