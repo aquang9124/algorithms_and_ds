@@ -132,4 +132,64 @@ def climb_stairs_two(n):
 
 	return count
 
-print(climb_stairs_two(3))
+def bubble_sort(array):
+	limit = 1
+
+	for idx1 in range(len(array)):
+		for idx2 in range(len(array) - limit):
+			if array[idx2] > array[idx2 + 1]:
+				array[idx2], array[idx2 + 1] = array[idx2 + 1], array[idx2]
+		
+		limit += 1
+
+	return array
+
+def selection_sort(arr):
+	sorted_portion = 0
+	min_value = arr[0]
+	min_idx = 0
+
+	for x in range(len(arr) - 1):
+
+		for y in range(sorted_portion, len(arr)):
+			if arr[y] < min_value:
+				min_value = arr[y]
+				min_idx = y
+
+		arr[sorted_portion], arr[min_idx] = arr[min_idx], arr[sorted_portion]
+
+		sorted_portion += 1
+		min_idx = sorted_portion
+		min_value = arr[min_idx]
+
+	return arr
+
+def merge_sort(arr):
+	if len(arr) < 2:
+		return arr
+
+	mid = math.floor(len(arr) / 2)
+
+	return merge_arrays(merge_sort(arr[0:mid]), merge_sort(arr[mid:]))
+
+def merge_arrays(list1, list2):
+	result = []
+	p1 = 0
+	p2 = 0
+
+	while p1 != len(list1) and p2 != len(list2):
+		if list1[p1] <= list2[p2]:
+			result += [list1[p1]]
+			p1 += 1
+		else:
+			result += [list2[p2]]
+			p2 += 1
+
+	if p1 == len(list1):
+		result += list2[p2:]
+	elif p2 == len(list2):
+		result += list1[p1:]
+
+	return result
+
+print(merge_sort([3, 5, 2, 1]))
