@@ -62,3 +62,29 @@ def lattice_paths(x, y):
 		return 0
 
 	return lattice_paths(x - 1, y) + lattice_paths(x, y - 1)
+
+def power_sets(string, substr="", depth=0, result_list=[]):
+	if depth == len(string):
+		result_list.append(substr)
+	else:
+		power_sets(string, substr, depth + 1, result_list)
+		power_sets(string, substr + string[depth], depth + 1, result_list)
+
+	return result_list
+
+def print_reverse(array, idx=None):
+	if idx == None:
+		idx = len(array) - 1
+	elif idx < 0:
+		return True
+
+	print(array[idx])
+	return print_reverse(array, idx - 1)
+
+def flatten_list(element, result=[]):
+	if not isinstance(element, list):
+		result.append(element)
+	else:
+		for i in range(0, len(element)):
+			flatten_list(element[i], result)
+	return result
