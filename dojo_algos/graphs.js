@@ -11,11 +11,11 @@ Node.prototype = {
 	}
 };
 
-var Graph = function() {
+var v1Graph = function() {
 	this.nodeList = [];
 };
 
-Graph.prototype = {
+v1Graph.prototype = {
 	addEdge: function(start, end) {
 		let first = this.nodeList.indexOf(start);
 		let second = this.nodeList.indexOf(end);
@@ -63,9 +63,17 @@ Graph.prototype = {
 	}
 };
 
-let graph = new Graph();
-graph.addEdge('start', 'end');
-graph.addEdge("start","finish");  
-graph.addEdge("here","there");  
-graph.addEdge("up","down");  
-graph.printNodes();
+// different implementation
+function Vertex(value) {
+	this.value = value;
+	this.edges = [];
+}
+
+function Graph() {
+	// all of the vertices in our graph
+	this.vertices = [];
+	// the total count of vertices
+	this.totalVertices = 0;
+	// the total count of all edges that exist between vertices
+	this.totalEdges = 0;
+}
