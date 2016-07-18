@@ -105,3 +105,31 @@ def get_square_root(n):
 		print(math.sqrt(n))
 	except:
 		print('%d is not a positive number!' %(n))
+
+def climb_stairs(n):
+	if n == 0:
+		return 1
+	elif n < 0:
+		return 0
+	
+	return climb_stairs(n - 1) + climb_stairs(n - 2)
+
+def climb_stairs_two(n):
+	count = 0
+
+	def do_climb(step=0):
+		if step == n:
+			nonlocal count
+			count += 1
+			return
+		elif step > n:
+			return
+
+		do_climb(step + 1)
+		do_climb(step + 2)
+
+	do_climb()
+
+	return count
+
+print(climb_stairs_two(3))
