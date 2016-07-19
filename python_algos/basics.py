@@ -407,3 +407,56 @@ def print_sum(n=256):
 
 	print(the_sum)
 	return the_sum
+
+def find_max(array):
+	max_num = array[0]
+
+	for i in range(len(array)):
+		if max_num < array[i]:
+			max_num = array[i]
+
+	return max_num
+
+def find_average(array):
+	average = array[0]
+
+	for i in range(1, len(array)):
+		average += array[i]
+
+	return average // len(array)
+
+def create_odd_list():
+	result = []
+
+	for i in range(1, 256):
+		if i % 2 == 1:
+			result.append(i)
+
+	return result
+
+def greater_than_y(x, y):
+	count = 0
+
+	for i in range(len(x)):
+		if x[i] > y:
+			count += 1
+
+	return count
+
+def negatives_to_zeroes(nums):
+	for x in range(len(nums)):
+		if nums[x] < 0:
+			nums[x] = 0
+
+	return nums
+
+def shift_list_values(arr):
+	
+	for i in range(len(arr) - 1):
+		arr[i] = arr[i + 1]
+
+	arr[len(arr) - 1] = 0
+
+	return arr
+
+print(shift_list_values([1, 5, 10, 7, -2]))
