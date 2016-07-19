@@ -381,6 +381,29 @@ class Connector:
 	def get_to(self):
 		return self.to_gate
 
-g1 = AndGate('G1')
-g1.get_output()
-print(g1)
+def print_1_to_255():
+	for i in range(1, 256):
+		print(i)
+
+	return True
+
+def print_odds_n(n=256):
+	if n < 1:
+		print('N was less than 1!')
+		return False
+
+	for i in range(1, n):
+		if i % 2 == 1:
+			print(i)
+
+	return True
+
+def print_sum(n=256):
+	the_sum = 0
+
+	for i in range(1, n):
+		the_sum += i
+		print("The current sum is: %s" % str(the_sum))
+
+	print(the_sum)
+	return the_sum
