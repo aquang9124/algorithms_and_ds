@@ -192,4 +192,64 @@ def merge_arrays(list1, list2):
 
 	return result
 
-print(merge_sort([3, 5, 2, 1]))
+def insertion_sort(arr):
+	for i in range(1, len(arr)):
+		temp = i
+
+		while (temp > 0 and arr[temp] < arr[temp - 1]):
+			arr[temp - 1], arr[temp] = arr[temp], arr[temp - 1]
+			temp -= 1
+
+	return arr
+
+def gcd(m, n):
+	while m % n != 0:
+		old_m = m
+		old_n = n
+
+		m = old_n
+		n = old_m % old_n
+
+	return n
+
+# fun with oo python
+class Fraction:
+
+	def __init__(self, top, bottom):
+		self.num = top
+		self.denom = bottom
+
+	def __str__(self):
+		return str(self.num) + '/' + str(self.denom)
+
+	def __add__(self, other_fraction):
+		new_num = (self.num * other_fraction.denom) + (self.denom * other_fraction.num)
+		new_denom = self.denom * other_fraction.denom
+		common = gcd(new_num, new_denom)
+
+		return Fraction(new_num // common, new_denom // common)
+
+	def __sub__(self, other_fraction):
+		new_num = (self.num * other_fraction.denom) - (self.denom * other_fraction.num)
+		new_denom = self.denom * other_fraction.denom
+		common = gcd(new_num, new_denom)
+
+		return Fraction(new_num // common, new_denom // common)
+
+	def __mul__(self, other_fraction):
+		new_num = self.num * other_fraction.num
+		new_denom = self.denom * other_fraction.denom
+		common = gcd(new_num, new_denom)
+
+		return Fraction(new_num // common, new_denom // common)
+
+	def __eq__(self, other):
+		first_num = self.num * other.denom
+		second_num = self.denom * other.num
+
+		return first_num == second_num
+
+f1 = Fraction(3, 6)
+f2 = Fraction(2, 3)
+f3 = f1 * f2
+print(f3)
