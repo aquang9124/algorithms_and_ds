@@ -243,13 +243,75 @@ class Fraction:
 
 		return Fraction(new_num // common, new_denom // common)
 
+	def __truediv__(self, other_fraction):
+		temp = other_fraction.num
+		other_fraction.num = other_fraction.denom
+		other_fraction.denom = temp
+
+		new_num = self.num * other_fraction.num
+		new_denom = self.denom * other_fraction.denom
+		common = gcd(new_num, new_denom)
+
+		return Fraction(new_num // common, new_denom // common)
+
 	def __eq__(self, other):
 		first_num = self.num * other.denom
 		second_num = self.denom * other.num
 
 		return first_num == second_num
 
-f1 = Fraction(3, 6)
-f2 = Fraction(2, 3)
-f3 = f1 * f2
-print(f3)
+# fun with class composition
+class Bully:
+	def __init__(self, name):
+		self.name = name
+		self.other = Child('Billy')
+
+	def insult(self):
+		print("Bully %s says they don't like %s!" % (self.name, self.other.name))
+
+class Child:
+	def __init__(self, name):
+		self.name = name
+
+	def __str__(self):
+		return '%s is an instance of the Child class' % self.name
+
+rob = Bully('Rob')
+billy = Child('Billy')
+rob.insult()
+print(billy)
+
+# logic gate class
+class LogicGate:
+	def __init__(self, n):
+		self.label = n
+		self.output = None
+
+	def get_label(self):
+		return self.label
+
+	def get_output(self):
+		self.output = self.perform_gate_logic()
+		return self.output
+
+class BinaryGate(LogicGate):
+	def __init__(self, n):
+		LogicGate.__init__(self, n)
+
+		self.pin_a = None
+		self.pin_b = None
+
+	def get_pin_a(self):
+		return int(input("Enter Pin A input for gate %s -->" % self.get_label()))
+
+	def get_pin_b(self):
+		return int(input("Enter Pin B input for gate %s -->" % self.get_label()))
+
+class UnaryGate(LogicGate):
+	def __init__(self, n):
+		super().__init__(n)
+
+		self.pin = None
+
+	def get_pin(self):
+		return int(input("Enter Pin input for gate %s" % self.get_label()))
