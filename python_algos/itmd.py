@@ -101,6 +101,7 @@ class BTNode:
 class BinarySearchTree:
 	def __init__(self):
 		self.root = None
+		self.size = 0
 
 	def __str__(self):
 		return str(self.root)
@@ -126,6 +127,7 @@ class BinarySearchTree:
 						break
 					else:
 						c_node = c_node.r
+		self.size += 1
 		return self
 
 	def contains(self, value):
@@ -145,6 +147,10 @@ class BinarySearchTree:
 		return False
 
 	def min_value(self):
+		if self.is_empty():
+			print("There are no nodes in this BST")
+			return False
+
 		min_node = self.root
 
 		while min_node.l != None:
@@ -153,6 +159,10 @@ class BinarySearchTree:
 		return min_node
 
 	def max_value(self):
+		if self.is_empty():
+			print("There are no nodes in this BST")
+			return False
+
 		max_node = self.root
 
 		while max_node.r != None:
@@ -160,6 +170,44 @@ class BinarySearchTree:
 
 		return max_node
 
+	def is_empty(self):
+		return True if self.root == None else False
+
+	def get_size(self):
+		return self.size
+
+	def remove_node(self, value):
+		if self.is_empty():
+			print("This BST is already empty!")
+			return False
+
+		p_node = self.root
+		c_node = self.root
+		branch = None
+
+		while c_node != None:
+			p_node = c_node
+
+			if value <= c_node.value:
+				c_node = c_node.l
+				branch = 'left'
+			else:
+				c_node = c_node.r
+				branch = 'right'
+			
+			if c_node.value == value:
+				if branch == 'left':
+					p_node.l = p_node.l.l
+				else:
+					p_node.r = p_node.r.r
+				break
+
+		return self
+
+
 bst = BinarySearchTree()
 bst.insert(3).insert(5).insert(2).insert(4).insert(7)
 print(bst.max_value())
+print(bst.is_empty())
+print(bst.get_size())
+print(bst.remove_node(5))
