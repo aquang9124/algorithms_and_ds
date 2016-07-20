@@ -459,4 +459,57 @@ def shift_list_values(arr):
 
 	return arr
 
-print(shift_list_values([1, 5, 10, 7, -2]))
+def is_anagram_v1(s1, s2):
+	s2_list = list(s2)
+
+	pos1 = 0
+	still_ok = True
+
+	while pos1 < len(s1) and still_ok:
+		pos2 = 0
+		found = False
+
+		while pos2 < len(s2) and not found:
+			if s1[pos1] == s2_list[pos2]:
+				found = True
+			else:
+				pos2 += 1
+
+		if found:
+			s2_list[pos2] = None
+		else:
+			still_ok = False
+		pos1 += 1
+
+	return still_ok
+
+def is_anagram_v2(s1, s2):
+	list_a = list(s1)
+	list_b = list(s2)
+
+	list_a.sort()
+	list_b.sort()
+
+	return list_a == list_b
+
+def is_anagram_v3(s1, s2):
+	letters = {}
+
+	for i in range(len(s1)):
+		if s1[i] not in letters:
+			letters[s1[i]] = 0
+		
+		letters[s1[i]] += 1
+
+	for j in range(len(s2)):
+		if s2[j] in letters:
+			letters[s2[j]] -= 1
+			if letters[s2[j]] == 0:
+				del letters[s2[j]]
+		else:
+			return False
+
+	if letters == {}:
+		return True
+	else:
+		return False
