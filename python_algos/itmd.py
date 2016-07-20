@@ -75,9 +75,91 @@ def shorten_str(string, target_len):
 				mid = i + 1
 				rest = str_list[mid:]
 				str_list = front + rest
-				
+
 			i += 1
+
+		while too_long:
+			length = len(str_list)
+
+			if length == target_len:
+				too_long = False
+			else:
+				str_list.pop()
 
 	return ''.join(str_list)
 
-print(shorten_str("It's a wo nd erful life! ", 20))
+# binary search tree
+class BTNode:
+	def __init__(self, value):
+		self.value = value
+		self.l = None
+		self.r = None
+
+	def __str__(self):
+		return "Value: %s, Left child: %s, Right child: %s" % (str(self.value), self.l, self.r)
+
+class BinarySearchTree:
+	def __init__(self):
+		self.root = None
+
+	def __str__(self):
+		return str(self.root)
+
+	def insert(self, value):
+		new_node = BTNode(value)
+
+		if self.root == None:
+			self.root = new_node
+		else:
+			c_node = self.root
+
+			while True:
+				if new_node.value <= c_node.value:
+					if c_node.l == None:
+						c_node.l = new_node
+						break
+					else:
+						c_node = c_node.l
+				else:
+					if c_node.r == None:
+						c_node.r = new_node
+						break
+					else:
+						c_node = c_node.r
+		return self
+
+	def contains(self, value):
+		if self.root.value == value:
+			return True
+		else:
+			c_node = self.root
+
+			while c_node != None:
+				if c_node.value == value:
+					return True
+				elif value <= c_node.value:
+					c_node = c_node.l
+				else:
+					c_node = c_node.r
+
+		return False
+
+	def min_value(self):
+		min_node = self.root
+
+		while min_node.l != None:
+			min_node = min_node.l
+
+		return min_node
+
+	def max_value(self):
+		max_node = self.root
+
+		while max_node.r != None:
+			max_node = max_node.r
+
+		return max_node
+
+bst = BinarySearchTree()
+bst.insert(3).insert(5).insert(2).insert(4).insert(7)
+print(bst.max_value())
