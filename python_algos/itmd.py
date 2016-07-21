@@ -96,7 +96,7 @@ class BTNode:
 		self.r = None
 
 	def __str__(self):
-		return "Value: %s, Left child: %s, Right child: %s" % (str(self.value), self.l, self.r)
+		return "Value: %s -> Left child: %s -> Right child: %s" % (str(self.value), self.l, self.r)
 
 class BinarySearchTree:
 	def __init__(self):
@@ -181,33 +181,60 @@ class BinarySearchTree:
 			print("This BST is already empty!")
 			return False
 
-		p_node = self.root
+		# current node, will be used to traverse the tree after target is found
 		c_node = self.root
-		branch = None
+		# parent node, will keep track of current node's parent node
+		p_node = self.root
+		# target node, if value exists in our tree this will represent the target node
+		t_node = self.root
+		# tells us if the target node has been found
+		not_located = True
 
-		while c_node != None:
-			p_node = c_node
-
-			if value <= c_node.value:
-				c_node = c_node.l
-				branch = 'left'
+		while t_node != None and not_located:
+			if t_node.value == value:
+				c_node = t_node
+				p_node = c_node
+				not_located = False
+			elif t_node.value >= value:
+				t_node = t_node.l
 			else:
+				t_node = t_node.r
+
+		if t_node == None:
+			return False
+
+		if t_node.l != None:
+			while c_node.l != None:
+				p_node = c_node
+				c_node = c_node.l
+
+			t_node.value = c_node.value
+			p_node.l = None
+		else:
+			while c_node.r != None:
+				p_node = c_node
 				c_node = c_node.r
-				branch = 'right'
-			
-			if c_node.value == value:
-				if branch == 'left':
-					p_node.l = p_node.l.l
-				else:
-					p_node.r = p_node.r.r
-				break
+
+			t_node.value = c_node.value
+			p_node.r = None
 
 		return self
 
-
 bst = BinarySearchTree()
-bst.insert(3).insert(5).insert(2).insert(4).insert(7)
-print(bst.max_value())
-print(bst.is_empty())
-print(bst.get_size())
-print(bst.remove_node(5))
+bst.insert(3).insert(5).insert(2).insert(4).insert(6).insert(7)
+
+def reverse_string(string):
+	alist = list(string)
+	left = 0
+	right = len(alist) - 1
+
+	while left <= right:
+		alist[left], alist[right] = alist[right], alist[left]
+
+		left += 1
+		right -= 1
+
+	return ''.join(alist)
+
+def can_win_nim(stones):
+	return stones % 4 != 0
