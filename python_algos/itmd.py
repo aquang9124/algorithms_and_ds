@@ -220,6 +220,9 @@ class BinarySearchTree:
 
 		return self
 
+	def max_depth(self):
+		pass
+
 bst = BinarySearchTree()
 bst.insert(3).insert(5).insert(2).insert(4).insert(6).insert(7)
 
@@ -238,3 +241,11 @@ def reverse_string(string):
 
 def can_win_nim(stones):
 	return stones % 4 != 0
+
+def add_digits(num):
+
+	while num >= 10:
+		num = (num // 10) + (num % 10)
+
+	return num
+
