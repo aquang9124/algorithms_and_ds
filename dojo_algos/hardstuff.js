@@ -94,9 +94,45 @@ BinarySearchTree.prototype = {
 	},
 	getSize: function() {
 		return this.size;
+	},
+	remove: function(value) {
+		if (this.isEmpty()) {
+			return false;
+		}
+
+		let t_node = this.contains(value);
+		let p_node = t_node;
+		let c_node = p_node;
+
+		if (t_node === false) {
+			return false;
+		}
+
+		if (t_node.l !== null) {
+			while (c_node.l !== null) {
+				p_node = c_node;
+				c_node = c_node.l;
+			}
+
+			t_node.value = c_node.value;
+			p_node.l = null;
+		}
+		else {
+			while (c_node.r !== null) {
+				p_node = c_node;
+				c_node = c_node.r;
+			}
+
+			t_node.value = c_node.value;
+			p_node.r = null;
+		}
+
+		this.size--;
+		return this;
 	}
 };
 
 let bst = new BinarySearchTree();
-bst.insert(12).insert(5).insert(9);
+bst.insert(12).insert(5).insert(6).insert(7);
 console.log(bst.getSize());
+console.log(bst.remove(6));
