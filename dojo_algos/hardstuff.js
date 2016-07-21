@@ -100,15 +100,42 @@ BinarySearchTree.prototype = {
 			return false;
 		}
 
-		let t_node = this.contains(value);
+		let t_node = this.root;
 		let p_node = t_node;
 		let c_node = p_node;
+		let branch = '';
+		let notLocated = true;
 
-		if (t_node === false) {
+		while (t_node !== null && notLocated) {
+			if (t_node.value === value) {
+				c_node = t_node;
+				notLocated = false;
+			}
+			else if (t_node.value >= value) {
+				p_node = t_node;
+				t_node = t_node.l;
+				branch = 'left';
+			}
+			else {
+				p_node = t_node;
+				t_node = t_node.r;
+				branch = 'right';
+			}
+		}
+
+		if (t_node === null) {
 			return false;
 		}
 
-		if (t_node.l !== null) {
+		if (t_node.l === null && t_node.r === null) {
+			if (branch === 'left') {
+				p_node.l = null;
+			}
+			else {
+				p_node.r = null;
+			}
+		}
+		else if (t_node.l !== null) {
 			while (c_node.l !== null) {
 				p_node = c_node;
 				c_node = c_node.l;
@@ -117,7 +144,7 @@ BinarySearchTree.prototype = {
 			t_node.value = c_node.value;
 			p_node.l = null;
 		}
-		else {
+		else if (t_node.r !== null) {
 			while (c_node.r !== null) {
 				p_node = c_node;
 				c_node = c_node.r;
@@ -129,10 +156,17 @@ BinarySearchTree.prototype = {
 
 		this.size--;
 		return this;
+	},
+	maxDepth: function(node) {
+		if (node) {
+			return Math.max(this.maxDepth(node.l), this.maxDepth(node.r)) + 1;
+		}
+		else {
+			return 0;
+		}
 	}
 };
 
 let bst = new BinarySearchTree();
-bst.insert(12).insert(5).insert(6).insert(7);
-console.log(bst.getSize());
-console.log(bst.remove(6));
+bst.insert(12).insert(5).insert(6).insert(4).insert(8);
+console.log(bst.maxDepth(bst.root));
