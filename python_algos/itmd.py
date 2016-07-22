@@ -1,3 +1,4 @@
+from timeit import Timer
 # find out if string is a palindrome
 def is_palindrome(string):
 	left = 0
@@ -301,3 +302,132 @@ def is_she_overweight(height, weight):
 
 	print("The ideal weight for this girl should be: %s, her actual weight is: %s" % (str(ideal_weight // 1), str(weight)))
 	return ideal_weight < weight
+
+def concat_test():
+	arr = []
+	for i in range(1000):
+		arr += [i]
+	return arr
+
+def append_test():
+	arr = []
+	for i in range(1000):
+		arr.append(i)
+	return arr
+
+def comp_test():
+	arr = [i for i in range(1000)]
+	return arr
+
+def range_test():
+	arr = list(range(1000))
+	return arr
+
+# stack data structure
+class Stack:
+	def __init__(self):
+		self.store = []
+
+	def push(self, data):
+		self.store.append(data)
+		return self
+
+	def peek(self):
+		if len(self.store) < 1:
+			print("There's nothing on the stack!")
+		else:
+			return self.store[len(self.store) - 1]
+
+	def pop(self):
+		if self.size() > 0:
+			return self.store.pop()
+		else:
+			return -1
+
+	def is_empty(self):
+		return True if self.size() < 1 else False
+
+	def size(self):
+		return len(self.store)
+
+def stack_rev_string(s):
+	stack = Stack()
+	stack.store = list(s)
+	left = 0
+	right = stack.size() - 1
+
+	while left <= right:
+		stack.store[left], stack.store[right] = stack.store[right], stack.store[left]
+		left += 1
+		right -= 1
+
+	return ''.join(stack.store)
+
+def balance_parens(s):
+	stack = Stack()
+
+	for i in range(len(s)):
+		if s[i] == '(':
+			stack.push(i)
+
+		if s[i] == ')':
+			result = stack.pop()
+			if result == -1:
+				return False
+
+	if stack.size() == 0:
+		return True
+	else:
+		return False
+
+def par_checker(s):
+	stack = Stack()
+	balanced = True
+	idx = 0
+
+	while idx < len(s) and balanced:
+		symbol = s[idx]
+		if symbol == '(':
+			stack.push(idx)
+		else:
+			if stack.is_empty():
+				balanced = False
+			else:
+				stack.pop()
+		idx += 1
+
+	if balanced and stack.is_empty():
+		return True
+	else:
+		return False
+
+def valid_symbols(s):
+	stack = Stack()
+	balanced = True
+	i = 0
+
+	while i < len(s) and balanced:
+		symbol = s[i]
+		if symbol in "({[":
+			stack.push(symbol)
+		else:
+			if stack.is_empty():
+				balanced = False
+			else:
+				top = stack.pop()
+				if not matches(top, symbol):
+					balanced = False
+		i += 1
+
+	if stack.is_empty() and balanced:
+		return True
+	else:
+		return False
+
+def matches(opener, closer):
+	openers = "({["
+	closers = ")}]"
+
+	return openers.index(opener) == closers.index(closer)
+
+print(valid_symbols('{([])}'))
