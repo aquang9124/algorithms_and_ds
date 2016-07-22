@@ -204,10 +204,20 @@ class BinarySearchTree:
 
 		return self
 
+# convert kg to lbs
+def kg_to_lbs(kg):
+	return kg * 2.2
 
-bst = BinarySearchTree()
-bst.insert(3).insert(5).insert(2).insert(4).insert(7)
-print(bst.max_value())
-print(bst.is_empty())
-print(bst.get_size())
-print(bst.remove_node(5))
+# is she overweight, height in inches, weight in lbs
+def is_she_overweight(height, weight):
+	default_weight = kg_to_lbs(53.1)
+	incrementor = kg_to_lbs(1.36)
+	offset = None
+	ideal_weight = default_weight
+
+	if height > 60:
+		offset = height - 60
+		ideal_weight = (offset * incrementor) + default_weight
+
+	print("The ideal weight for this girl should be: %s, her actual weight is: %s" % (str(ideal_weight // 1), str(weight)))
+	return ideal_weight < weight
