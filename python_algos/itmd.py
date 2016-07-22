@@ -249,3 +249,45 @@ def add_digits(num):
 
 	return num
 
+def is_valid_parens(s):
+	char_map = {
+		'open_parens': [],
+		'closed_parens': [],
+	}
+
+	for i in range(len(s)):
+		if s[i] == '(':
+			char_map["open_parens"].append(i)
+		elif s[i] == ')':
+			char_map["closed_parens"].append(i)
+
+	if len(char_map['open_parens']) != len(char_map['closed_parens']):
+		return False
+	else:
+		for x in range(len(char_map['open_parens'])):
+			if char_map['open_parens'][x] > char_map['closed_parens'][x]:
+				return False
+
+	return True
+
+# alt is_valid_parens
+def alt_valid_parens(s):
+	num_open = 0
+	num_closed = 0
+
+	for i in range(len(s)):
+		if num_closed > num_open:
+			return False
+
+		if s[i] == '(':
+			num_open += 1
+
+		if s[i] == ')':
+			num_closed += 1
+
+	if num_open == num_closed:
+		return True
+	else:
+		return False
+
+print(alt_valid_parens('(())('))

@@ -166,7 +166,3 @@ BinarySearchTree.prototype = {
 		}
 	}
 };
-
-let bst = new BinarySearchTree();
-bst.insert(12).insert(5).insert(6).insert(4).insert(8);
-console.log(bst.maxDepth(bst.root));
