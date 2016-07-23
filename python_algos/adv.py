@@ -81,6 +81,33 @@ class UnorderedList:
 
 		return self
 
+	def remove(self, item):
+		c_node = self.head
+
+		if self.head.data == item:
+			self.head = self.head.next_node
+		else:
+			while c_node.next_node != None:
+				if c_node.next_node.data == item:
+					upcoming_node = c_node.next_node
+					c_node.next_node = upcoming_node.next_node
+				else:
+					c_node = c_node.next_node
+
+		return False
+
+	def search(self, item):
+		c_node = self.head
+		located_node = False
+
+		while c_node and not located_node:
+			if c_node.data == item:
+				located_node = True
+			else:
+				c_node = c_node.next_node
+
+		return located_node
+
 sll = UnorderedList()
-sll.add(1).add(2)
-print(sll)
+sll.add(1).add(2).add(3).add(2)
+print(sll.search(3))
