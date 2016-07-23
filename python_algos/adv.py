@@ -63,6 +63,7 @@ class ListNode:
 class UnorderedList:
 	def __init__(self):
 		self.head = None
+		self.size = 0
 
 	def __str__(self):
 		return str(self.head)
@@ -79,6 +80,7 @@ class UnorderedList:
 				c_node = c_node.next_node
 			c_node.next_node = new_node
 
+		self.size += 1
 		return self
 
 	def remove(self, item):
@@ -94,6 +96,7 @@ class UnorderedList:
 				else:
 					c_node = c_node.next_node
 
+		self.size -= 1
 		return False
 
 	def search(self, item):
@@ -108,6 +111,73 @@ class UnorderedList:
 
 		return located_node
 
+	def is_empty(self):
+		return self.size == 0
+
+	def get_size(self):
+		return self.size
+
+	def get_index(self, item):
+		c_node = self.head
+		position = 0
+
+		while c_node:
+			if c_node.data == item:
+				return position
+			else:
+				position += 1
+				c_node = c_node.next_node
+
+		return False
+
+	def insert(self, pos, item):
+		c_node = self.head
+		c_pos = 0
+		inserted = False
+		new_node = ListNode(item)
+
+		if pos == c_pos:
+			new_node.next_node = c_node
+			self.head = new_node
+			insert = True
+
+		while c_node and not inserted:
+			if c_pos + 1 == pos:
+				new_node.next_node = c_node.next_node
+				c_node.next_node = new_node
+				inserted = True
+			else:
+				c_pos += 1
+				c_node = c_node.next_node
+
+		return inserted
+
+	def pop(self, pos=None):
+		if pos == None:
+			pos = self.size - 1
+
+		c_node = self.head
+		c_pos = 0
+
+		if c_pos == pos:
+			popped_head = self.head
+			self.head = self.head.next_node
+			popped_head.next_node = None
+			return popped_head
+
+		while c_node:
+			if c_pos + 1 == pos:
+				popped_node = c_node.next_node
+				c_node.next_node = popped_node.next_node
+				return popped_node
+			else:
+				c_pos += 1
+				c_node = c_node.next_node
+
+		return False
+
 sll = UnorderedList()
-sll.add(1).add(2).add(3).add(2)
-print(sll.search(3))
+sll.add(1).add(2).add(3).add(7)
+print(sll.get_index(1))
+sll.pop(2)
+print(sll)
