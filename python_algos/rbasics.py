@@ -85,3 +85,25 @@ def main():
 	my_win.exitonclick()
 
 # tower of hanoi
+def move_tower(height, from_pole, to_pole, with_pole):
+	if height >= 1:
+		move_tower(height - 1, from_pole, with_pole, to_pole)
+		move_disk(from_pole, to_pole)
+		move_tower(height - 1, with_pole, to_pole, from_pole)
+
+def move_disk(fp, tp):
+	print("Moving disk from", fp, "to", tp)
+
+# fun with list comprehensions
+def make_new_list(old_list, n):
+	new_list = []
+	for item in old_list:
+		if item > n:
+			new_list.append("Magical " + str(item))
+
+	return new_list
+
+# make_new_list as a list comprehension
+def mnl_lc(old_list, n):
+	new_list = ["Magical " + str(item) for item in old_list if item > n]
+	return new_list
