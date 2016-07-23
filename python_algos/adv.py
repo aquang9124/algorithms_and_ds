@@ -247,6 +247,56 @@ class OrderedList:
 					c_node = c_node.next_node
 		return found
 
-oll = OrderedList()
-oll.add(3).add(5).add(1).add(7)
-print(oll.search(7))
+	def get_size(self):
+		count = 0
+		c_node = self.head
+
+		while c_node:
+			count += 1
+			c_node = c_node.next_node
+
+		return count
+
+	def get_index(self, item):
+		pos = 0
+		found = False
+
+		if self.head.data == item:
+			found = True
+		else:
+			c_node = self.head
+
+			while c_node != None and not found:
+				if c_node.data == item:
+					found = True
+				else:
+					pos += 1
+					c_node = c_node.next_node
+
+		if found:
+			return pos
+		else:
+			return found
+
+	def pop(self, pos=None):
+		if pos == None:
+			pos = self.get_size() - 1
+		c_pos = 0
+		c_node = self.head
+		popped = None
+
+		if c_pos == pos:
+			popped = self.head
+			self.head = self.head.next_node
+			popped.next_node = None
+			return popped
+		else:
+			while c_node != None and not popped:
+				if c_pos + 1 == pos:
+					upcoming_node = c_node.next_node
+					c_node.next_node = upcoming_node.next_node
+					popped = upcoming_node
+				else:
+					c_pos += 1
+					c_node = c_node.next_node
+		return popped
