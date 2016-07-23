@@ -1,4 +1,5 @@
 from timeit import Timer
+import random
 # find out if string is a palindrome
 def is_palindrome(string):
 	left = 0
@@ -430,4 +431,89 @@ def matches(opener, closer):
 
 	return openers.index(opener) == closers.index(closer)
 
-print(valid_symbols('{([])}'))
+def divide_by_two(num):
+	stack = Stack()
+
+	while num >= 1:
+		rem = num % 2
+		num = num // 2
+		stack.push(rem)
+
+	binary_string = ""
+
+	while not stack.is_empty():
+		binary_string += str(stack.pop())
+
+	return binary_string
+
+# queue data structure, FIFO
+class Queue:
+	def __init__(self):
+		self.items = []
+
+	def enqueue(self, value):
+		self.items.insert(0, value)
+		return self
+
+	def dequeue(self):
+		return self.items.pop()
+
+	def is_empty(self):
+		return True if self.size() > 0 else False
+
+	def size(self):
+		return len(self.items)
+
+def hot_potato(names, num):
+	q = Queue()
+	count = 0
+
+	for i in range(len(names)):
+		q.enqueue(names[i])
+
+	while q.size() > 1:
+		if count == num:
+			q.dequeue()
+			count = 0
+		else:
+			person = q.dequeue()
+			q.enqueue(person)
+			count += 1
+
+	return q.items
+
+class Printer:
+	def __init__(self, ppm):
+		self.speed = ppm
+		self.current_task = None
+		self.time_remaining = 0
+
+	def tick(self):
+		if self.current_task != None:
+			self.time_remaining -= 1
+			if self.time_remaining <= 0:
+				self.current_task = None
+
+	def busy(self):
+		if self.current_task != None:
+			return True
+		else:
+			return False
+
+	def start_next(self, new_task):
+		self.current_task = new_task
+		self.time_remaining = new_task.get_pages() * 60/self.speed
+
+class Task:
+	def __init__(self, time):
+		self.time_stamp = time
+		self.pages = random.randrange(1, 21)
+
+	def get_stamp(self):
+		return self.time_stamp
+
+	def get_pages(self):
+		return self.pages
+
+	def wait_time(self):
+		return current_time - self.time_stamp
