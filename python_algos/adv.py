@@ -40,6 +40,7 @@ def palindrome_check(s):
 	return still_valid
 
 # linked list data structure to represent unordered list
+# An unordered list is similar to an unsorted array
 class ListNode:
 	def __init__(self, data):
 		self.data = data
@@ -115,7 +116,14 @@ class UnorderedList:
 		return self.size == 0
 
 	def get_size(self):
-		return self.size
+		count = 0
+		c_node = self.head
+
+		while c_node != None:
+			count += 1
+			c_node = c_node.next_node
+
+		return count
 
 	def get_index(self, item):
 		c_node = self.head
@@ -176,8 +184,19 @@ class UnorderedList:
 
 		return False
 
-sll = UnorderedList()
-sll.add(1).add(2).add(3).add(7)
-print(sll.get_index(1))
-sll.pop(2)
-print(sll)
+# ordered list implementation using linked lists
+class OLNode:
+	def __init__(self, data):
+		self.data = data
+		self.next_node = None
+
+	def __str__(self):
+		return "Value: %s, Next -> %s" % (str(self.data), self.next_node)
+
+class OrderedList:
+	def __init__(self):
+		self.head = None
+
+	def __str__(self):
+		return str(self.head)
+
