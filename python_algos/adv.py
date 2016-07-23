@@ -200,3 +200,53 @@ class OrderedList:
 	def __str__(self):
 		return str(self.head)
 
+	def add(self, item):
+		new_node = OLNode(item)
+
+		if self.head == None:
+			self.head = new_node
+		elif self.head.data > item:
+			new_node.next_node = self.head
+			self.head = new_node
+		else:
+			previous = None
+			c_node = self.head
+			added = False
+
+			while c_node != None and not added:
+				if c_node.data >= item:
+					new_node.next_node = c_node
+					previous.next_node = new_node
+					added = True
+				elif c_node.data < item:
+					previous = c_node
+					c_node = c_node.next_node
+
+			previous.next_node = new_node
+
+		return self
+
+	def search(self, item):
+		found = False
+		if self.head == None:
+			print('The Ordered List is empty!')
+		elif self.head.data == item:
+			found = True
+		else:
+			c_node = self.head
+
+			while c_node != None and not found:
+				if c_node.data == item:
+					found = True
+				elif c_node.next_node != None:
+					if c_node.next_node.data > item:
+						break
+					else:
+						c_node = c_node.next_node
+				else:
+					c_node = c_node.next_node
+		return found
+
+oll = OrderedList()
+oll.add(3).add(5).add(1).add(7)
+print(oll.search(7))
