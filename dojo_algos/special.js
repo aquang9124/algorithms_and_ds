@@ -55,6 +55,38 @@ class BinarySearchTree {
 	}
 }
 
-bst = new BinarySearchTree();
-bst.insert(7).insert(8).insert(2);
-console.log(bst);
+// stack data structure 
+class Stack {
+	constructor() {
+		this.items = [];
+	}
+
+	push(item, ...args) {
+		return this.items.push(item, ...args);
+	}
+
+	pop() {
+		return this.items.pop();
+	}
+
+	peek() {
+		let end = this.items.length - 1;
+		return this.items[end];
+	}
+}
+
+// queue data structure
+class Queue {
+	constructor() {
+		this.items = [];
+	}
+
+	enqueue(item) {
+		this.items.unshift(item);
+		return this;
+	}
+
+	dequeue() {
+		return this.items.pop();
+	}
+}
