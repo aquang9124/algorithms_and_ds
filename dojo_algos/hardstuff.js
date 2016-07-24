@@ -270,7 +270,3 @@ class OrderedList {
 		}
 	}
 }
-
-let oll = new OrderedList();
-oll.insert(71).insert(5).insert(777).insert(23);
-console.log(oll.search(71));
