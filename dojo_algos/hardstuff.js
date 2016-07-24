@@ -166,3 +166,111 @@ BinarySearchTree.prototype = {
 		}
 	}
 };
+
+// ordered linked list implementation using es6 classes
+class ListNode {
+	constructor(data) {
+		this.data = data;
+		this.next = null;
+	}
+
+	getData() {
+		return this.data;
+	}
+
+	getNext() {
+		return JSON.stringify(this.next, null, 2);
+	}
+
+	setProp(prop, item) {
+		this[prop] = item;
+		return true;
+	}
+}
+
+class OrderedList {
+	constructor() {
+		this.head = null;
+	}
+
+	insert(data) {
+		let newNode = new ListNode(data);
+
+		if (this.head === null) {
+			this.head = newNode;
+		}
+		else if (this.head.data > data) {
+			newNode.next = this.head;
+			this.head = newNode;
+		}
+		else {
+			let cNode = this.head;
+			let inserted = false;
+
+			while (cNode.next != null && inserted !== true) {
+				if (cNode.next.data > data) {
+					newNode.next = cNode.next;
+					cNode.next = newNode;
+					inserted = true;
+				}
+				else {
+					cNode = cNode.next;
+				}
+			}
+			cNode.next = newNode;
+		}
+
+		return this;
+	}
+
+	display() {
+		let prettyList = `Head: Value: ${this.head.getData()}, Next -> ${this.head.getNext()}`;
+
+		return prettyList;
+	}
+
+	getSize() {
+		let count = 0;
+		let cNode = this.head;
+
+		while (cNode) {
+			count++;
+			cNode = cNode.next;
+		}
+
+		return count;
+	}
+
+	search(data) {
+		if (this.head === null) {
+			return false;
+		}
+		else {
+			let cNode = this.head;
+
+			while (cNode !== null) {
+				if (cNode.next === null) {
+					if (cNode.data === data) {
+						return true;
+					}
+					else {
+						break;
+					}
+				}
+				else if (cNode.data === data) {
+					return true;
+				}
+				else if (cNode.next.data > data) {
+					return false;
+				}
+				cNode = cNode.next;
+			}
+
+			return false;
+		}
+	}
+}
+
+let oll = new OrderedList();
+oll.insert(71).insert(5).insert(777).insert(23);
+console.log(oll.search(71));

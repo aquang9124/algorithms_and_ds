@@ -103,7 +103,10 @@ def make_new_list(old_list, n):
 
 	return new_list
 
-# make_new_list as a list comprehension
+# make_new_list using a list comprehension
 def mnl_lc(old_list, n):
 	new_list = ["Magical " + str(item) for item in old_list if item > n]
 	return new_list
+
+def doubled_odds(nums):
+	return [n * 2 for n in nums if n % 2 == 1]
