@@ -202,6 +202,44 @@ function equilibrium(A) {
     return -1;
 }
 
-eqTestArr = [-1, 3, -4, 5, 1, -6, 2, 1];
-eqTestArr2 = [-1, -1, 1];
-console.log(equilibrium(eqTestArr2));
+// given an array consisting of non-negative integers and an integer m
+// return the most common value which does not exceed the value of m
+function findCommon(M, A) {
+	// save length of A as a variable N
+    var N = A.length;
+    // create a new array of length M + 1
+    var count = new Array(M + 1);
+    console.log(count);
+    // declare variable i, initiated to 0, promotes reuse of i variable
+    var i;
+    // for loop will loop until i is greater than M, ex. M = 3, loop will do 4 iterations
+    for (i = 0; i <= M; i++)
+    	// for loop is creating buckets, essentially
+        count[i] = 0;
+    var maxOccurence = 1;
+    var index = 0;
+    // for loop will take i from 0 up to N, breaks once i > N
+    for (i = 0; i <= N; i++) {
+    	// condition checks to see if value at index A[i] in count array is greater than 0
+        if (count[A[i]] > 0) {
+        	// set var tmp to the value stored at A[i]
+            var tmp = count[A[i]];
+            // condition checks to see if tmp value is greater than maxOccurence
+            if (tmp > maxOccurence) {
+            	// if it is, set maxOccurence to tmp value;
+                maxOccurence = tmp;
+                // index = i;
+                index = i;
+            }
+            // value at index of A[i] in count is set to be tmp + 1
+            count[A[i]] = tmp + 1;
+        } else {
+        	// else, count[A[i]] = 1
+            count[A[i]] = 1;
+        }
+    }
+    // return value at index in array A
+    return A[index];
+}
+
+console.log(findCommon(5, [1, 5, 5, 5, 2, 1]));
