@@ -160,3 +160,48 @@ function tripleUp(arr) {
 
 	return false;
 }
+
+// equilibrium index with O(n) time complexity
+function equilibrium(A) {
+	if (A.length === 0) {
+		return -1;
+	}
+	else if (A.length < 2) {
+		return 0;
+	}
+
+    var total = 0;
+    var currentSum = 0;
+    var prefixSum = 0;
+    
+    for (var i = 0; i < A.length; i++) {
+        total += A[i];
+    }
+
+    for (var j = -1, k = 0; k < A.length; j++, k++) {
+    	var current = total;
+    	currentSum += A[k];
+
+    	if (k === 0) {
+    		current -= currentSum;
+
+    		if (current === 0) {
+    			return k;
+    		}
+    	}
+
+    	if (j >= 0) {
+    		current -= currentSum;
+    		prefixSum += A[j];
+    		if (prefixSum === current) {
+    			return k;
+    		}
+    	}
+    }
+
+    return -1;
+}
+
+eqTestArr = [-1, 3, -4, 5, 1, -6, 2, 1];
+eqTestArr2 = [-1, -1, 1];
+console.log(equilibrium(eqTestArr2));
