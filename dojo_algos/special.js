@@ -121,3 +121,42 @@ function countEight(n) {
 	return count;
 }
 
+// given length n return an array of strings from "0", "1", "2" and so on
+function createStringArr(n) {
+	let result = [];
+	for (let i = 0; i < n; i++) {
+		result.push(i.toString());
+	}
+
+	return result;
+}
+
+// given input of start and end, return a new array containing a sequence of ints up to
+// but not including end
+function fizzArr(start, end) {
+	let result = [];
+	for (let i = start; i < end; i++) {
+		result.push(i);
+	}
+
+	return result;
+}
+
+// return true if at any point an array has three consecutive numbers
+function tripleUp(arr) {
+	let countAdj = 1;
+	for (let i = 0; i < arr.length; i++) {
+		let nextNum = arr[i + 1];
+		if (countAdj === 3) {
+			return true;
+		}
+		else if (arr[i] === nextNum - 1) {
+			countAdj += 1;
+		}
+		else {
+			countAdj = 1;
+		}
+	}
+
+	return false;
+}
