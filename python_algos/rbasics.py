@@ -1,4 +1,5 @@
 import turtle
+import math
 # recursive
 def r_list_sum(arr):
 	if len(arr) == 1:
@@ -139,3 +140,61 @@ def x_to_y(x, y, total=0):
 		total *= x
 
 	return x_to_y(x, y, total)
+
+# linear search algorithm
+def linear_search(arr, target):
+	for i in range(len(arr)):
+		if arr[i] == target:
+			return True
+	return False
+
+# linear search that returns index of found item
+def find_index(arr, item):
+	for idx in range(len(arr)):
+		if arr[idx] == item:
+			return idx
+	return False
+
+# linear search that assumes an ordered list
+def ordered_linear_search(arr, item):
+	for i in range(len(arr)):
+		if arr[i] == item:
+			return i
+		elif arr[i] > item:
+			return False
+	return False
+
+# binary search
+def binary_search(arr, item):
+	first = 0
+	last = len(arr) - 1
+
+	while first <= last:
+		mid = (first + 1) // 2
+		if arr[mid] == item:
+			return mid
+		elif arr[mid] > item:
+			last = mid - 1
+		else:
+			first = mid + 1
+
+	return False
+
+# recursive binary search using helper method
+def rec_bin_search(arr, item):
+	result = False
+
+	def traverse(alist):
+		if len(alist) == 0:
+			return False
+		else:
+			mid = len(alist) // 2
+			if alist[mid] == item:
+				return True
+			elif alist[mid] > item:
+				return traverse(arr[:mid])
+			else:
+				return traverse(arr[mid + 1:])
+
+	result = traverse(arr)
+	return result
