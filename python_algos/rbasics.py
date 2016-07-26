@@ -110,3 +110,32 @@ def mnl_lc(old_list, n):
 
 def doubled_odds(nums):
 	return [n * 2 for n in nums if n % 2 == 1]
+
+# print arr in reverse
+def print_reverse(arr, idx=None):
+	if idx == None:
+		idx = len(arr) - 1
+
+	if idx < 0:
+		return True
+	else:
+		print(arr[idx])
+		return print_reverse(arr, idx - 1)
+
+# return x increased to the yth power
+def x_to_y(x, y, total=0):
+	if y == 0 and total == 0:
+		return 1
+
+	if total == 0:
+		total = x
+
+	if y == 0:
+		return total
+
+	y -= 1
+	
+	if y > 0:
+		total *= x
+
+	return x_to_y(x, y, total)
