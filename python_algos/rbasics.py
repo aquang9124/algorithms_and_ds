@@ -198,3 +198,19 @@ def rec_bin_search(arr, item):
 
 	result = traverse(arr)
 	return result
+
+class HashTable:
+	def __init__(self, size):
+		self.collection = [None]*size
+
+	def hashing(self, item):
+		return item % len(self.collection)
+
+	def add(self, item):
+		slot = self.hashing(item)
+		self.collection[slot] = item
+		return self
+
+htc = HashTable(11)
+htc.add(54).add(12)
+print(htc.collection)
