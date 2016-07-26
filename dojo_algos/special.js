@@ -242,4 +242,169 @@ function findCommon(M, A) {
     return A[index];
 }
 
-console.log(findCommon(5, [1, 5, 5, 5, 2, 1]));
+// function to check if char is integer
+function checkInt(n) {
+	return !isNaN(parseInt(n));
+}
+
+// format phone number
+function formatS(s) {
+	var numbers = [];
+	var i;
+
+	for (i = 0; i < s.length; i++) {
+		var validNum = checkInt(s[i]);
+		
+		if (validNum === true) {
+			numbers.push(s[i]);
+		}
+	}
+
+	var dashAfterThree = 0;
+	var currentCount = 0;
+	var formattedStr = "";
+
+	for (i = 0; i < numbers.length; i++) {
+		var remainder = numbers.length - dashAfterThree;
+		if (remainder <= 4 && remainder % 3 !== 0) {
+			break;
+		}
+		dashAfterThree += 3;
+	}
+
+	for (i = 0; i < numbers.length; i++) {
+		if (dashAfterThree < 0) {
+			if (currentCount === 2) {
+				formattedStr += '-';
+				currentCount = 0;
+			}
+		}
+		else {
+			if (currentCount === 3) {
+				formattedStr += '-';
+				currentCount = 0;
+			}
+		}
+
+		currentCount += 1;
+		dashAfterThree -= 1;
+		formattedStr += numbers[i];
+	}
+
+	return formattedStr;
+}
+
+// calculate phone call costs
+function calcPhoneCosts(S) {
+	var inputsArr = S.split('\n');
+	var callLog = {};
+	var numbers;
+	var idx;
+
+	inputsArr.forEach(function(call) {
+		// split each call into an array of the duration and the number
+		call = call.split(',');
+
+		// if number does not already exist in callLog, create entry
+		if (!callLog.hasOwnProperty(call[1])) {
+			callLog[call[1]] = [0, 0, 0];
+		}
+
+		var callTime = call[0].split(':');
+		var phoneNumber = call[1].split('-');
+		var fiveOrLonger = false;
+
+		// loop through callTime array and calculate needed values
+		for (idx = 0; idx < callTime.length; idx++) {
+			
+			if (idx === 0) {
+				var hours = parseInt(callTime[idx]);
+
+				if (hours > 0) {
+					fiveOrLonger = true;
+					callLog[call[1]][2] += (60 * hours) * 150;
+				}
+
+				callLog[call[1]][0] += 3600 * hours;
+			}
+			else if (idx === 1) {
+				var minutes = parseInt(callTime[idx]);
+
+				if (minutes >= 5) {
+					fiveOrLonger = true;
+				}
+
+				if (fiveOrLonger === true) {
+					callLog[call[1]][2] += minutes * 150;
+				}
+				else {
+					callLog[call[1]][2] += (60 * minutes) * 3;
+				}
+
+				callLog[call[1]][0] += 60 * minutes;
+			}
+			else {
+				var seconds = parseInt(callTime[idx]);
+
+				if (fiveOrLonger === true && seconds > 0) {
+					callLog[call[1]][2] += 150;
+				}
+				else {
+					callLog[call[1]][2] += seconds * 3;
+				}
+
+				callLog[call[1]][0] += seconds;
+			}
+			// add to phone number numerical value
+			callLog[call[1]][1] += parseInt(phoneNumber[idx]);
+		}
+
+	});
+
+	// get an array of all the numbers in the log
+	numbers = Object.keys(callLog);
+
+	var minNumValue = callLog[numbers[0]][1];
+	var maxDuration = callLog[numbers[0]][0];
+	var longestCalls = numbers[0];
+	var smallestNumVal = numbers[0];
+
+	// find the phone number with lowest numerical value
+	for (idx = 1; idx < numbers.length; idx++) {
+		var currentValue = callLog[numbers[idx]][1];
+
+		if (minNumValue > currentValue) {
+			minNumValue = currentValue;
+			smallestNumVal = numbers[idx];
+		}
+	}
+
+	// find phone number with longest duration, choosing 
+	// number with lower num value in case of ties
+	for (idx = 1; idx < numbers.length; idx++) {
+		var currentDuration = callLog[numbers[idx]][0];
+
+		if (maxDuration <= currentDuration) {
+			maxDuration = currentDuration;
+
+			if (maxDuration === currentDuration && numbers[idx] !== smallestNumVal) {
+				longestCalls = smallestNumVal;
+			}
+			else {
+				longestCalls = numbers[idx];
+			}
+		}
+	}
+
+	// apply the discount
+	callLog[longestCalls][2] = 0;
+
+	// calculate total amount due
+	var totalAmtDue = 0;
+	for (var call in callLog) {
+		totalAmtDue += callLog[call][2];
+	}
+	return totalAmtDue;
+}
+
+console.log(calcPhoneCosts("00:01:07,400-234-090\n00:05:01,701-080-080\n00:05:00,400-234-090"));
