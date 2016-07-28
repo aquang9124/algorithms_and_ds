@@ -78,6 +78,8 @@ function add(a, b=10) {
 
 // console.log(add(5));
 // Still, bind could have its uses
+
+// human defined using es6 classes
 class Human {
 	constructor(name, age, color) {
 		this.name = name;
@@ -134,3 +136,31 @@ class Human {
 		});
 	}
 }
+
+// just having some fun with default args
+function createPerson (
+	{
+		name = 'Xuan',
+		age = 25,
+		color = 'Blue'
+	} = {})
+{
+	let person = new Human(name, age, color);
+	return person;
+}
+
+function printToN(n) {
+	for (var i = 0; i < n; i++) {
+		// create closure 
+		(function() {
+			// each closure will capture a different value for i
+			// which is held by the variable j
+			var j = i;
+			setTimeout(function() {
+				// because of this each setTimeout function call will have its own i
+				console.log(j);
+			}, 300);
+		}());
+	}
+}
+
