@@ -169,15 +169,31 @@ function dblLinear(n) {
 	let results = [1];
 	let idx = 0;
 	let mostRecent = 0;
+	let nums = {};
 
 	while (idx < n) {
+		let canPushBoth = true;
 		let x = 2 * results[idx] + 1;
 		let y = 3 * results[idx] + 1;
 		
 		if (idx > 0) {
+			// check to see if x already exists as a key in the object
+			if (nums.hasOwnProperty(x)) {
+				canPushBoth = false;
+			}
+			else {
+				nums[x] = true;
+				nums[y] = true;
+			}
 			// before push set mostRecent to index of last element in array
 			mostRecent = results.length - 1;
-			results.push(x, y);
+
+			if (canPushBoth) {
+				results.push(x, y);
+			}
+			else {
+				results.push(y);
+			}
 
 			for (let i = mostRecent + 1; i >= 0; i--) {
 				
@@ -185,10 +201,6 @@ function dblLinear(n) {
 					let temp = results[i - 1];
 					results[i - 1] = results[i]
 					results[i] = temp;
-				}
-				else if (results[i - 1] === results[i]) {
-					results.splice(i, 1);
-					break;
 				}
 				else {
 					break;
@@ -207,4 +219,4 @@ function dblLinear(n) {
 }
 
 console.log([1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27]);
-console.log(dblLinear(20));
+console.log(dblLinear(100));
