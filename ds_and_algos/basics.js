@@ -164,3 +164,47 @@ function printToN(n) {
 	}
 }
 
+// double linear
+function dblLinear(n) {
+	let results = [1];
+	let idx = 0;
+	let mostRecent = 0;
+
+	while (idx < n) {
+		let x = 2 * results[idx] + 1;
+		let y = 3 * results[idx] + 1;
+		
+		if (idx > 0) {
+			// before push set mostRecent to index of last element in array
+			mostRecent = results.length - 1;
+			results.push(x, y);
+
+			for (let i = mostRecent + 1; i >= 0; i--) {
+				
+				if (results[i - 1] > results[i]) {
+					let temp = results[i - 1];
+					results[i - 1] = results[i]
+					results[i] = temp;
+				}
+				else if (results[i - 1] === results[i]) {
+					results.splice(i, 1);
+					break;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		else {
+			results.push(x, y);
+		}
+
+		idx++;
+
+	}
+	
+	return results[n];
+}
+
+console.log([1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27]);
+console.log(dblLinear(20));
