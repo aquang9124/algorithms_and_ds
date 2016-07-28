@@ -166,56 +166,44 @@ function printToN(n) {
 
 // double linear
 function dblLinear(n) {
-	let results = [1];
+	let set = [1];
 	let idx = 0;
-	let mostRecent = 0;
 	let nums = {};
 
 	while (idx < n) {
-		let canPushBoth = true;
-		let x = 2 * results[idx] + 1;
-		let y = 3 * results[idx] + 1;
-		
+		let x = 2 * set[idx] + 1;
+		let y = 3 * set[idx] + 1;
+
 		if (idx > 0) {
-			// check to see if x already exists as a key in the object
+			let canPushBoth = true;
 			if (nums.hasOwnProperty(x)) {
 				canPushBoth = false;
 			}
-			else {
-				nums[x] = true;
-				nums[y] = true;
-			}
-			// before push set mostRecent to index of last element in array
-			mostRecent = results.length - 1;
 
 			if (canPushBoth) {
-				results.push(x, y);
+				set.push(x, y);
+				let xIdx = set.length - 2;
+
+				while (set[xIdx - 1] > set[xIdx]) {
+					let temp = set[xIdx];
+					set[xIdx] = set[xIdx - 1];
+					set[xIdx - 1] = temp;
+					xIdx--;
+				}
 			}
 			else {
-				results.push(y);
-			}
-
-			for (let i = mostRecent + 1; i >= 0; i--) {
-				
-				if (results[i - 1] > results[i]) {
-					let temp = results[i - 1];
-					results[i - 1] = results[i]
-					results[i] = temp;
-				}
-				else {
-					break;
-				}
+				set.push(y);
 			}
 		}
 		else {
-			results.push(x, y);
+			set.push(x, y);
 		}
 
 		idx++;
-
+		nums[x] = nums[y] = true;
 	}
-	
-	return results[n];
+
+	return set[n];
 }
 
 console.log([1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27]);
