@@ -1,5 +1,6 @@
 import turtle
 import math
+import random
 # recursive
 def r_list_sum(arr):
 	if len(arr) == 1:
@@ -210,7 +211,8 @@ class HashTable:
 		slot = self.hashing(item)
 		self.collection[slot] = item
 		return self
+	def search(self, item):
+		slot = self.hashing(item)
+		if self.collection[slot] == item:
+			return self.collection[slot]
 
-htc = HashTable(11)
-htc.add(54).add(12)
-print(htc.collection)

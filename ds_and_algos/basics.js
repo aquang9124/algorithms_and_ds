@@ -78,3 +78,59 @@ function add(a, b=10) {
 
 // console.log(add(5));
 // Still, bind could have its uses
+class Human {
+	constructor(name, age, color) {
+		this.name = name;
+		this.age = age;
+		this.color = color;
+		this.hobbies = [];
+	}
+
+	isSexy() {
+		let randomInt = Math.floor(Math.random() * 10);
+		if (randomInt >= 7) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	makeGreetFn() {
+		return (greeting, punct="!") => {
+			if (greeting === undefined) {
+				throw new Error("Wth man, give me an input for greeting!");
+			}
+			else {
+				let timesHumanSpoke = 1;
+				console.log(`${this.name} says ${greeting}${punct}`);
+				
+				return (more, ...args) => {
+					
+					if (more) {
+						console.log(`${this.name} has more to say!`);
+						args.forEach((words) => {
+							timesHumanSpoke++;
+							console.log(`${this.name} says ${words}${punct}`);
+						});
+					}
+					else {
+						console.log(`${this.name} is done speaking to you.`);
+					}
+
+					return timesHumanSpoke;
+				}
+			}
+		};
+	}
+
+	addHobbies(...args) {
+		this.hobbies = [...args];
+	}
+
+	showHobbies() {
+		this.hobbies.forEach((hobby) => {
+			console.log(`${this.name} likes ${hobby}!`);
+		});
+	}
+}

@@ -406,3 +406,16 @@ function calcPhoneCosts(S) {
 	}
 	return totalAmtDue;
 }
+
+function printStuff(n) {
+	for (var i = 0; i < n; i++) {
+		(function() {
+			var j = i;
+			setTimeout(function() {
+				console.log(j);
+			}, 500);
+		}());
+	}
+}
+
+printStuff(100)
