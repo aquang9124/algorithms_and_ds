@@ -206,5 +206,79 @@ function dblLinear(n) {
 	return set[n];
 }
 
-console.log([1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27]);
-console.log(dblLinear(100));
+// bubble sort
+function bubSort(arr) {
+	let limit = 1;
+	let swap = true;
+
+	while (swap) {
+		swap = false;
+
+		for (let j = 0; j < arr.length - limit; j++) {
+			if (arr[j] > arr[j + 1]) {
+				let temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+				swap = true;
+			}
+		}
+
+		limit += 1;
+	}
+
+	return arr;
+}
+
+function genRandArr(n) {
+	let result = [];
+
+	for (let i = 0; i < n; i++) {
+		let randInt = Math.floor(Math.random() * 1000);
+		result.push(randInt);
+	}
+
+	return result;
+}
+
+let randomList = genRandArr(30);
+
+// insertion sort
+function insertSort(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] < arr[i - 1]) {
+			for (let j = i; j > 0; j--) {
+				if (arr[j - 1] > arr[j]) {
+					let temp = arr[j - 1];
+					arr[j - 1] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+	}
+
+	return arr;
+}
+
+// selection sort
+function selectSort(arr) {
+	let mIdx = 0;
+	let min = arr[0];
+
+	for (let i = 0; i < arr.length; i++) {
+		min = arr[i];
+		mIdx = i;
+
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[j] < min) {
+				min = arr[j];
+				mIdx = j;
+			}
+		}
+
+		let temp = arr[i];
+		arr[i] = arr[mIdx];
+		arr[mIdx] = temp;
+	}
+
+	return arr;
+}
