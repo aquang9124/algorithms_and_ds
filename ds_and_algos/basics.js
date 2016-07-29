@@ -301,3 +301,35 @@ function removeNegatives(arr) {
 	return arr;
 }
 
+// series sum
+function seriesSum(n) {
+	let result = 0;
+	let accumulator = 0;
+	let denom = 4;
+	
+	if (n < 1) {
+		return accumulator.toFixed(2);
+	}
+	else if (n >= 1) {
+		result += 1;
+	}
+
+	for (let i = 1; i < n; i++) {
+		accumulator += 1 / denom;
+		denom += 3;
+	}
+
+	result += accumulator;
+	return result.toFixed(2);
+}
+
+// better series sum
+function cleverSum(n) {
+	for (var s = 0, i = 0; i < n; i++) {
+		s += 1 / (1 + i * 3);
+	}
+
+	return s.toFixed(2);
+}
+
+// jaden casing
