@@ -359,3 +359,26 @@ String.prototype.toJaden = function() {
 
 	return s.join(' ');
 };
+
+// decode morse, morse code library unavailable
+function decodeMorse(morseCode) {
+	let s = morseCode.split(' '), 
+		spaceCount = 0, 
+		result = "";
+
+	for (let i = 0; i < s.length; i++) {
+		if (spaceCount === 2) {
+			result += " ";
+		}
+
+		if (s[i] === "") {
+			spaceCount++;
+		}
+		else {
+			result += MORSE_CODE[s[i]];
+			spaceCount = 0;
+		}
+	}
+
+	return result.trim();
+}
