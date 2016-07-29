@@ -282,3 +282,22 @@ function selectSort(arr) {
 
 	return arr;
 }
+
+// remove negatives from array
+function removeNegatives(arr) {
+	let nCount = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] >= 0) {
+			arr[i - nCount] = arr[i]; 
+		}
+		else {
+			nCount++;
+		}
+	}
+
+	arr.length = arr.length - nCount;
+
+	return arr;
+}
+
