@@ -10,7 +10,7 @@ function Entity(_world) {
 
 	function wrapExposedMethod(f, entity) {
         return function () {
-            var args = arguments;
+            let args = arguments;
             return _world.callUnexposedMethod(function () {
                 return f.apply(entity, args);
             });
@@ -19,7 +19,7 @@ function Entity(_world) {
 
     this.knockedOut = wrapExposedMethod(function(person) {
 
-    	var outputStr = "You got knocked out! The culprit was " + person;
+    	let outputStr = "You got knocked out! The culprit was " + person;
 
     	return outputStr;
 
@@ -27,7 +27,7 @@ function Entity(_world) {
 
     this.encounterPerson = wrapExposedMethod(function(person) {
 
-    	var randomInt = Math.floor(Math.random() * 100) + 1,
+    	let randomInt = Math.floor(Math.random() * 100) + 1,
     		res;
 
     	if (randomInt <= 50) {
@@ -41,6 +41,6 @@ function Entity(_world) {
     }, this);
 }
 
-var earth = new World();
-var player = new Entity(earth);
+let earth = new World();
+let player = new Entity(earth);
 console.log(player.encounterPerson('vicious thug'));
