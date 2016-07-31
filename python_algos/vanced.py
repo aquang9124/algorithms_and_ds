@@ -42,3 +42,18 @@ def selection_sort(arr):
 
 	return arr
 
+# insertion sort, not working yet, testing stuff
+def insertion_sort(arr):
+	for i in range(len(arr)):
+		if i != 0 and arr[i] < arr[i - 1]:
+			j = i - 1
+			print(j)
+			while j > 0 and arr[i] < arr[j]:
+				j -= 1
+			print(j)
+			print(arr)
+			arr[j], arr[i] = arr[i], arr[j]
+
+	return arr
+
+print(insertion_sort(make_list(20)))
