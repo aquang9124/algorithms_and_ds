@@ -60,6 +60,47 @@ def lattice_paths(x, y):
 
 	return lattice_paths(x - 1, y) + lattice_paths(x, y - 1)
 
+# fun with ordered linked list (singly)
+class OLNode:
+	def __init__(self, data):
+		self.data = data
+		self.nxt = None
+
+	def __str__(self):
+		return "Value: %s, Next -> %s" % ( str(self.data), self.nxt )
+
 class OrderedList:
 	def __init__(self):
 		self.head = None
+
+	def __str__(self):
+		return str(self.head)
+
+	def insert(self, data):
+		new_node = OLNode(data)
+
+		if self.head == None:
+			self.head = new_node
+		elif data <= self.head.data:
+			new_node.nxt = self.head
+			self.head = new_node
+		else:
+			c_node = self.head
+			inserted = False
+
+			while c_node.nxt != None and not inserted:
+				if data <= c_node.nxt.data:
+					new_node.nxt = c_node.nxt
+					c_node.nxt = new_node
+					inserted = True
+
+				c_node = c_node.nxt
+
+			if not inserted:
+				c_node.nxt = new_node
+
+		return self
+
+oll = OrderedList()
+oll.insert(2).insert(4).insert(3)
+print(oll)
