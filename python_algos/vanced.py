@@ -42,18 +42,24 @@ def selection_sort(arr):
 
 	return arr
 
-# insertion sort, not working yet, testing stuff
+# insertion sort
 def insertion_sort(arr):
 	for i in range(len(arr)):
-		if i != 0 and arr[i] < arr[i - 1]:
-			j = i - 1
-			print(j)
-			while j > 0 and arr[i] < arr[j]:
-				j -= 1
-			print(j)
-			print(arr)
-			arr[j], arr[i] = arr[i], arr[j]
+		if i != 0 and arr[i - 1] > arr[i]:
+			for j in range(i, 0, -1):
+				if arr[j - 1] > arr[j]:
+					arr[j - 1], arr[j] = arr[j], arr[j - 1]
 
 	return arr
 
-print(insertion_sort(make_list(20)))
+def lattice_paths(x, y):
+	if x == 0 and y == 0:
+		return 1
+	elif x < 0 or y < 0:
+		return 0
+
+	return lattice_paths(x - 1, y) + lattice_paths(x, y - 1)
+
+class OrderedList:
+	def __init__(self):
+		self.head = None
