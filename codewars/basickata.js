@@ -55,3 +55,31 @@ function consecStrings(arr, k) {
 
 	return longestStr;
 }
+
+// fun with digits
+function digPow(n, k) {
+	if (n >= 10) {
+		n = n.toString().split('');
+		n = n.map( (digit) => parseInt(digit) );
+	} else {
+		n = [n];
+	}
+
+	let power = k;
+	let sum = 0;
+
+	for (let i = 0; i < n.length; i++) {
+		sum += Math.pow(n[i], power);
+		power++;
+	}
+
+	let difference = sum / parseInt(n.join(''));
+
+	if (difference === Math.floor(difference)) {
+		return difference;
+	} else {
+		return -1;
+	}
+}
+
+console.log(digPow(92, 1));
