@@ -25,3 +25,33 @@ String.prototype.toJaden = function() {
 
 	return s.join(' ');
 };
+
+// first longest consecutive string
+function consecStrings(arr, k) {
+	let n = arr.length;
+
+	if (n === 0 || k > n || k <= 0) {
+		return "";
+	}
+
+	let longestStr = arr[0];
+
+	for (let i = 0; i < n; i++) {
+		let currentStr = arr[i];
+		let count = 1;
+		let j = i + 1;
+
+		while (count < k && j < n) {
+			currentStr += arr[j];
+			j++;
+			count++;
+		}
+
+		if (longestStr.length < currentStr.length) {
+			longestStr = currentStr;
+		}
+
+	}
+
+	return longestStr;
+}
