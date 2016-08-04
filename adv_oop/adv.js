@@ -41,6 +41,33 @@ function Entity(_world) {
     }, this);
 }
 
-let earth = new World();
-let player = new Entity(earth);
-console.log(player.encounterPerson('vicious thug'));
+// partial classed version
+class Universe {
+    callUnexposedMethod(fn) {
+        return fn();
+    }
+}
+
+function Person(_universe, name) {
+
+    function wrapExposedMethod(fn) {
+        return (...args) => {
+            return _universe.callUnexposedMethod( () => {
+                return fn.apply(this, args);
+            } );
+        }
+    }
+
+    this.name = name;
+
+    this.shout = wrapExposedMethod( (phrase = "I like eggs") => {
+        let result = `${this.name} shouts out: ${phrase}!`;
+
+        return result;
+    } );
+}
+
+let uni = new Universe();
+let dude = new Person(uni, 'Don');
+
+console.log(dude.shout('Oooh sausages'));
