@@ -91,19 +91,23 @@ class BinarySearchTree {
 
             while (true) {
                 if (cNode.data >= data) {
+
                     if (cNode.l === null) {
                         cNode.l = newNode;
                         break;
                     } else {
                         cNode = cNode.l;
                     }
+
                 } else {
+
                     if (cNode.r === null) {
                         cNode.r = newNode;
                         break;
                     } else {
                         cNode = cNode.r;
                     }
+
                 }
             }
         }
@@ -128,12 +132,14 @@ class BinarySearchTree {
                     if (cNode.data === data) {
                         return true;
                     }
+
                 } else if (cNode.r !== null) {
                     cNode = cNode.r;
 
                     if (cNode.data === data) {
                         return true;
                     }
+
                 } else {
                     break;
                 }
@@ -146,7 +152,7 @@ class BinarySearchTree {
 
 let bst = new BinarySearchTree();
 bst.add(2).add(6).add(4);
-console.log(bst.contains(6));
+console.log(bst.remove(2));
+console.log(bst);
 
 let logApples = (n) => console.log(`${n} apples!`);
-logApples(3);

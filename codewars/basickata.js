@@ -73,9 +73,9 @@ function digPow(n, k) {
 		power++;
 	}
 
-	let difference = sum / parseInt(n.join(''));
+	let difference = sum / parseInt( n.join('') );
 
-	if (difference === Math.floor(difference)) {
+	if ( difference === Math.floor(difference) ) {
 		return difference;
 	} else {
 		return -1;
