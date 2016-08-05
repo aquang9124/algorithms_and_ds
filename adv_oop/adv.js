@@ -152,7 +152,45 @@ class BinarySearchTree {
 
 let bst = new BinarySearchTree();
 bst.add(2).add(6).add(4);
-console.log(bst.remove(2));
-console.log(bst);
 
 let logApples = (n) => console.log(`${n} apples!`);
+
+function countGen(init) {
+    return () => {
+        console.log(init);
+        init++;
+    }
+}
+
+let counter = countGen(3);
+
+function logI(n) {
+    for (var i = 0; i < n; i++) {
+        (function() {
+            var j = i;
+            setTimeout(function() {
+                console.log(j);
+            }, 300);
+        }());
+    }
+}
+
+function printStuff(a, b) {
+    console.log(`You put in ${a} and ${b}`);
+}
+
+function throttleFn(fn, time) {
+    var canCall = true;
+
+    return function() {
+        if (!canCall) {
+            return false;
+        }
+
+        canCall = false;
+        fn.apply(null, arguments);
+        setTimeout(function() {
+            canCall = true;
+        }, time);
+    }
+}
