@@ -9,4 +9,13 @@ def add_binary(a,b):
 
 def xo(s):
 	s = s.lower()
-	return s.count('x') == s.count('o')
+	x = 0
+	o = 0
+
+	for i in range(len(s)):
+		if s[i] == 'x':
+			x += 1
+		elif s[i] == 'o':
+			o += 1
+
+	return x == o
