@@ -54,4 +54,24 @@ def is_square(n):
 
 		num += 2
 
-print(is_square(9))
+def add(a,b):
+	#your code here
+	sum_one = 0
+	sum_two = 0
+	curr_num = 1
+
+	for i in range(len(a) - 1, -1, -1):
+		if a[i] == '1':
+			sum_one += curr_num
+		curr_num += curr_num
+
+	curr_num = 1
+
+	for j in range(len(b) - 1, -1, -1):
+		if b[j] == '1':
+			sum_two += curr_num
+		curr_num += curr_num
+
+	return bin(sum_one + sum_two)[2:]
+
+print(add('1001', '10'))
