@@ -37,3 +37,21 @@ def bub_sort(arr):
 				swapped = True
 
 	return arr
+
+def is_square(n):
+	num = 1
+
+	if n < 0:
+		return False
+
+	while True:
+		n -= num
+
+		if n == 0:
+			return True
+		elif n < 0:
+			return False
+
+		num += 2
+
+print(is_square(9))
