@@ -74,4 +74,22 @@ def add(a,b):
 
 	return bin(sum_one + sum_two)[2:]
 
-print(add('1001', '10'))
+def max_rot(n):
+	# your code
+	max_n = n
+	rotations = len(str(n)) - 1
+	init_idx = -1
+	n = list(str(n))
+
+	while rotations > 0:
+		for i in range(init_idx + 1, len(n) - 1):
+			n[i], n[i + 1] = n[i + 1], n[i]
+		init_idx += 1
+		rotations -= 1
+		c_num = ''.join(n)
+		if int(c_num) > max_n:
+			max_n = int(c_num)
+
+	return max_n
+
+print(max_rot(56789))
