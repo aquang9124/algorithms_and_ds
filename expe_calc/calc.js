@@ -16,7 +16,7 @@ function handleClick(e) {
 
 	var sum = rentNum + transNum + foodNum + miscNum;
 
-	document.querySelector('.total-exp').value = sum;
+	console.log(sum);
 
 	e.preventDefault();
 
