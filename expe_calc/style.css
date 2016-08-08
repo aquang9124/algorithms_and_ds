@@ -24,6 +24,8 @@ html, body {
 .exp-input {
 	border-radius: 15px;
 	border: 2px solid #395b6e;
+	height: 20px;
+	width: 50%;
 }
 
 div.form-field {
@@ -40,8 +42,8 @@ div.form-field {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.6s; /* Safari */
+    transition-duration: 0.6s;
     cursor: pointer;
 }
 

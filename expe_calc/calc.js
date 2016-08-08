@@ -16,7 +16,12 @@ function handleClick(e) {
 
 	var sum = rentNum + transNum + foodNum + miscNum;
 
-	console.log(sum);
+	$('.total-exp-p span').text(sum);
+
+	var unusedSum = 4887;
+	unusedSum -= sum;
+
+	$('.rem-p span').text(unusedSum);
 
 	e.preventDefault();
 
