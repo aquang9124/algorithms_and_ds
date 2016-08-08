@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Expenses Calculator</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="container">
+		<section class="calc-container">
+			<h2>Calculator</h2>
+			<form action="" class="exp-input-form">
+				<div class="form-field">
+					<label>Rent: </label>
+					<input type="text" name="exp-rent" id="exp-rent" class="exp-input" value="0">
+				</div>
+				<div class="form-field">
+					<label>Transportation: </label>
+					<input type="text" name="exp-transport" id="exp-transport" class="exp-input" value="0">
+				</div>
+				<div class="form-field">
+					<label>Food: </label>
+					<input type="text" name="exp-food" id="exp-food" class="exp-input" value="0">
+				</div>
+				<div class="form-field">
+					<label>Misc: </label>
+					<input type="text" name="exp-misc" id="exp-misc" class="exp-input" value="0">
+				</div>
+				<div class="form-field">
+					<button class="btn btn-gray" id="submit-btn">Submit</button>
+				</div>
+			</form>
+			<p>Calculated Expenses: <span class="total-exp"></span></p>
+		</section>
+	</main>
+	<script src="calc.js"></script>
+</body>
+</html>

@@ -81,5 +81,3 @@ function digPow(n, k) {
 		return -1;
 	}
 }
-
-console.log(digPow(92, 1));

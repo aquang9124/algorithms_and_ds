@@ -86,10 +86,16 @@ def max_rot(n):
 			n[i], n[i + 1] = n[i + 1], n[i]
 		init_idx += 1
 		rotations -= 1
-		c_num = ''.join(n)
-		if int(c_num) > max_n:
-			max_n = int(c_num)
+		c_num = int(''.join(n))
+		if c_num > max_n:
+			max_n = c_num
 
 	return max_n
 
-print(max_rot(56789))
+def climb_stairs(n):
+	if n == 0:
+		return 1
+	elif n < 0:
+		return 0
+
+	return climb_stairs(n - 1) + climb_stairs(n - 2)
