@@ -81,3 +81,25 @@ function digPow(n, k) {
 		return -1;
 	}
 }
+
+// distance from average
+function distancesFromAverage(arr){
+	//your code here
+	var avg = arr[0];
+	var results = [];
+
+	for (var i = 1; i < arr.length; i++) {
+		avg += arr[i];
+	}
+
+	avg /= arr.length;
+
+	for (var j = 0; j < arr.length; j++) {
+		var num = avg - arr[j];
+		num = parseFloat(num.toFixed(1));
+		results.push(num);
+	}
+
+	return results;
+
+}
