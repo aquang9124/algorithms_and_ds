@@ -19,6 +19,12 @@ html, body {
 	margin: 0 auto;
 	border: 2px solid black;
 	text-align: center;
+	transition-duration: 0.5s;
+}
+
+.calc-container:hover {
+	height: 52%;
+	width: 71%;
 }
 
 .exp-input {
