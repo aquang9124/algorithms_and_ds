@@ -1,6 +1,9 @@
+@import 'https://fonts.googleapis.com/css?family=Slabo+27px';
+
 html, body {
 	width: 100%;
 	height: 100%;
+	font-family: 'Slabo 27px', serif;
 }
 
 .container {
@@ -13,7 +16,7 @@ html, body {
 	position: absolute;
 	border: 2px solid black;
 	width: 70%;
-	height: 50%;
+	height: 52%;
 	top: 25%;
 	left: 0;
 	right: 0;
