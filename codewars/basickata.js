@@ -83,8 +83,7 @@ function digPow(n, k) {
 }
 
 // distance from average
-function distancesFromAverage(arr){
-	//your code here
+function distancesFromAverage(arr) {
 	var avg = arr[0];
 	var results = [];
 
@@ -96,10 +95,27 @@ function distancesFromAverage(arr){
 
 	for (var j = 0; j < arr.length; j++) {
 		var num = avg - arr[j];
-		num = parseFloat(num.toFixed(1));
+		num = parseFloat(num.toFixed(2));
 		results.push(num);
 	}
 
 	return results;
 
 }
+
+// es6 functional version
+const distanceFromAvg = arr => {
+	let avg = arr.reduce( (sum, val) => sum + val ) / arr.length;
+	return arr.map( v => +(avg - v).toFixed(2) );
+};
+
+// non es6 functional version
+var distFromAverage = function(arr) {
+	var avg = arr.reduce( function(sum, val) {
+		return sum + val;
+	} ) / arr.length;
+
+	return arr.map( function(val) {
+		return +(avg - val).toFixed(2);
+	} );
+};
