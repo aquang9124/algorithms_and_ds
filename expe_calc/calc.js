@@ -1,32 +1,45 @@
-'use strict';
-
-// --------------- Function Implementations ----------------- //
-
-// attach event listener to input form button
-function onClick(el, fn) {
-	el.addEventListener('click', fn);
+// functions and helpers //
+function addEventHandler(el, evt, fn) {
+	el.addEventListener(evt, fn);
 }
 
-// handle click events
+function getElem(elem) {
+	return document.querySelector(elem);
+}
+
 function handleClick(e) {
-	var rentNum = parseInt(document.querySelector('#exp-rent').value);
-	var transNum = parseInt(document.querySelector('#exp-transport').value);
-	var foodNum = parseInt(document.querySelector('#exp-food').value);
-	var miscNum = parseInt(document.querySelector('#exp-misc').value);
-
-	var sum = rentNum + transNum + foodNum + miscNum;
-
-	$('.total-exp-p span').text(sum);
-
-	var unusedSum = 4887;
-	unusedSum -= sum;
-
-	$('.rem-p span').text(unusedSum);
-
 	e.preventDefault();
+	// get monthly take home sum
+	var monthlySum = parseInt( getElem( '#monthly-th' ).value ? getElem( '#monthly-th' ).value : 0 );
 
+	// get various expenses
+	var rent = parseInt( getElem( '#rent-exp' ).value ? getElem( '#rent-exp' ).value : 0 );
+	var transport = parseInt( getElem( '#trans-exp' ).value ? getElem( '#trans-exp' ).value : 0 );
+	var food = parseInt( getElem( '#food-exp' ).value ? getElem( '#food-exp' ).value : 0 );
+	var misc = parseInt( getElem( '#misc-exp' ).value ? getElem( '#misc-exp' ).value : 0 );
+
+	// get sum of expenses and append html to calc container
+	var sum = rent + transport + food + misc;
+
+	if ( getElem('#exp-total') ) {
+		getElem( '.exp-sum' ).innerHTML = sum;
+	} else {
+		var expStr = `<p id="exp-total">Your total monthly expenses will be: <span class="exp-sum">${sum}</span></p>`;
+		getElem( '.calc-container' ).insertAdjacentHTML( 'beforeend', expStr );
+	}
+
+	// get remaining money for the month and append html to calc container
+	monthlySum -= sum;
+	
+	if ( getElem('#rem-total') ) {
+		getElem( '#rem-total span' ).innerHTML = monthlySum;
+	} else {
+		var remStr = `<p id="rem-total">You will have <span>${monthlySum}</span> left over each month</p>`;
+		getElem( '.calc-container' ).insertAdjacentHTML( 'beforeend', remStr );
+	}
+	
 }
 
-// ------------ Execution -------------------- //
-var btn = document.querySelector('#submit-btn');
-onClick(btn, handleClick);
+// execution //
+var formBtn = getElem( '.btn-green' );
+addEventHandler( formBtn, 'click', handleClick );
