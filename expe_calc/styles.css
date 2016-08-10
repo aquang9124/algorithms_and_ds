@@ -23,6 +23,7 @@ html, body {
 .calc-container:hover {
 	height: 65%;
 	width: 75%;
+	box-shadow: 0 0 20px 1px black;
 }
 
 .text-center {
