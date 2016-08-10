@@ -1,4 +1,7 @@
+# imports
+from functools import reduce
 import random
+
 # powers of two
 def powers_of_two(n):
 	return [2**i for i in range(n + 1)]
@@ -99,3 +102,10 @@ def climb_stairs(n):
 		return 0
 
 	return climb_stairs(n - 1) + climb_stairs(n - 2)
+
+def dist_from_avg(arr):
+	fn = lambda s,v: s + v
+	avg = reduce(fn, arr) / len(arr)
+	results = [round(avg - i, 2) for i in arr]
+
+	return results
