@@ -51,13 +51,22 @@ function handleFareClick(e) {
 	let baseURI = `http://api.bart.gov/api/sched.aspx?cmd=fare&orig=${origin}&dest=${destination}&date=today&key=${bartKey}`;
 
 	let request = new XMLHttpRequest();
+	
 	request.open('GET', baseURI, true);
 
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 		// Success!
-			let resp = request.responseText;
-			console.log(resp);
+			let xml = request.responseXML;
+			let fare = xml.getElementsByTagName("fare")[0].innerHTML;
+			
+			if ( getElem( '#fare-total' ) ) {
+				getElem( '#fare-total span' ).innerHTML = fare;
+			} else {
+				let fareStr = `<p id="fare-total">Your total fare for this trip will be <span>${fare}</span></p>`;
+				getElem( '#fare-calc' ).insertAdjacentHTML( 'beforeend', fareStr );
+			}
+			
 		} else {
 		// We reached our target server, but it returned an error
 			console.error( new Error( `Reached server, but it returned ${request.status}`) );
