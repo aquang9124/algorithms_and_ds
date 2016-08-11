@@ -3,3 +3,6 @@
 
 # config
 config.json
+
+# files
+bundle.js

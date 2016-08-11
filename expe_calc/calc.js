@@ -1,3 +1,6 @@
+// require needed API key
+var bartKey = require('./config.json').key;
+
 // functions and helpers //
 function addEventHandler(el, evt, fn) {
 	el.addEventListener(evt, fn);
@@ -7,7 +10,7 @@ function getElem(elem) {
 	return document.querySelector(elem);
 }
 
-function handleClick(e) {
+function handleExpClick(e) {
 	e.preventDefault();
 	// get monthly take home sum
 	var monthlySum = parseInt( getElem( '#monthly-th' ).value ? getElem( '#monthly-th' ).value : 0 );
@@ -40,6 +43,41 @@ function handleClick(e) {
 	
 }
 
-// execution //
-var formBtn = getElem( '.btn-green' );
-addEventHandler( formBtn, 'click', handleClick );
+function handleFareClick(e) {
+	e.preventDefault();
+
+	let origin = getElem( '#bart-origin' ).value;
+	let destination = getElem( '#bart-dest' ).value;
+	let baseURI = `http://api.bart.gov/api/sched.aspx?cmd=fare&orig=${origin}&dest=${destination}&date=today&key=${bartKey}`;
+
+	let request = new XMLHttpRequest();
+	request.open('GET', baseURI, true);
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+		// Success!
+			let resp = request.responseText;
+			console.log(resp);
+		} else {
+		// We reached our target server, but it returned an error
+			console.error( new Error( `Reached server, but it returned ${request.status}`) );
+		}
+	};
+
+	request.onerror = function() {
+		// There was a connection error of some sort
+		console.log('There was an error');
+	};
+
+	request.send();
+}
+
+// --- execution --- //
+
+// handler for exp calc
+var expBtn = getElem( '.btn-green' );
+addEventHandler( expBtn, 'click', handleExpClick );
+
+// handler for fare calculator
+var fareBtn = getElem( '.btn-blue' );
+addEventHandler( fareBtn, 'click', handleFareClick );

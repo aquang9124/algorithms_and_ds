@@ -93,6 +93,17 @@ input[type="text"]:hover {
     color: white;
 }
 
+.btn-blue {
+    background-color: white;
+    color: black;
+    border: 2px solid blue;
+}
+
+.btn-blue:hover {
+    background-color: blue;
+    color: white;
+}
+
 .exp-sum {
 	color: red;
 }
