@@ -111,3 +111,15 @@ input[type="text"]:hover {
 #rem-total {
 	color: #006400;
 }
+
+#exp-calc {
+	height: 80%;
+}
+
+#exp-calc:hover {
+	height: 82%;
+}
+
+#calc-title {
+	cursor: default;
+}
