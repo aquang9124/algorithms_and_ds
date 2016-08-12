@@ -149,3 +149,23 @@ def sum_list(arr):
 		return 0
 
 	return sum(arr) - max(arr) - min(arr)
+
+# nums with digit inside
+def num_with_digit(x, d):
+	results = [0, 0, 0]
+
+	for i in range(1, x + 1):
+		num = str(i)
+
+		if str(d) in num:
+			results[0] += 1
+			results[1] += i
+
+			if results[2] == 0:
+				results[2] = 1
+				
+			results[2] *= i
+
+	return results
+
+print(num_with_digit(11, 1))
