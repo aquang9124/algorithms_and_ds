@@ -109,3 +109,43 @@ def dist_from_avg(arr):
 	results = [round(avg - i, 2) for i in arr]
 
 	return results
+
+# sum array without max and min values
+def sum_array(arr):
+	#your code here
+	if arr == None or len(arr) < 3:
+		return 0
+
+	max_val = arr[0]
+	min_val = arr[0]
+	sum_arr = 0
+	count_min = 0
+	count_max = 0
+
+	for i in range(len(arr)):
+		if max_val < arr[i]:
+			max_val = arr[i]
+
+		if min_val > arr[i]:
+			min_val = arr[i]
+
+	for j in range(len(arr)):
+		if arr[j] != max_val and arr[j] != min_val:
+			sum_arr += arr[j]
+		elif arr[j] == max_val and count_max > 0:
+			sum_arr += arr[j]
+		elif arr[j] == min_val and count_min > 0:
+			sum_arr += arr[j]
+		elif arr[j] == max_val:
+			count_max += 1
+		elif arr[j] == min_val:
+			count_min += 1
+
+	return sum_arr
+
+# here's a more pythonic way
+def sum_list(arr):
+	if len(arr) < 3 or arr == None:
+		return 0
+
+	return sum(arr) - max(arr) - min(arr)
