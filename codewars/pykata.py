@@ -163,9 +163,22 @@ def num_with_digit(x, d):
 
 			if results[2] == 0:
 				results[2] = 1
-				
+
 			results[2] *= i
 
 	return results
 
 print(num_with_digit(11, 1))
+
+def mango(quantity, price):
+    sum = 0
+    count = 0
+    
+    for i in range(quantity):
+        if count == 2:
+            count = 0
+            continue
+        sum += price
+        count += 1
+    
+    return sum
