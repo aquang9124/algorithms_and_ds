@@ -141,3 +141,13 @@ function missingNum(arr, total) {
 
 	return total - sum;	
 }
+
+// function that tells you how many times its been called
+function magicWrap() {
+	let count = 0;
+
+	return () => {
+		count++;
+		console.log(`Function has been called ${count} time(s)!`);
+	}
+}
