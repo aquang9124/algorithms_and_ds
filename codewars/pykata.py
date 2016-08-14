@@ -183,6 +183,7 @@ def mango(quantity, price):
 	return total
 
 def word_search(query, seq):
+	query = query.lower()
 	results = []
 
 	for i in range(len(seq)):
@@ -192,5 +193,3 @@ def word_search(query, seq):
 			results.append(seq[i])
 
 	return results if len(results) > 0 else None
-
-print(word_search("ab", ["za", "ab", "abc", "zab", "zbc"]))

@@ -119,3 +119,25 @@ var distFromAverage = function(arr) {
 		return +(avg - val).toFixed(2);
 	} );
 };
+
+// count of divisible numbers
+function divisibleCount(x, y, k) {
+	let count = 0;
+
+	for (let i = x; i <= y; i++) {
+		if (i % k === 0) {
+			count++;
+		}
+	}
+
+	return count;
+}
+
+// missing number in sequence given array, range is 1 - 10000
+function missingNum(arr, total) {
+	let sum = arr.reduce( (s, v) => {
+		return s + v;
+	} );
+
+	return total - sum;	
+}
