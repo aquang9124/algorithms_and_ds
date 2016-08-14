@@ -168,17 +168,29 @@ def num_with_digit(x, d):
 
 	return results
 
-print(num_with_digit(11, 1))
-
 def mango(quantity, price):
-    sum = 0
-    count = 0
-    
-    for i in range(quantity):
-        if count == 2:
-            count = 0
-            continue
-        sum += price
-        count += 1
-    
-    return sum
+	total = 0
+	count = 0
+
+	for i in range(quantity):
+		if count == 2:
+			count = 0
+			continue
+
+		total += price
+		count += 1
+
+	return total
+
+def word_search(query, seq):
+	results = []
+
+	for i in range(len(seq)):
+		word = seq[i].lower()
+
+		if query in word:
+			results.append(seq[i])
+
+	return results if len(results) > 0 else None
+
+print(word_search("ab", ["za", "ab", "abc", "zab", "zbc"]))
