@@ -151,3 +151,17 @@ function magicWrap() {
 		console.log(`Function has been called ${count} time(s)!`);
 	}
 }
+
+// similar to above except actually acts as wrapper around callback function
+function wrapAFunc(fn) {
+	let count = 0;
+
+	return (x) => {
+		count++;
+		return fn(x, count);
+	}
+}
+
+let simpleFn = wrapAFunc( (x, y) => {
+	return x + y;
+} );
