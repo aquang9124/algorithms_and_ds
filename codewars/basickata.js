@@ -165,3 +165,22 @@ function wrapAFunc(fn) {
 let simpleFn = wrapAFunc( (x, y) => {
 	return x + y;
 } );
+
+// reverse string
+function stringRev(str) {
+	str = str.split('');
+
+	let left = 0,
+		right = str.length - 1;
+
+	while (left <= right) {
+		let temp = str[left];
+		str[left] = str[right];
+		str[right] = temp;
+
+		left++;
+		right--;
+	}
+
+	return str.join('');
+}
