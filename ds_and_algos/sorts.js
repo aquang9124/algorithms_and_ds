@@ -6,10 +6,11 @@ function bubbleSort(arr) {
         swapped = false;
         for (let i = 0; i < arr.length - limit; i++) {
             if (arr[i] > arr[i + 1]) {
-                swapVals(arr, arr[i], arr[i + 1]);
+                swapVals(arr, i, i+1);
                 swapped = true;
             }
         }
+        limit++;
     }
 
     return arr;
@@ -23,4 +24,16 @@ function swapVals(arr, a, b) {
     return arr;
 }
 
-console.log(bubbleSort([4, 6, 22, 1, 0, 99, 27]));
+function insertionSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+            for (let j = i; j > 0; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    swapVals(arr, j, j - 1);
+                }
+            }
+        }
+    }
+
+    return arr;
+}
