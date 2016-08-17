@@ -37,3 +37,29 @@ function insertionSort(arr) {
 
     return arr;
 }
+
+function selectionSort(arr) {
+    let sorted = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        let min = arr[sorted];
+        let minIdx = sorted;
+
+        for (let j = sorted; j < arr.length; j++) {
+            if (arr[j] < min) {
+                min = arr[j];
+                minIdx = j;
+            }
+        }
+
+        let temp = arr[sorted];
+        arr[sorted] = arr[minIdx];
+        arr[minIdx] = temp;
+
+        sorted++;
+    }
+
+    return arr;
+}
+
+console.log(selectionSort([2, 9, 1, 0, -4, 7, 3, 5]));
