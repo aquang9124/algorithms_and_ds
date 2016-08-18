@@ -62,4 +62,41 @@ function selectionSort(arr) {
     return arr;
 }
 
-console.log(selectionSort([2, 9, 1, 0, -4, 7, 3, 5]));
+function mergeSort(arr) {
+    if (arr.length < 2) {
+        return arr;
+    }
+
+    let mid = Math.floor(arr.length / 2);
+    let left = arr.slice(0, mid);
+    let right = arr.slice(mid);
+
+    return mergeArrays(mergeSort(left), mergeSort(right));
+}
+
+function mergeArrays(arr1, arr2) {
+    let p1 = 0, p2 = 0;
+    let results = [];
+
+    while (p1 < arr1.length && p2 < arr2.length) {
+        if (arr1[p1] <= arr2[p2]) {
+            results.push(arr1[p1]);
+            p1++;
+        }
+        else if (arr2[p2] < arr1[p1]) {
+            results.push(arr2[p2]);
+            p2++;
+        }
+    }
+
+    if (p1 === arr1.length) {
+        results = results.concat(arr2.slice(p2));
+    }
+    else if (p2 === arr2.length) {
+        results = results.concat(arr1[p1]);
+    }
+
+    return results;
+}
+
+console.log(mergeSort([2, 1, 77, 3, 0, 8998, 5]));
