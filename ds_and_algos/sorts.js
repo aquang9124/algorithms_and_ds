@@ -98,5 +98,3 @@ function mergeArrays(arr1, arr2) {
 
     return results;
 }
-
-console.log(mergeSort([2, 1, 77, 3, 0, 8998, 5]));
