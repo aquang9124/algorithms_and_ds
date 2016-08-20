@@ -45,3 +45,34 @@ Stack.prototype = {
         return false;
     }
 };
+
+// singly linked list
+function SLNode(data) {
+    this.data = data;
+    this.next = null;
+}
+
+function SinglyLinkedList() {
+    this.head = null;
+}
+
+SinglyLinkedList.prototype = {
+    insert: function(data) {
+        let newNode = new SLNode(data);
+
+        if (this.head === null) {
+            this.head = newNode;
+        }
+        else {
+            let cNode = this.head;
+
+            while (cNode.next !== null) {
+                cNode = cNode.next;
+            }
+
+            cNode.next = newNode;
+        }
+
+        return this;
+    }
+};
