@@ -9,14 +9,34 @@ body{
   background-color:white; 
   margin:25px 15px;
   border-radius:5px;
+  text-align: center;
 }
 
 .box h3{
   font-family: 'Didact Gothic', sans-serif;
   font-weight:normal;
-  text-align:center;
   padding-top:60px;
   color:#fff;
+}
+
+#clicka {
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 2px solid #0CC6EE;
+  background: black;
+  color: white;
+  height: 35px;
+  width: 100px;
+  transition-duration: 0.5s;
+}
+
+#clicka:focus {
+  outline: 0;
+}
+
+#clicka:hover {
+  border: 2px solid black;
+  background: #0CC6EE;
 }
 
 .box1{
