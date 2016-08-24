@@ -1,0 +1,1 @@
+$('.box').attr('fancybox') ? $('.box').addClass('box1') : false;
