@@ -1,4 +1,5 @@
 var btn = document.getElementById('clicka');
+
 btn.addEventListener( 'click', (e) => {
 
 	if ( $('#the-only-box').attr('data-fancy') ) 
@@ -6,7 +7,7 @@ btn.addEventListener( 'click', (e) => {
 		var currentBox = parseInt( $( '#the-only-box' ).attr( 'data-curr-box' ) );
 		var boxClasses = document.getElementById( 'the-only-box' ).className.split( /\s+/ );
 
-		if ( boxClasses.length > 1 && currentBox > 0 ) 
+		if ( boxClasses.length > 2 && currentBox > 0 )
 		{
 			$( '#the-only-box' ).removeClass( `box${ currentBox }` );
 
@@ -23,7 +24,6 @@ btn.addEventListener( 'click', (e) => {
 
 		$( '#the-only-box' ).attr( 'data-curr-box', currentBox);
 		$( '#the-only-box' ).addClass( `box${ currentBox }` );
-
 	}
 	else
 	{

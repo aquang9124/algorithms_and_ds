@@ -10,6 +10,7 @@ body{
   margin:25px 15px;
   border-radius:5px;
 }
+
 .box h3{
   font-family: 'Didact Gothic', sans-serif;
   font-weight:normal;
@@ -17,6 +18,7 @@ body{
   padding-top:60px;
   color:#fff;
 }
+
 .box1{
   background-color: #EBA39E;
 }
@@ -49,12 +51,13 @@ body{
 }
 /*****************************************************************dashed border
 ****************************************************************/
-.shadow1 h3, .shadow2 h3, .shadow3 h3, .shadow4 h3, .shadow5 h3, .shadow6 h3, .shadow7 h3, .shadow8 h3{
+.shadow1 h3, .shadow2 h3, .shadow3 h3, .shadow4 h3, .shadow5 h3, .shadow6 h3, .shadow7 h3, .shadow8 h3 {
   width:87%;
   height:100px;
   margin-left:6%;
   border:2px dashed #F7EEEE;
   border-radius:5px;
+  padding-top: 35px;
 }
 /****************************************************************
 *styling shadows
