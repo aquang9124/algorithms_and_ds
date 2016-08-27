@@ -82,19 +82,19 @@ interface Person {
 }
 
 function printPerson(person: Person) {
-	let result: string = "";
+	let hobbies: string = "";
 
 	person.hobbies.forEach((hobby: string, i: number) => {
-		result += hobby;
+		hobbies += hobby;
 
 		if (hobby !== person.hobbies[person.hobbies.length - 1]) {
-			result += ", ";
+			hobbies += ", ";
 		} else {
-			result += ".";
+			hobbies += ".";
 		}
 	});
 
-	console.log(`${person.name} is ${person.age} years old and likes ${result}`);
+	console.log(`${person.name} is ${person.age} years old and likes ${hobbies}`);
 }
 
 let myPerson = {
