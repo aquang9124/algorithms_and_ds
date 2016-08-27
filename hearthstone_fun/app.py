@@ -11,7 +11,7 @@ def index():
 
 @app.route('/api/card/<name>')
 def cards(name):
-    url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/ysera"
+    url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + name
     headers = { "X-Mashape-Key": env_variables["mashape_key"], "content-type": "application/json; charset=utf8" }
     r = requests.get(url, headers=headers)
     return r.text
