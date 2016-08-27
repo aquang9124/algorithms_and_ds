@@ -1,3 +1,4 @@
+// This function actually does not work properly. T-T
 function generatePasswords(pass: string) {
 	let results: Array<string> = [];
 	let permutations: any = {};
@@ -22,4 +23,16 @@ function generatePasswords(pass: string) {
 	}
 
 	return results;
+}
+
+// calculate profits over time
+function calcProfits(gain: number, loss: number, time: number): number {
+	let sum: number = 0;
+	let i: number;
+
+	for (i = 0; i < time; i++) {
+		sum += (gain - loss);
+	}
+
+	return sum;
 }

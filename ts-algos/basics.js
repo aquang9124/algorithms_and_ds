@@ -1,3 +1,4 @@
+// This function actually does not work properly. T-T
 function generatePasswords(pass) {
     var results = [];
     var permutations = {};
@@ -15,4 +16,13 @@ function generatePasswords(pass) {
         permutations[testPass] = true;
     }
     return results;
+}
+// calculate profits over time
+function calcProfits(gain, loss, time) {
+    var sum = 0;
+    var i;
+    for (i = 0; i < time; i++) {
+        sum += (gain - loss);
+    }
+    return sum;
 }
