@@ -1,0 +1,20 @@
+{
+  "name": "ng_fun",
+  "version": "1.0.0",
+  "description": "Ng fun stuff",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Quang",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-typescript-babel": "^1.0.0",
+    "gulp-watch": "^4.3.9"
+  }
+}

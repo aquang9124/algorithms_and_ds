@@ -1,0 +1,21 @@
+{
+  "name": "ng_fun",
+  "description": "Ng fun stuff",
+  "main": "server/server.js",
+  "authors": [
+    "Alex Quang"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/aquang9124/algorithms_and_ds",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
+  }
+}
