@@ -39,9 +39,9 @@ class Human {
 }
 
 interface Abilities {
-    "programming"?: number;
-    "problemSolving"?: number;
-    "deepThoughts"?: number;
+    programming?: number;
+    problemSolving?: number;
+    deepThoughts?: number;
 }
 
 class Engineer extends Human {
@@ -68,7 +68,7 @@ class Engineer extends Human {
 }
 
 let alex = new Engineer("Alex", 24, {
-    "programming": 7,
-    "problemSolving": 6,
-    "deepThoughts": 6
+    programming: 7,
+    problemSolving: 6,
+    deepThoughts: 6
 });
