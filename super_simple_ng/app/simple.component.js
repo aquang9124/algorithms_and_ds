@@ -1,12 +1,12 @@
 (function(angular) {
     'use strict';
 
-    var simple = {
+    var simpleComp = {
         templateUrl: './templates/simple.html',
         controller: 'SimpleCtrl as parent',
     };
 
     angular.module('simple')
-        .component('simple', simple);
-        
+        .component('simpleComp', simpleComp);
+
 })(angular);

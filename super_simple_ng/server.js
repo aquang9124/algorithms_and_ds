@@ -1,11 +1,10 @@
 var express = require('express');
-var path = require('path');
 var app = express();
 
 app.set('port', (process.env.PORT || 8080));
 
 // serving up some files
-app.use(express.static(path.join(__dirname, './dist')));
+app.use(express.static(__dirname + '/dist'));
 
 app.listen(app.get('port'), function() {
     console.log(`Your server is started and listening on port ${app.get('port')}`);
