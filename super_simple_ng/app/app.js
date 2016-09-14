@@ -1,7 +1,7 @@
 (function() {
     angular.module('app', [
         // custom modules
-        'app.component',
+        'simple',
         // 3rd party modules
         'ui.router'
     ])
@@ -9,7 +9,7 @@
         var helloState = {
             name: 'index',
             url: '/index',
-            template: '<simple-comp><simple-comp>'
+            templateUrl: './templates/main.html'
         }
         $urlRouterProvider.otherwise('/index');
         $stateProvider.state(helloState);

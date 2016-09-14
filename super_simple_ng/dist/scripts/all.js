@@ -1,7 +1,7 @@
 (function() {
     angular.module('app', [
         // custom modules
-        'app.component',
+        'simple',
         // 3rd party modules
         'ui.router'
     ])
@@ -9,18 +9,12 @@
         var helloState = {
             name: 'index',
             url: '/index',
-            template: '<simple-comp><simple-comp>'
+            templateUrl: './templates/main.html'
         }
         $urlRouterProvider.otherwise('/index');
         $stateProvider.state(helloState);
     });
 })();
-(function(angular) {
-    angular.module('app.component', [
-        // custom modules
-        'simple'
-    ]);
-})(angular);
 (function() {
     angular.module('simple', [
         
@@ -28,48 +22,31 @@
 })();
 (function() {
     angular.module('simple')
-        .controller('SimpChildCtrl', SimpChildCtrl);
+        .controller('infoCtrl', infoCtrl);
 
-    function SimpChildCtrl() {
-        
-    }
-})();
-(function() {
-    angular.module('simple')
-        .controller('SimpleCtrl', SimpleCtrl);
-
-    function SimpleCtrl() {
+    function infoCtrl() {
         var vm = this;
 
-        vm.questions = [
-            { title: 'Documents please', content: 'I need those documents' },
-            { title: 'Apples please', content: "I'm out of fruit" }
-        ];
+        vm.user = {
+            name: "Alex Quang"
+        };
     }
 })();
 (function() {
     'use strict';
 
-    var simpChild = {
-        templateUrl: './templates/simpchild.html',
-        controller: 'SimpChildCtrl',
-        bindings: {
-            questions: '<'
-        }
-    };
-
     angular.module('simple')
-        .component('simpChild', simpChild);
+        .directive('bkeUserInfoCard', bkeUserInfoCard);
+    
+    // implementation
+    function bkeUserInfoCard() {
+        var directive = {
+            restrict: 'E',
+            templateUrl: './templates/userinfo.html',
+            controller: 'infoCtrl',
+            controllerAs: 'vm'
+        };
+
+        return directive;
+    }
 })();
-(function(angular) {
-    'use strict';
-
-    var simpleComp = {
-        templateUrl: './templates/simple.html',
-        controller: 'SimpleCtrl as parent',
-    };
-
-    angular.module('simple')
-        .component('simpleComp', simpleComp);
-
-})(angular);

@@ -7,10 +7,11 @@ var paths = {
     modules: './app/index.js',
     controllers: './app/*.controller.js',
     components: './app/*.component.js',
+    directives: './app/*.directive.js',
     output: './dist/scripts'
 };
 
-var scriptsPaths = [paths.rootMod, paths.rootComp, paths.modules, paths.controllers, paths.components];
+var scriptsPaths = [paths.rootMod, paths.rootComp, paths.modules, paths.controllers, paths.components, paths.directives];
 
 gulp.task('scripts', function() {
     return gulp.src(scriptsPaths)
