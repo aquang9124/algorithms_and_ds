@@ -21,6 +21,22 @@
     ]);
 })();
 (function() {
+    'use strict';
+
+    angular
+        .module('simple')
+        .controller('fileCtrl', fileCtrl);
+    
+    fileCtrl.$inject = [];
+
+    // implementation
+    function fileCtrl() {
+        var vm = this;
+
+        
+    }
+})();
+(function() {
     angular.module('simple')
         .controller('infoCtrl', infoCtrl);
 
@@ -48,6 +64,25 @@
             vm.user.rank = vm.user.rank ? null : rank;
             return rank;
         }
+    }
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('simple')
+        .directive('bkeUploadFiles', bkeUploadFiles);
+
+    // implementation
+    function bkeUploadFiles() {
+        var directive = {
+            restrict: 'E',
+            templateUrl: './templates/fileupload.html',
+            controller: 'fileCtrl',
+            controllerAs: 'vm'
+        };
+
+        return directive;
     }
 })();
 (function() {
